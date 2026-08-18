@@ -1,8 +1,10 @@
 import "dotenv/config";
 import path from "path";
 import { fileURLToPath } from "url";
-
 import express from "express";
+
+import indexRoutes from "./routes/index.routes.js";
+import dashboardRouter from "./routes/dashboard.routes.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,9 +18,8 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
-  res.send("Hello");
-});
+app.use("/", indexRoutes);
+app.use("/dashboard", dashboardRouter);
 
 app.use((_req, res, _next) => {
   res.send("<h1>Page not found</h1>");
