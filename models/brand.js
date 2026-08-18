@@ -1,4 +1,4 @@
-const Brand = ({ id, name, logoUrl }) => {
+const Brand = ({ id, name }) => {
   return {
     id: id || crypto.randomUUID(),
     name: name || "No Brand",
