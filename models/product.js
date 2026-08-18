@@ -12,7 +12,7 @@ const Product = ({
   return {
     id: id || crypto.randomUUID(),
     sku,
-    name,
+    name: name || "Empty Product",
     price,
     weight,
 
