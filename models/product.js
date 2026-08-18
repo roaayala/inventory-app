@@ -15,6 +15,7 @@ const Product = ({
     name,
     price,
     weight,
+
     brandId: brandId || null,
     categoryIds: categoryIds || [],
 
