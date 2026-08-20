@@ -1,10 +1,11 @@
-const ProductBase = ({ id, sku, name, price, weight }) => {
+const ProductBase = ({ id, sku, name, price, weight, brandId }) => {
   return {
     id: id || crypto.randomUUID(),
     sku,
-    name: name || "Empty Product",
+    name,
     price,
     weight,
+    brandId: brandId || null,
   };
 };
 

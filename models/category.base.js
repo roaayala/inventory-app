@@ -1,7 +1,8 @@
-const CategoryBase = ({ id, name }) => {
+const CategoryBase = ({ id, name, parentId }) => {
   return {
     id: id || crypto.randomUUID(),
-    name: name || "Others",
+    name,
+    parentId: parentId || null,
   };
 };
 
