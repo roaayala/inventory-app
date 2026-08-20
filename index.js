@@ -3,8 +3,8 @@ import path from "path";
 import { fileURLToPath } from "url";
 import express from "express";
 
-import indexRoutes from "./routes/index.routes.js";
-import dashboardRouter from "./routes/dashboard.routes.js";
+import indexRoute from "./routes/index.route.js";
+import dashboardRoute from "./routes/dashboard.route.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -18,8 +18,8 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/", indexRoutes);
-app.use("/dashboard", dashboardRouter);
+app.use("/", indexRoute);
+app.use("/dashboard", dashboardRoute);
 
 app.use((_req, res, _next) => {
   res.send("<h1>Page not found</h1>");
