@@ -1,25 +1,8 @@
-const Category = ({
-  id,
-  name,
-  parentId,
-  parent,
-  productIds,
-  products,
-  brandIds,
-  brands,
-}) => {
+const CategoryBase = ({ id, name }) => {
   return {
     id: id || crypto.randomUUID(),
     name: name || "Others",
-
-    parentId: parentId || null,
-    productIds: productIds || [],
-    brandIds: brandIds || [],
-
-    parent: parent || null,
-    products: products || [],
-    brands: brands || [],
   };
 };
 
-export default Category;
+export default CategoryBase;
