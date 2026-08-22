@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head', title) %>
+  <body>
+    <h1><%= title %></h1>
+
+    <main class="products">
+      <% products.forEach(product => { %>
+      <div class="product-card">
+        <h2><%= product.name %></h2>
+        <ul>
+          <li>
+            SKU:
+            <%= product.sku %>
+          </li>
+          <li>Price: Rp<%= stringifyPrice(product.price) %></li>
+          <li>
+            Weight:
+            <%= product.weight %>
+            Kg
+          </li>
+          <li>
+            Brand:
+            <%= product.brand.name %>
+          </li>
+          <li>
+            Categories: <% if (product.categories &&
+            product.categories.length>0) { %> <%
+            product.categories.forEach(category => { %>
+            <span><%= category.name %></span>
+            <% }) %>
+            <% } else { %>
+            <span>No categories</span>
+            <% } %>
+          </li>
+        </ul>
+      </div>
+      <% }) %>
+    </main>
+
+    <%- include('../partials/footer') %>
+  </body>
+</html>
