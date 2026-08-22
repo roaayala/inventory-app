@@ -3,40 +3,71 @@
   <%- include('../partials/head', title) %>
   <body>
     <h1><%= title %></h1>
-
-    <main class="products">
-      <% products.forEach(product => { %>
-      <div class="product-card">
-        <h2><%= product.name %></h2>
-        <ul>
-          <li>
-            SKU:
-            <%= product.sku %>
-          </li>
-          <li>Price: Rp<%= stringifyPrice(product.price) %></li>
-          <li>
-            Weight:
-            <%= product.weight %>
-            Kg
-          </li>
-          <li>
-            Brand:
-            <%= product.brand.name %>
-          </li>
-          <li>
-            Categories: <% if (product.categories &&
-            product.categories.length>0) { %> <%
-            product.categories.forEach(category => { %>
-            <span><%= category.name %></span>
+    <div class="container">
+      <aside>
+        <div>
+          <h3>Product Categories</h3>
+          <ul>
+            <% if (nestedCategories && nestedCategories.length>0) { %> <%
+            nestedCategories.forEach(category => { %>
+            <li>
+              <span><%= category.name %></span>
+              <% if (category.children && category.children.length > 0) {%>
+              <ul>
+                <% category.children.forEach(subCat => { %>
+                <li>
+                  <span><%= subCat.name %></span>
+                </li>
+                <% }) %>
+              </ul>
+              <% } %>
+            </li>
             <% }) %>
             <% } else { %>
-            <span>No categories</span>
+            <li>No categories</li>
             <% } %>
-          </li>
-        </ul>
-      </div>
-      <% }) %>
-    </main>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Product Brands</h3>
+        </div>
+      </aside>
+
+      <main class="products">
+        <% products.forEach(product => { %>
+        <div class="product-card">
+          <h2><%= product.name %></h2>
+          <ul>
+            <li>
+              SKU:
+              <%= product.sku %>
+            </li>
+            <li>Price: Rp<%= stringifyPrice(product.price) %></li>
+            <li>
+              Weight:
+              <%= product.weight %>
+              Kg
+            </li>
+            <li>
+              Brand:
+              <%= product.brand.name %>
+            </li>
+            <li>
+              Categories: <% if (product.categories &&
+              product.categories.length>0) { %> <%
+              product.categories.forEach(category => { %>
+              <span><%= category.name %></span>
+              <% }) %>
+              <% } else { %>
+              <span>No categories</span>
+              <% } %>
+            </li>
+          </ul>
+        </div>
+        <% }) %>
+      </main>
+    </div>
 
     <%- include('../partials/footer') %>
   </body>
