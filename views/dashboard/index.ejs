@@ -48,14 +48,26 @@
                 <h2 class="products__header-title">Products List</h2>
 
                 <div class="products__header-actions">
-                  <a href="#">New Product</a>
+                  <a href="#" class="button button--primary">New Product</a>
                 </div>
               </div>
 
               <div class="products__body">
                 <% products.forEach(product => { %>
                 <div class="product-card">
-                  <h3><%= product.name %></h3>
+                  <div class="product-card__header">
+                    <h3 class="product-card__title"><%= product.name %></h3>
+
+                    <div class="product-card__actions">
+                      <a href="#" class="button button-small button--secondary"
+                        >Edit</a
+                      >
+                      <a href="#" class="button button-small button--secondary"
+                        >Delete</a
+                      >
+                    </div>
+                  </div>
+
                   <ul>
                     <li>
                       SKU:
