@@ -1,35 +1,18 @@
 import * as productService from "../services/product.service.js";
 import * as categoryService from "../services/category.service.js";
-import { stringifyPrice } from "../utils/helpers.js";
-
-const buildCategoryTree = (arr) => {
-  const tree = [];
-  const lookup = {};
-
-  arr.forEach((item) => {
-    lookup[item.id] = { ...item, children: [] };
-  });
-
-  arr.forEach((item) => {
-    if (item.parentId === null) {
-      tree.push(lookup[item.id]);
-    } else {
-      lookup[item.parentId].children.push(lookup[item.id]);
-    }
-  });
-
-  return tree;
-};
+import * as brandService from "../services/brand.service.js";
+import { buildCategoryTree, stringifyPrice } from "../utils/helpers.js";
 
 export const renderDashboard = async (_req, res) => {
   const products = await productService.getProducts();
-  const categories = await categoryService.getCategories();
-  const nestedCategories = buildCategoryTree(categories);
+  const categories = buildCategoryTree(await categoryService.getCategories());
+  const brands = await brandService.getBrands();
 
   res.render("dashboard/index", {
     title: "Dashboard",
     products,
-    nestedCategories,
+    categories,
+    brands,
     stringifyPrice,
   });
 };

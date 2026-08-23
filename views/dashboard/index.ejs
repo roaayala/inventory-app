@@ -13,11 +13,14 @@
         <div class="container">
           <div class="dashboard__body-wrapper">
             <aside class="dashboard__sidebar">
+              <form action="/dashboard" method="get" class="sidebar-filter">
+                <button class="button button--primary">Apply Filter</button>
+              </form>
               <div>
                 <h3>Product Categories</h3>
                 <ul>
-                  <% if (nestedCategories && nestedCategories.length>0) { %> <%
-                  nestedCategories.forEach(category => { %>
+                  <% if (categories && categories.length>0) { %> <%
+                  categories.forEach(category => { %>
                   <li>
                     <span><%= category.name %></span>
                     <% if (category.children && category.children.length > 0)
@@ -40,6 +43,16 @@
 
               <div>
                 <h3>Product Brands</h3>
+
+                <ul>
+                  <% if (brands && brands.length > 0) { %> <%
+                  brands.forEach(brand => { %>
+                  <li><%= brand.name %></li>
+                  <% }); %>
+                  <% } else { %>
+                  <li>No brands</li>
+                  <% } %>
+                </ul>
               </div>
             </aside>
 
@@ -51,7 +64,6 @@
                   <a href="#" class="button button--primary">New Product</a>
                 </div>
               </div>
-
               <div class="products__body">
                 <% products.forEach(product => { %>
                 <div class="product-card">
