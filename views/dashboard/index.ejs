@@ -68,29 +68,34 @@
                     </div>
                   </div>
 
-                  <ul>
-                    <li>
-                      SKU:
-                      <%= product.sku %>
+                  <ul class="product-card__details">
+                    <li class="product-card__item">
+                      <span class="detail-label">SKU:</span>
+                      <span><%= product.sku %></span>
                     </li>
-                    <li>Price: Rp<%= stringifyPrice(product.price) %></li>
-                    <li>
-                      Weight:
-                      <%= product.weight %>
-                      Kg
+                    <li class="product-card__item">
+                      <span class="detail-label">Price:</span>
+                      <span>Rp<%= stringifyPrice(product.price) %></span>
                     </li>
-                    <li>
-                      Brand:
-                      <%= product.brand.name %>
+                    <li class="product-card__item">
+                      <span class="detail-label">Weight:</span>
+                      <span>
+                        <%= product.weight %>
+                        Kg
+                      </span>
                     </li>
-                    <li>
-                      Categories: <% if (product.categories &&
-                      product.categories.length>0) { %> <%
-                      product.categories.forEach(category => { %>
-                      <span><%= category.name %></span>
+                    <li class="product-card__item">
+                      <span class="detail-label">Brand:</span>
+                      <span><%= product.brand.name %></span>
+                    </li>
+                    <li class="product-card__item">
+                      <span class="detail-label">Categories:</span>
+                      <% if (product.categories && product.categories.length >
+                      0) { %> <% product.categories.forEach(category => { %>
+                      <span class="category-badge"><%= category.name %></span>
                       <% }) %>
                       <% } else { %>
-                      <span>No categories</span>
+                      <span class="text-muted">-</span>
                       <% } %>
                     </li>
                   </ul>
