@@ -2,9 +2,7 @@ import { pool } from "../db/pool.js";
 import { newPlaceholders } from "../utils/helpers.js";
 
 export const findAll = async () => {
-  const { rows } = await pool.query(
-    `SELECT id, name, parent_id FROM categories`,
-  );
+  const { rows } = await pool.query(`SELECT id, name FROM categories`);
   return rows;
 };
 
@@ -14,7 +12,7 @@ export const findCategoryByIds = async (ids) => {
   const placeholders = newPlaceholders(ids);
 
   const { rows } = await pool.query(
-    `SElECT id, name, parent_id FROM categories WHERE id IN (${placeholders})`,
+    `SElECT id, name FROM categories WHERE id IN (${placeholders})`,
     ids,
   );
 

@@ -1,7 +1,7 @@
 import * as productService from "../services/product.service.js";
 import * as categoryService from "../services/category.service.js";
 import * as brandService from "../services/brand.service.js";
-import { buildCategoryTree, stringifyPrice } from "../utils/helpers.js";
+import { stringifyPrice } from "../utils/helpers.js";
 
 export const renderDashboard = async (req, res) => {
   const { categories: categoriesQuery, brands: brandsQuery } = req.query;
@@ -19,7 +19,7 @@ export const renderDashboard = async (req, res) => {
   };
 
   const products = await productService.getProducts(activeFilters);
-  const categories = buildCategoryTree(await categoryService.getCategories());
+  const categories = await categoryService.getCategories();
   const brands = await brandService.getBrands();
 
   res.render("dashboard/index", {

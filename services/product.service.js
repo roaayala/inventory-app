@@ -43,7 +43,6 @@ export const getProducts = async (filters = { categories: [], brands: [] }) => {
   const categoryIds = productCategories
     .filter((pc) => filteredProducts.some((p) => p.id === pc.product_id))
     .map((pc) => pc.category_id);
-  console.log(categoryIds);
 
   const rawBrands = await brandRepo.findBrandByIds(brandIds);
   const rawCategories = await categoryRepo.findCategoryByIds(categoryIds);

@@ -22,9 +22,7 @@ async function main() {
 
       CREATE TABLE IF NOT EXISTS categories (
         id VARCHAR(255) PRIMARY KEY,
-        name VARCHAR(255) NOT NULL,
-        parent_id VARCHAR(255),
-        FOREIGN KEY (parent_id) REFERENCES categories(id) ON DELETE SET NULL
+        name VARCHAR(255) NOT NULL
       );
 
       CREATE TABLE IF NOT EXISTS products (
@@ -70,27 +68,19 @@ async function main() {
 
     const catElectronics = CategoryBase({ name: "Electronics" });
     const catComputerParts = CategoryBase({ name: "Computer Parts" });
-    const catMouse = CategoryBase({
-      name: "Mouse",
-      parentId: catComputerParts.id,
-    });
     const catClothes = CategoryBase({ name: "Clothes" });
 
     await pool.query(
-      `INSERT INTO categories (id, name, parent_id) VALUES ($1, $2, $3), ($4, $5, $6), ($7, $8, $9), ($10, $11, $12)`,
+      `INSERT INTO categories (id, name) VALUES ($1, $2), ($3, $4), ($5, $6)`,
       [
         catElectronics.id,
         catElectronics.name,
-        catElectronics.parentId,
+
         catComputerParts.id,
         catComputerParts.name,
-        catComputerParts.parentId,
-        catMouse.id,
-        catMouse.name,
-        catMouse.parentId,
+
         catClothes.id,
         catClothes.name,
-        catClothes.parentId,
       ],
     );
     console.log("seed dummy categories done");
@@ -170,7 +160,7 @@ async function main() {
        ($7, $8)`,
       [
         prodMouse.id,
-        catMouse.id,
+        catComputerParts.id,
         prodMonitor.id,
         catComputerParts.id,
         prodSmartTV.id,
