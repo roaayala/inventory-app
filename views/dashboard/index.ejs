@@ -24,6 +24,18 @@
                     <% if (categories && categories.length > 0) { %> <%
                     categories.forEach(category => { %>
                     <div class="field-group--inline">
+                      <% const isChecked =
+                      activeFilters.categories.includes(String(category.id)); %>
+                      <% if (isChecked) { %>
+                      <input
+                        class="checkbox-input"
+                        type="checkbox"
+                        name="categories"
+                        id="<%= category.id %>"
+                        value="<%= category.id %>"
+                        checked
+                      />
+                      <% } else { %>
                       <input
                         class="checkbox-input"
                         type="checkbox"
@@ -31,17 +43,31 @@
                         id="<%= category.id %>"
                         value="<%= category.id %>"
                       />
+                      <% } %>
+
                       <label
                         class="checkbox-input-label"
                         for="<%= category.id %>"
                       >
-                        <%= category.name %></label
-                      >
+                        <%= category.name %>
+                      </label>
                     </div>
 
                     <% if (category.children && category.children.length > 0) {
                     %> <% category.children.forEach(children => { %>
                     <div class="field-group--inline-nested">
+                      <% const isChildChecked =
+                      activeFilters.categories.includes(String(children.id)); %>
+                      <% if (isChildChecked) { %>
+                      <input
+                        class="checkbox-input"
+                        type="checkbox"
+                        name="categories"
+                        id="<%= children.id %>"
+                        value="<%= children.id %>"
+                        checked
+                      />
+                      <% } else { %>
                       <input
                         class="checkbox-input"
                         type="checkbox"
@@ -49,11 +75,14 @@
                         id="<%= children.id %>"
                         value="<%= children.id %>"
                       />
+                      <% } %>
+
                       <label
                         class="checkbox-input-label"
                         for="<%= children.id %>"
-                        ><%= children.name %></label
                       >
+                        <%= children.name %>
+                      </label>
                     </div>
                     <% }) %>
                     <% } %>
@@ -65,6 +94,7 @@
                     <% } %>
                   </div>
                 </div>
+
                 <!-- brands -->
                 <div class="brands-filter">
                   <div class="brands-filter__header">
@@ -75,6 +105,18 @@
                     <% if (brands && brands.length > 0) { %> <%
                     brands.forEach(brand => { %>
                     <div class="field-group--inline">
+                      <% const isBrandChecked =
+                      activeFilters.brands.includes(String(brand.id)); %> <% if
+                      (isBrandChecked) { %>
+                      <input
+                        class="checkbox-input"
+                        type="checkbox"
+                        name="brands"
+                        id="<%= brand.id %>"
+                        value="<%= brand.id %>"
+                        checked
+                      />
+                      <% } else { %>
                       <input
                         class="checkbox-input"
                         type="checkbox"
@@ -82,6 +124,8 @@
                         id="<%= brand.id %>"
                         value="<%= brand.id %>"
                       />
+                      <% } %>
+
                       <label class="checkbox-input-label" for="<%= brand.id %>">
                         <%= brand.name %></label
                       >
@@ -92,10 +136,12 @@
                     <% } %>
                   </div>
                 </div>
+
+                <!-- buttons -->
                 <div class="form-actions">
-                  <button class="button button--secondary" type="reset">
+                  <a href="/dashboard" class="button button--secondary">
                     Reset Filter
-                  </button>
+                  </a>
                   <button class="button button--primary" type="submit">
                     Apply Filter
                   </button>

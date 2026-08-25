@@ -8,11 +8,17 @@ export const renderDashboard = async (req, res) => {
   const categories = buildCategoryTree(await categoryService.getCategories());
   const brands = await brandService.getBrands();
 
+  const activeFilters = { categories: [], brands: [] };
+  const { categories: categoriesQuery, brands: brandsQuery } = req.query;
+  activeFilters.categories = categoriesQuery ? categoriesQuery : [];
+  activeFilters.brands = brandsQuery ? brandsQuery : [];
+
   res.render("dashboard/index", {
     title: "Dashboard",
     products,
     categories,
     brands,
+    activeFilters,
     stringifyPrice,
   });
 };
