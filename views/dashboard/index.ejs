@@ -6,6 +6,11 @@
       <div class="dashboard__header">
         <div class="container">
           <h1><%= title %></h1>
+          <nav>
+            <% dashboardMenu.forEach(menu => { %>
+            <a href="<%= menu.link %>"><%= menu.label %></a>
+            <% }) %>
+          </nav>
         </div>
       </div>
 

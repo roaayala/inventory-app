@@ -3,6 +3,13 @@ import * as categoryService from "../services/category.service.js";
 import * as brandService from "../services/brand.service.js";
 import { stringifyPrice } from "../utils/helpers.js";
 
+const dashboardMenu = [
+  { label: "Home", link: "/dashboard" },
+  { label: "Products", link: "/dashboard" },
+  { label: "Categories", link: "/dashboard/categories" },
+  { label: "Brands", link: "/dashboard/brands" },
+];
+
 export const renderDashboard = async (req, res) => {
   const { categories: categoriesQuery, brands: brandsQuery } = req.query;
   const activeFilters = {
@@ -20,6 +27,7 @@ export const renderDashboard = async (req, res) => {
     categories,
     brands,
     activeFilters,
+    dashboardMenu,
     stringifyPrice,
   });
 };
