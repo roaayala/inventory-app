@@ -385,3 +385,42 @@ h3 {
 .button--outline:hover {
   background-color: var(--neutral-100);
 }
+
+.field-group--inline {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.field-group--inline-nested {
+  margin-left: var(--spacing-xl);
+}
+
+.sidebar-filter {
+  display: flex;
+  flex-direction: column;
+
+  gap: var(--spacing-xl);
+}
+
+.categories-filter,
+.brands-filter {
+  display: flex;
+  flex-direction: column;
+
+  gap: var(--spacing-sm);
+}
+
+.categories-filter__body,
+.brands-filter__body {
+  display: flex;
+  flex-direction: column;
+
+  gap: var(--spacing-xs);
+}
+
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-base);
+}

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('../partials/head', title) %>
+  <%- include('../partials/header', title) %>
   <body>
     <div class="dashboard">
       <div class="dashboard__header">
@@ -14,46 +14,93 @@
           <div class="dashboard__body-wrapper">
             <aside class="dashboard__sidebar">
               <form action="/dashboard" method="get" class="sidebar-filter">
-                <button class="button button--primary">Apply Filter</button>
-              </form>
-              <div>
-                <h3>Product Categories</h3>
-                <ul>
-                  <% if (categories && categories.length>0) { %> <%
-                  categories.forEach(category => { %>
-                  <li>
-                    <span><%= category.name %></span>
-                    <% if (category.children && category.children.length > 0)
-                    {%>
-                    <ul>
-                      <% category.children.forEach(subCat => { %>
-                      <li>
-                        <span><%= subCat.name %></span>
-                      </li>
-                      <% }) %>
-                    </ul>
+                <!-- categories -->
+                <div class="categories-filter">
+                  <div class="categories-filter__header">
+                    <h3>Product Categories</h3>
+                  </div>
+
+                  <div class="categories-filter__body">
+                    <% if (categories && categories.length > 0) { %> <%
+                    categories.forEach(category => { %>
+                    <div class="field-group--inline">
+                      <input
+                        class="checkbox-input"
+                        type="checkbox"
+                        name="categories"
+                        id="<%= category.id %>"
+                        value="<%= category.id %>"
+                      />
+                      <label
+                        class="checkbox-input-label"
+                        for="<%= category.id %>"
+                      >
+                        <%= category.name %></label
+                      >
+                    </div>
+
+                    <% if (category.children && category.children.length > 0) {
+                    %> <% category.children.forEach(children => { %>
+                    <div class="field-group--inline-nested">
+                      <input
+                        class="checkbox-input"
+                        type="checkbox"
+                        name="categories"
+                        id="<%= children.id %>"
+                        value="<%= children.id %>"
+                      />
+                      <label
+                        class="checkbox-input-label"
+                        for="<%= children.id %>"
+                        ><%= children.name %></label
+                      >
+                    </div>
+                    <% }) %>
                     <% } %>
-                  </li>
-                  <% }) %>
-                  <% } else { %>
-                  <li>No categories</li>
-                  <% } %>
-                </ul>
-              </div>
 
-              <div>
-                <h3>Product Brands</h3>
+                    <% }) %>
 
-                <ul>
-                  <% if (brands && brands.length > 0) { %> <%
-                  brands.forEach(brand => { %>
-                  <li><%= brand.name %></li>
-                  <% }); %>
-                  <% } else { %>
-                  <li>No brands</li>
-                  <% } %>
-                </ul>
-              </div>
+                    <% } else { %>
+                    <div class="empty-data">No categories added yet!</div>
+                    <% } %>
+                  </div>
+                </div>
+                <!-- brands -->
+                <div class="brands-filter">
+                  <div class="brands-filter__header">
+                    <h3>Product Brands</h3>
+                  </div>
+
+                  <div class="brands-filter__body">
+                    <% if (brands && brands.length > 0) { %> <%
+                    brands.forEach(brand => { %>
+                    <div class="field-group--inline">
+                      <input
+                        class="checkbox-input"
+                        type="checkbox"
+                        name="brands"
+                        id="<%= brand.id %>"
+                        value="<%= brand.id %>"
+                      />
+                      <label class="checkbox-input-label" for="<%= brand.id %>">
+                        <%= brand.name %></label
+                      >
+                    </div>
+                    <% }) %>
+                    <% } else { %>
+                    <div class="empty-data">No brands added yet!</div>
+                    <% } %>
+                  </div>
+                </div>
+                <div class="form-actions">
+                  <button class="button button--secondary" type="reset">
+                    Reset Filter
+                  </button>
+                  <button class="button button--primary" type="submit">
+                    Apply Filter
+                  </button>
+                </div>
+              </form>
             </aside>
 
             <div class="products">
