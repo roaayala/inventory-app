@@ -6,16 +6,8 @@ import { stringifyPrice } from "../utils/helpers.js";
 export const renderDashboard = async (req, res) => {
   const { categories: categoriesQuery, brands: brandsQuery } = req.query;
   const activeFilters = {
-    categories: Array.isArray(categoriesQuery)
-      ? categoriesQuery
-      : categoriesQuery
-        ? [categoriesQuery]
-        : [],
-    brands: Array.isArray(brandsQuery)
-      ? brandsQuery
-      : brandsQuery
-        ? [brandsQuery]
-        : [],
+    categories: categoriesQuery ? categoriesQuery : [],
+    brands: brandsQuery ? brandsQuery : [],
   };
 
   const products = await productService.getProducts(activeFilters);
