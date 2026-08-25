@@ -4,14 +4,23 @@ import * as brandService from "../services/brand.service.js";
 import { buildCategoryTree, stringifyPrice } from "../utils/helpers.js";
 
 export const renderDashboard = async (req, res) => {
-  const products = await productService.getProducts();
+  const { categories: categoriesQuery, brands: brandsQuery } = req.query;
+  const activeFilters = {
+    categories: Array.isArray(categoriesQuery)
+      ? categoriesQuery
+      : categoriesQuery
+        ? [categoriesQuery]
+        : [],
+    brands: Array.isArray(brandsQuery)
+      ? brandsQuery
+      : brandsQuery
+        ? [brandsQuery]
+        : [],
+  };
+
+  const products = await productService.getProducts(activeFilters);
   const categories = buildCategoryTree(await categoryService.getCategories());
   const brands = await brandService.getBrands();
-
-  const activeFilters = { categories: [], brands: [] };
-  const { categories: categoriesQuery, brands: brandsQuery } = req.query;
-  activeFilters.categories = categoriesQuery ? categoriesQuery : [];
-  activeFilters.brands = brandsQuery ? brandsQuery : [];
 
   res.render("dashboard/index", {
     title: "Dashboard",
