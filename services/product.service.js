@@ -5,7 +5,19 @@ import ProductDTO from "../models/product.dto.js";
 import BrandBase from "../models/brand.base.js";
 import CategoryBase from "../models/category.base.js";
 
-export const getProducts = async (filters = { categories: [], brands: [] }) => {
+export const getProducts = async (filters = {}) => {
+  const filterCategories = Array.isArray(filters.categories)
+    ? filters.categories
+    : filters.categories
+      ? [filters.categories]
+      : [];
+
+  const filterBrands = Array.isArray(filters.brands)
+    ? filters.brands
+    : filters.brands
+      ? [filters.brands]
+      : [];
+
   const rawProducts = await productRepo.findAll();
 
   if (rawProducts.length === 0) return [];
@@ -16,16 +28,16 @@ export const getProducts = async (filters = { categories: [], brands: [] }) => {
 
   const filteredProducts = rawProducts.filter((product) => {
     const matchedBrand =
-      filters.brands.length === 0 ||
-      filters.brands.includes(String(product.brand_id));
+      filterBrands.length === 0 ||
+      filterBrands.includes(String(product.brand_id));
 
     const mapCategories = productCategories
       .filter((pc) => pc.product_id === product.id)
       .map((pc) => String(pc.category_id));
 
     const matchedCategories =
-      filters.categories.length === 0 ||
-      filters.categories.some((catId) => mapCategories.includes(String(catId)));
+      filterCategories.length === 0 ||
+      filterCategories.some((catId) => mapCategories.includes(String(catId)));
 
     return matchedBrand && matchedCategories;
   });

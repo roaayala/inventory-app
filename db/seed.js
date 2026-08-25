@@ -52,9 +52,10 @@ async function main() {
     const brandLogitech = BrandBase({ name: "Logitech" });
     const brandSamsung = BrandBase({ name: "Samsung" });
     const brandNike = BrandBase({ name: "Nike" });
+    const brandNoBrand = BrandBase({ name: "No Brand" });
 
     await pool.query(
-      `INSERT INTO brands (id, name) VALUES ($1, $2), ($3, $4), ($5, $6)`,
+      `INSERT INTO brands (id, name) VALUES ($1, $2), ($3, $4), ($5, $6), ($7, $8)`,
       [
         brandLogitech.id,
         brandLogitech.name,
@@ -62,6 +63,8 @@ async function main() {
         brandSamsung.name,
         brandNike.id,
         brandNike.name,
+        brandNoBrand.id,
+        brandNoBrand.name,
       ],
     );
     console.log("seed dummy brands done");
@@ -69,9 +72,10 @@ async function main() {
     const catElectronics = CategoryBase({ name: "Electronics" });
     const catComputerParts = CategoryBase({ name: "Computer Parts" });
     const catClothes = CategoryBase({ name: "Clothes" });
+    const catUncategorized = CategoryBase({ name: "Uncategorized" });
 
     await pool.query(
-      `INSERT INTO categories (id, name) VALUES ($1, $2), ($3, $4), ($5, $6)`,
+      `INSERT INTO categories (id, name) VALUES ($1, $2), ($3, $4), ($5, $6), ($7, $8)`,
       [
         catElectronics.id,
         catElectronics.name,
@@ -81,6 +85,9 @@ async function main() {
 
         catClothes.id,
         catClothes.name,
+
+        catUncategorized.id,
+        catUncategorized.name,
       ],
     );
     console.log("seed dummy categories done");
