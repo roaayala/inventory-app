@@ -8,6 +8,8 @@ import CategoryBase from "../models/category.base.js";
 export const getProducts = async (filters = { categories: [], brands: [] }) => {
   const rawProducts = await productRepo.findAll();
 
+  if (rawProducts.length === 0) return [];
+
   const productCategories = await productRepo.categoryIdsByProductIds(
     rawProducts.map((p) => p.id),
   );
