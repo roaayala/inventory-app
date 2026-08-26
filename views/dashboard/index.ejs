@@ -18,13 +18,13 @@
         <% }) %>
       </nav>
 
-      <main class="dashboard-main">
-        <div class="dashboard-index__header">
+      <main class="dashboard-index__main">
+        <div class="dashboard-index__main-header">
           <h1>Welcome to dashboard, Admin!</h1>
           <p>Place to manage your products, categories and brands.</p>
         </div>
 
-        <div class="dashboard-index__content">
+        <div class="dashboard-index__main-content">
           <%- include('../partials/count-card', { count: productsCount,
           countSuffix: 'products', link: '/dashboard/products', linkLabel:
           'Manage products' }) %>

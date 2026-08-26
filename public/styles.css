@@ -141,6 +141,7 @@ h1 {
   line-height: 1.15;
 }
 
+/* DASHBOARD INDEX */
 .dashboard-index {
   display: flex;
   gap: var(--spacing-base);
@@ -149,10 +150,29 @@ h1 {
 
   min-height: 100vh;
 }
+/* DASHBOARD INDEX END */
 
-.dashboard-main {
+/* DASHBOARD INDEX MAIN */
+.dashboard-index__main {
   flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-base);
 }
+
+.dashboard-index__main-header {
+  margin-top: var(--spacing-base);
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-index__main-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: var(--spacing-base);
+}
+/* DASHBOARD INDEX MAIN END */
 
 .dashboard-nav {
   display: flex;
@@ -195,12 +215,6 @@ h1 {
 
 .dashboard-nav__link-label {
   font-size: var(--text-xs);
-}
-
-.dashboard-index__content {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-  gap: var(--spacing-base);
 }
 
 .count-card {
