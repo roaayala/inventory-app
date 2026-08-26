@@ -128,11 +128,17 @@ body {
   font-family: var(--ff);
   font-size: var(--text-base);
 
-  line-height: 1.6;
+  line-height: 1.55;
 
   color: var(--neutral-700);
 
   background-color: var(--color-background);
+}
+
+h1 {
+  font-size: var(--text-4xl);
+  font-weight: 700;
+  line-height: 1.15;
 }
 
 .dashboard-index {
@@ -191,15 +197,27 @@ body {
   font-size: var(--text-xs);
 }
 
+.dashboard-index__content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: var(--spacing-base);
+}
+
 .count-card {
   border-radius: var(--rounded-lg);
   border: 1px solid var(--color-outline);
 
-  padding: var(--spacing-lg);
+  padding: var(--spacing-base);
 
   display: flex;
   flex-direction: column;
   gap: var(--spacing-base);
+
+  transition: border-radius 0.25s ease-out;
+}
+
+.count-card:hover {
+  border-radius: var(--rounded-xl);
 }
 
 .count-card__text {
