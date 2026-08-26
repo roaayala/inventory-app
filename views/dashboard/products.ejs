@@ -7,13 +7,179 @@
 
       <main class="dashboard-products__main">
         <div class="dashboard-products__main-header">
-          <h1>Products List</h1>
+          <h1 class="dashboard-products__main-header__title">
+            Manage Products
+          </h1>
 
-          <div class="dashboard-products__main-header__actions">
-            <a href="#" class="button button--primary">New Product</a>
+          <div class="dashboard-products__main-header-actions">
+            <a href="#" class="button button--full button--primary">
+              <div class="button-icon icon-plus"></div>
+              <span class="button-label">New Product</span>
+            </a>
           </div>
         </div>
-        <div class="dashboard-products__main-content"></div>
+
+        <div class="dashboard-products__main-content">
+          <section class="dashboard__filter">
+            <header class="dashboard__filter-header">
+              <h2 class="dashboard__filter-header__title">Filter Products</h2>
+
+              <div class="dashboard__filter-header__actions">
+                <button
+                  class="button button--icon button--outline"
+                  id="toggleFilter"
+                >
+                  <div
+                    class="icon-button icon-eye-off"
+                    id="toggleFilterIcon"
+                  ></div>
+                </button>
+              </div>
+            </header>
+
+            <form
+              action="/dashboard"
+              method="get"
+              class="dashboard__filter-form"
+              id="dashboardFilterForm"
+            >
+              <main class="dashboard__filter-form-main">
+                <section class="dashboard__filter-form-main__section">
+                  <h3 class="dashboard__filter-form-main__section-title">
+                    Filter by Categories
+                  </h3>
+                  <div class="dashboard__filter-form-main__section-lists">
+                    <% if (categories && categories.length > 0) { %> <%
+                    categories.forEach(category => { %>
+                    <div class="field-group--inline">
+                      <% const isChecked =
+                      activeFilters.categories.includes(String(category.id)); %>
+                      <% if (isChecked) { %>
+                      <input
+                        class="checkbox-input"
+                        type="checkbox"
+                        name="categories"
+                        id="<%= category.id %>"
+                        value="<%= category.id %>"
+                        checked
+                      />
+                      <% } else { %>
+                      <input
+                        class="checkbox-input"
+                        type="checkbox"
+                        name="categories"
+                        id="<%= category.id %>"
+                        value="<%= category.id %>"
+                      />
+                      <% } %>
+
+                      <label
+                        class="checkbox-input-label"
+                        for="<%= category.id %>"
+                      >
+                        <%= category.name %>
+                      </label>
+                    </div>
+
+                    <% if (category.children && category.children.length > 0) {
+                    %> <% category.children.forEach(children => { %>
+                    <div class="field-group--inline-nested">
+                      <% const isChildChecked =
+                      activeFilters.categories.includes(String(children.id)); %>
+                      <% if (isChildChecked) { %>
+                      <input
+                        class="checkbox-input"
+                        type="checkbox"
+                        name="categories"
+                        id="<%= children.id %>"
+                        value="<%= children.id %>"
+                        checked
+                      />
+                      <% } else { %>
+                      <input
+                        class="checkbox-input"
+                        type="checkbox"
+                        name="categories"
+                        id="<%= children.id %>"
+                        value="<%= children.id %>"
+                      />
+                      <% } %>
+
+                      <label
+                        class="checkbox-input-label"
+                        for="<%= children.id %>"
+                      >
+                        <%= children.name %>
+                      </label>
+                    </div>
+                    <% }) %>
+                    <% } %>
+
+                    <% }) %>
+
+                    <% } else { %>
+                    <div class="empty-data">No categories added yet!</div>
+                    <% } %>
+                  </div>
+                </section>
+                <section class="dashboard__filter-form-main__section">
+                  <h3 class="dashboard__filter-form-main__section-title">
+                    Filter by Brands
+                  </h3>
+                  <div class="dashboard__filter-form-main__section-lists">
+                    <% if (brands && brands.length > 0) { %> <%
+                    brands.forEach(brand => { %>
+                    <div class="field-group--inline">
+                      <% const isBrandChecked =
+                      activeFilters.brands.includes(String(brand.id)); %> <% if
+                      (isBrandChecked) { %>
+                      <input
+                        class="checkbox-input"
+                        type="checkbox"
+                        name="brands"
+                        id="<%= brand.id %>"
+                        value="<%= brand.id %>"
+                        checked
+                      />
+                      <% } else { %>
+                      <input
+                        class="checkbox-input"
+                        type="checkbox"
+                        name="brands"
+                        id="<%= brand.id %>"
+                        value="<%= brand.id %>"
+                      />
+                      <% } %>
+
+                      <label class="checkbox-input-label" for="<%= brand.id %>">
+                        <%= brand.name %></label
+                      >
+                    </div>
+                    <% }) %>
+                    <% } else { %>
+                    <div class="empty-data">No brands added yet!</div>
+                    <% } %>
+                  </div>
+                </section>
+              </main>
+
+              <footer class="dashboard__filter-form__footer">
+                <a
+                  link="/dashboard"
+                  class="button button--full button--outline"
+                >
+                  Clear Filter
+                </a>
+                <button
+                  type="submit"
+                  class="button button--full button--primary"
+                >
+                  Apply Filter
+                </button>
+              </footer>
+            </form>
+          </section>
+        </div>
       </main>
     </div>
 

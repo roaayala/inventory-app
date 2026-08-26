@@ -11,4 +11,10 @@ export default [
       "no-unused-vars": ["warn", { args: "all", argsIgnorePattern: "^_" }],
     },
   },
+  {
+    files: ["public/**/*.js"],
+    languageOptions: {
+      globals: globals.browser,
+    },
+  },
 ];
