@@ -15,11 +15,13 @@ export const renderDashboardIndex = async (_req, res) => {
   const categoriesCount = await categoryService.getCategoriesCount();
   const brandsCount = await brandService.getBrandsCount();
 
-  console.log(productsCount);
   res.render("dashboard/index", {
     title: "Dashboard",
     dashboardMenu,
     activeMenu: dashboardMenu[0],
+    productsCount,
+    categoriesCount,
+    brandsCount,
   });
 };
 

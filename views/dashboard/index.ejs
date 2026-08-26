@@ -18,7 +18,28 @@
         <% }) %>
       </nav>
 
-      <main class="dashboard-main">test</main>
+      <main class="dashboard-main">
+        <div class="dashboard-index__header">
+          <h1>Welcome to dashboard Admin!</h1>
+          <p>Place to manager your products, categories and brands.</p>
+        </div>
+
+        <div class="dashboard-index__content">
+          <%- include('../partials/count-card', { count: productsCount,
+          countSuffix: 'products', link: '/dashboard/products', linkLabel:
+          'Manage products' }) %>
+          <!--  -->
+          <%- include('../partials/count-card', { 
+            count: categoriesCount, 
+            countSuffix: 'categories', 
+            link: '/dashboard/categories', 
+            linkLabel: 'Manage categories' 
+          }) %>
+          <!--  -->
+          <%- include('../partials/count-card', { count: brandsCount, countSuffix:
+          'brands', link: '/dashboard/brands', linkLabel: 'Manage brands' }) %>
+        </div>
+      </main>
     </div>
 
     <%- include('../partials/footer') %>
