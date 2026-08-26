@@ -25,7 +25,7 @@ export const renderDashboardIndex = async (_req, res) => {
   });
 };
 
-export const renderDashboard = async (req, res) => {
+export const renderDashboardProducts = async (req, res) => {
   const { categories: categoriesQuery, brands: brandsQuery } = req.query;
   const activeFilters = {
     categories: categoriesQuery ? categoriesQuery : [],
@@ -43,6 +43,7 @@ export const renderDashboard = async (req, res) => {
     brands,
     activeFilters,
     dashboardMenu,
+    activeMenu: dashboardMenu[1],
     stringifyPrice,
   });
 };

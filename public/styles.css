@@ -141,8 +141,9 @@ h1 {
   line-height: 1.15;
 }
 
-/* DASHBOARD INDEX */
-.dashboard-index {
+/* DASHBOARD */
+.dashboard-index,
+.dashboard-products {
   display: flex;
   gap: var(--spacing-base);
 
@@ -150,10 +151,11 @@ h1 {
 
   min-height: 100vh;
 }
-/* DASHBOARD INDEX END */
+/* DASHBOARD END */
 
-/* DASHBOARD INDEX MAIN */
-.dashboard-index__main {
+/* DASHBOARD MAIN */
+.dashboard-index__main,
+.dashboard-products__main {
   flex: 1;
 
   display: flex;
@@ -161,18 +163,20 @@ h1 {
   gap: var(--spacing-base);
 }
 
-.dashboard-index__main-header {
+.dashboard-index__main-header,
+.dashboard-products__main-header {
   margin-top: var(--spacing-base);
   display: flex;
   flex-direction: column;
 }
 
-.dashboard-index__main-content {
+.dashboard-index__main-content,
+.dashboard-products__main-content {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
   gap: var(--spacing-base);
 }
-/* DASHBOARD INDEX MAIN END */
+/* DASHBOARD MAIN END */
 
 .dashboard-nav {
   display: flex;
@@ -244,9 +248,9 @@ h1 {
   justify-content: flex-end;
 }
 
+/* BUTTON */
 .button {
   display: inline-flex;
-
   align-items: center;
   gap: var(--spacing-sm);
 
@@ -262,13 +266,26 @@ h1 {
 
   background-color: transparent;
 
+  border: solid 1px transparent;
   border-radius: var(--rounded-base);
+
+  transition:
+    border-color 0.25s ease-out,
+    background-color 0.25s ease-out,
+    color 0.25s ease-out;
 }
 
 .button--outline {
-  border: solid 1px var(--color-outline);
+  border-color: var(--color-outline);
+}
+
+.button--outline:hover {
+  color: var(--white);
+  background-color: var(--neutral-700);
+  border-color: var(--neutral-700);
 }
 
 .button-icon {
   font-size: var(--text-lg);
 }
+/* BUTTON END */
