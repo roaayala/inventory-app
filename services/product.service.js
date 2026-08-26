@@ -81,3 +81,5 @@ export const getProducts = async (filters = {}) => {
     });
   });
 };
+
+export const getProductsCount = async () => await productRepo.productsCount();

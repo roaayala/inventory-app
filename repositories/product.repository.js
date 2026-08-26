@@ -9,6 +9,12 @@ export const findAll = async () => {
   return rows;
 };
 
+export const productsCount = async () => {
+  const { rows } = await pool.query(`SELECT COUNT(*) FROM products`);
+
+  return rows[0].count;
+};
+
 export const categoryIdsByProductIds = async (productIds) => {
   if (!productIds || productIds.length === 0) return [];
 

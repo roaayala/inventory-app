@@ -149,7 +149,7 @@ body {
 .dashboard-nav {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-base);
 
   padding: var(--spacing-base) var(--spacing-sm);
 
@@ -163,21 +163,26 @@ body {
   display: flex;
   flex-direction: column;
 
-  /* gap: var(--spacing-xs); */
+  color: var(--color-on-surface);
 
-  padding: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-xs);
 
   align-items: center;
   text-decoration: none;
 }
 
-.dashboard-nav__link:hover {
-  background-color: var(--color-primary);
+.dashboard-nav__link:hover,
+.dashboard-nav__link--active {
+  background-color: var(--blue-100);
   border-radius: var(--rounded-base);
 }
 
 .dashboard-nav__link-icon {
-  font-size: var(--text-xl);
+  font-size: var(--text-2xl);
+}
+
+.dashboard-nav__link-icon:hover {
+  color: var(--blue-white);
 }
 
 .dashboard-nav__link-label {

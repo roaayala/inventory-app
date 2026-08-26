@@ -10,10 +10,14 @@ const dashboardMenu = [
   { label: "Brands", link: "/dashboard/brands", icon: "crown" },
 ];
 
-export const renderDashboardIndex = async (req, res) => {
+export const renderDashboardIndex = async (_req, res) => {
+  const productsCount = await productService.getProductsCount();
+
+  console.log(productsCount);
   res.render("dashboard/index", {
     title: "Dashboard",
     dashboardMenu,
+    activeMenu: dashboardMenu[0],
   });
 };
 

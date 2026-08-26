@@ -7,7 +7,10 @@
       <nav class="dashboard-nav">
         <% dashboardMenu.forEach(menu => { %>
 
-        <a href="<%= menu.link %>" class="dashboard-nav__link">
+        <a
+          href="<%= menu.link %>"
+          class="dashboard-nav__link <%= activeMenu.label === menu.label ? 'dashboard-nav__link--active' : '' %>"
+        >
           <div class="icon-<%= menu.icon %> dashboard-nav__link-icon"></div>
           <span class="dashboard-nav__link-label"><%= menu.label %></span>
         </a>
