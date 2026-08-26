@@ -4,11 +4,18 @@ import * as brandService from "../services/brand.service.js";
 import { stringifyPrice } from "../utils/helpers.js";
 
 const dashboardMenu = [
-  { label: "Home", link: "/dashboard" },
-  { label: "Products", link: "/dashboard" },
-  { label: "Categories", link: "/dashboard/categories" },
-  { label: "Brands", link: "/dashboard/brands" },
+  { label: "Index", link: "/dashboard", icon: "house" },
+  { label: "Products", link: "/dashboard/products", icon: "box" },
+  { label: "Categories", link: "/dashboard/categories", icon: "boxes" },
+  { label: "Brands", link: "/dashboard/brands", icon: "crown" },
 ];
+
+export const renderDashboardIndex = async (req, res) => {
+  res.render("dashboard/index", {
+    title: "Dashboard",
+    dashboardMenu,
+  });
+};
 
 export const renderDashboard = async (req, res) => {
   const { categories: categoriesQuery, brands: brandsQuery } = req.query;
@@ -21,7 +28,7 @@ export const renderDashboard = async (req, res) => {
   const categories = await categoryService.getCategories();
   const brands = await brandService.getBrands();
 
-  res.render("dashboard/index", {
+  res.render("dashboard/products", {
     title: "Dashboard",
     products,
     categories,
