@@ -9,3 +9,6 @@ export const getCategories = async () => {
   );
   return formatedCategories;
 };
+
+export const getCategoriesCount = async () =>
+  await categoryRepo.categoriesCount();
