@@ -7,6 +7,12 @@ export const findAll = async () => {
   return rows;
 };
 
+export const brandsCount = async () => {
+  const { rows } = await pool.query(`SELECT COUNT(*) FROM brands`);
+
+  return rows[0].count;
+};
+
 export const findBrandByIds = async (brandIds) => {
   if (!brandIds || brandIds.length === 0) return [];
 

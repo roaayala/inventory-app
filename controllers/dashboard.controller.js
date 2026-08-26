@@ -13,6 +13,7 @@ const dashboardMenu = [
 export const renderDashboardIndex = async (_req, res) => {
   const productsCount = await productService.getProductsCount();
   const categoriesCount = await categoryService.getCategoriesCount();
+  const brandsCount = await brandService.getBrandsCount();
 
   console.log(productsCount);
   res.render("dashboard/index", {

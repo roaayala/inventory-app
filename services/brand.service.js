@@ -8,3 +8,5 @@ export const getBrands = async () => {
 
   return formatedBrands;
 };
+
+export const getBrandsCount = async () => await brandRepo.brandsCount();
