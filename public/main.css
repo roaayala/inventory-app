@@ -4,9 +4,3 @@
 @import url("./styles/_layout.css");
 @import url("./styles/_component.css");
 @import url("./styles//_utility.css");
-
-.field-group--inline {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-}
