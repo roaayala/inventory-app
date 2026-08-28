@@ -16,7 +16,7 @@ export const renderDashboardIndex = async (_req, res) => {
   const brandsCount = await brandService.getBrandsCount();
 
   res.render("dashboard/index", {
-    title: "Dashboard",
+    title: "Home Dashboard",
     dashboardMenu,
     activeMenu: dashboardMenu[0],
     productsCount,
@@ -37,7 +37,7 @@ export const renderDashboardProducts = async (req, res) => {
   const brands = await brandService.getBrands();
 
   res.render("dashboard/products", {
-    title: "Dashboard",
+    title: "Products Dashboard",
     products,
     categories,
     brands,
@@ -45,5 +45,16 @@ export const renderDashboardProducts = async (req, res) => {
     dashboardMenu,
     activeMenu: dashboardMenu[1],
     stringifyPrice,
+  });
+};
+
+export const renderDashboardCategories = async (_req, res) => {
+  const categories = await categoryService.getCategories();
+
+  res.render("dashboard/categories", {
+    title: "Categories Dashboard",
+    categories,
+    dashboardMenu,
+    activeMenu: dashboardMenu[2],
   });
 };

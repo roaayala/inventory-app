@@ -91,12 +91,14 @@
   gap: var(--spacing-sm);
 }
 
-.products-page.main-header {
+.products-page.main-header,
+.categories-page.main-header {
   gap: var(--spacing-base);
 }
 
 @media (min-width: 48rem) {
-  .products-page.main-header {
+  .products-page.main-header,
+  .categories-page.main-header {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -107,11 +109,16 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   gap: var(--spacing-lg);
+  min-width: 0;
 }
 
 @media (min-width: 48rem) {
   .products-page.main-content {
     grid-template-columns: 18rem minmax(0, 1fr);
+  }
+
+  .categories-page.main-content {
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
   }
 }
 

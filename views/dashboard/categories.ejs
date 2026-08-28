@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/header.ejs', title) %>
+  <body>
+    <div class="dashboard-layout">
+      <%- include('../partials/dashboard-nav', { dashboardMenu }) %>
+
+      <main class="dashboard-main">
+        <header class="categories-page main-header">
+          <h1 class="main-header__title">Manage Categories</h1>
+          <div class="main-header-actions">
+            <a href="#" class="button button--full button--primary">
+              <div class="button-icon icon-plus"></div>
+              <span class="button-label">New Category</span>
+            </a>
+          </div>
+        </header>
+
+        <main class="categories-page main-content">
+          <% if (categories && categories.length > 0) { %> <%
+          categories.forEach(category => { %>
+          <div class="simple-item-card">
+            <h2 class="simple-item-card__title"><%= category.name %></h2>
+            <div class="simple-item-card__actions">
+              <a href="#" class="button button--icon button--outline">
+                <div class="icon-button icon-square-pen"></div>
+              </a>
+              <a href="#" class="button button--icon button--outline">
+                <div class="icon-button icon-trash-2"></div>
+              </a>
+            </div>
+          </div>
+          <% }) %>
+          <% } else { %>
+          <div class="empty-message">
+            <span class="empty-message__text">No categories added yet!</span>
+          </div>
+          <% } %>
+        </main>
+      </main>
+    </div>
+
+    <%- include('../partials/footer') %>
+  </body>
+</html>
