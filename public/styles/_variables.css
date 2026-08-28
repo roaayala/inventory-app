@@ -1,0 +1,49 @@
+:root {
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-base: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 4rem;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.2rem;
+  --text-xl: 1.45rem;
+  --text-2xl: 1.725rem;
+  --text-3xl: 2rem;
+  --text-4xl: 2.5rem;
+
+  --rounded-sm: 0.25rem;
+  --rounded-base: 0.5rem;
+  --rounded-lg: 1rem;
+  --rounded-xl: 2rem;
+
+  --white: #ffffff;
+  --neutral-100: #f1f5f9;
+  --neutral-200: #e2e8f0;
+  --neutral-300: #cbd5e1;
+  --neutral-500: #64748b;
+  --neutral-700: #334155;
+  --neutral-900: #0f172a;
+
+  --blue-100: #dbeafe;
+  --blue-400: #60a5fa;
+  --blue-500: #3b82f6;
+
+  --rounded-transition: border-radius 0.25s ease-out;
+
+  --ff: "Noto Sans", sans-serif;
+
+  --color-primary: var(--blue-500);
+  --color-on-primary: var(--white);
+  --color-primary-container: var(--blue-100);
+  --color-on-primary-container: var(--neutral-900);
+
+  --color-background: var(--white);
+  --color-surface: var(--neutral-100);
+  --color-on-surface: var(--neutral-900);
+  --color-on-surface-variant: var(--neutral-500);
+
+  --color-outline: var(--neutral-300);
+}
