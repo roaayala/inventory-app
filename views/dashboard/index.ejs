@@ -3,16 +3,16 @@
   <%- include('../partials/header', title) %>
 
   <body>
-    <div class="dashboard-index">
+    <div class="dashboard-layout">
       <%- include('../partials/dashboard-nav', { dashboardMenu }) %>
 
-      <main class="dashboard-index__main">
-        <div class="dashboard-index__main-header">
+      <main class="dashboard-main">
+        <div class="main-header">
           <h1>Welcome to dashboard, Admin!</h1>
           <p>Place to manage your products, categories and brands.</p>
         </div>
 
-        <div class="dashboard-index__main-content">
+        <div class="main-content">
           <%- include('../partials/count-card', { count: productsCount,
           countSuffix: 'products', link: '/dashboard/products', linkLabel:
           'Manage products' }) %>

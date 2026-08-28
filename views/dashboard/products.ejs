@@ -2,16 +2,13 @@
 <html lang="en">
   <%- include('../partials/header.ejs', title) %>
   <body>
-    <div class="dashboard-products">
+    <div class="dashboard-layout">
       <%- include('../partials/dashboard-nav', { dashboardMenu }) %>
 
-      <main class="dashboard-products__main">
-        <div class="dashboard-products__main-header">
-          <h1 class="dashboard-products__main-header__title">
-            Manage Products
-          </h1>
-
-          <div class="dashboard-products__main-header-actions">
+      <main class="dashboard-main">
+        <div class="products-page main-header">
+          <h1 class="main-header__title">Manage Products</h1>
+          <div class="main-header-actions">
             <a href="#" class="button button--full button--primary">
               <div class="button-icon icon-plus"></div>
               <span class="button-label">New Product</span>
@@ -19,12 +16,12 @@
           </div>
         </div>
 
-        <div class="dashboard-products__main-content">
-          <section class="dashboard__filter">
-            <header class="dashboard__filter-header">
-              <h3 class="dashboard__filter-header__title">Filter Products</h3>
+        <div class="products-page main-content">
+          <section class="filter-card">
+            <header class="filter-header">
+              <h3 class="filter-header__title">Filter Products</h3>
 
-              <div class="dashboard__filter-header__actions">
+              <div class="filter-header__actions">
                 <button
                   class="button button--icon button--outline"
                   id="toggleFilter"
@@ -40,15 +37,13 @@
             <form
               action="/dashboard"
               method="get"
-              class="dashboard__filter-form"
+              class="filter-form"
               id="dashboardFilterForm"
             >
-              <main class="dashboard__filter-form-main">
-                <section class="dashboard__filter-form-main__section">
-                  <h3 class="dashboard__filter-form-main__section-title">
-                    Filter by Categories
-                  </h3>
-                  <div class="dashboard__filter-form-main__section-lists">
+              <main class="form-main">
+                <section class="form-section">
+                  <h3 class="form-section__title">Filter by Categories</h3>
+                  <div class="form-section__lists">
                     <% if (categories && categories.length > 0) { %> <%
                     categories.forEach(category => { %>
                     <div class="field-group--inline">
@@ -122,11 +117,9 @@
                     <% } %>
                   </div>
                 </section>
-                <section class="dashboard__filter-form-main__section">
-                  <h3 class="dashboard__filter-form-main__section-title">
-                    Filter by Brands
-                  </h3>
-                  <div class="dashboard__filter-form-main__section-lists">
+                <section class="form-section">
+                  <h3 class="form-section__title">Filter by Brands</h3>
+                  <div class="form-section__lists">
                     <% if (brands && brands.length > 0) { %> <%
                     brands.forEach(brand => { %>
                     <div class="field-group--inline">
@@ -163,7 +156,7 @@
                 </section>
               </main>
 
-              <footer class="dashboard__filter-form__footer">
+              <footer class="form-footer">
                 <a
                   link="/dashboard"
                   class="button button--full button--outline"
@@ -180,11 +173,9 @@
             </form>
           </section>
 
-          <section class="dashboard-products__lists">
-            <header class="dashboard-products__lists-header">
-              <h2 class="dashboard-products__lists-header__title">
-                Products List
-              </h2>
+          <section class="dashboard-lists">
+            <header class="dashboard-lists-header">
+              <h2 class="dashboard-lists-header__title">Products List</h2>
             </header>
           </section>
         </div>
