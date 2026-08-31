@@ -48,6 +48,14 @@ export const renderDashboardProducts = async (req, res) => {
   });
 };
 
+export const renderNewProductForm = async (req, res) => {
+  res.render("dashboard/item-form", {
+    title: "Add New Product",
+    dashboardMenu,
+    activeMenu: dashboardMenu[1],
+  });
+};
+
 export const renderDashboardCategories = async (_req, res) => {
   const categories = await categoryService.getCategories();
 

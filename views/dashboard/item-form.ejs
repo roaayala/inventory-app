@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/header', title) %>
+
+  <body>
+    <div class="dashboard-layout">
+      <%- include('../partials/dashboard-nav', { dashboardMenu }) %>
+
+      <main class="form-page">
+        <header>
+          <h1><%= title %></h1>
+        </header>
+
+        <form action="#" method="post" class="form">
+          <div>
+            <section class="field-group">
+              <label for="productName" class="field-label">Product Name</label>
+              <input
+                type="text"
+                name="productName"
+                id="productName"
+                placeholder="Product Name"
+              />
+            </section>
+
+            <section class="field-group">
+              <label for="productSKU" class="field-label">Product SKU</label>
+              <input
+                type="text"
+                name="productSKU"
+                id="productSKU"
+                placeholder="Product SKU"
+              />
+            </section>
+
+            <section class="field-group">
+              <label for="prdouctPrice" class="field-label"
+                >Product Price</label
+              >
+              <input
+                type="number"
+                name="prdouctPrice"
+                id="prdouctPrice"
+                placeholder="Product Price"
+              />
+            </section>
+
+            <section class="field-group">
+              <label for="productWeight" class="field-label"
+                >Product Weight</label
+              >
+              <input
+                type="text"
+                name="productWeight"
+                id="productWeight"
+                placeholder="Product Weight"
+              />
+            </section>
+
+            <section class="field-group">
+              <label for="productCategory" class="field-label">
+                Product Category</label
+              >
+
+              <select name="productCategory" id="productCategory">
+                <option value="3">Category</option>
+              </select>
+            </section>
+
+            <section class="field-group">
+              <label for="productBrand" class="field-label"
+                >Product Brand</label
+              >
+
+              <select name="productBrand" id="productBrand">
+                <option value="3">Brand</option>
+              </select>
+            </section>
+          </div>
+
+          <div></div>
+        </form>
+      </main>
+    </div>
+
+    <%- include('../partials/footer') %>
+  </body>
+</html>
