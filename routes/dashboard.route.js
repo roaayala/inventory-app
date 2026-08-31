@@ -9,6 +9,6 @@ dashboardRoute.get(
   "/categories",
   dashboardController.renderDashboardCategories,
 );
-dashboardRoute.get("/brands", dashboardController.renderDashboardProducts);
+dashboardRoute.get("/brands", dashboardController.renderDashboardBrands);
 
 export default dashboardRoute;

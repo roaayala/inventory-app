@@ -25,3 +25,12 @@ export const findBrandByIds = async (brandIds) => {
 
   return rows;
 };
+
+export const productsCountInBrand = async (brandId) => {
+  const { rows } = await pool.query(
+    `SELECT COUNT(*) AS total FROM products WHERE brand_id = $1`,
+    [brandId],
+  );
+
+  return parseInt(rows[0].total);
+};

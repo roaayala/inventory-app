@@ -58,3 +58,14 @@ export const renderDashboardCategories = async (_req, res) => {
     activeMenu: dashboardMenu[2],
   });
 };
+
+export const renderDashboardBrands = async (_req, res) => {
+  const brands = await brandService.getBrands();
+
+  res.render("dashboard/brands", {
+    title: "Brands Dashboard",
+    brands,
+    dashboardMenu,
+    activeMenu: dashboardMenu[3],
+  });
+};

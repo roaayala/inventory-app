@@ -4,7 +4,15 @@ import * as brandRepo from "../repositories/brand.repository.js";
 export const getBrands = async () => {
   const rawBrands = await brandRepo.findAll();
 
-  const formatedBrands = rawBrands.map((brand) => BrandBase({ ...brand }));
+  const formatedBrands = await Promise.all(
+    rawBrands.map(async (brand) => {
+      const productTotal = await brandRepo.productsCountInBrand(brand.id);
+      return {
+        ...BrandBase(brand),
+        productTotal,
+      };
+    }),
+  );
 
   return formatedBrands;
 };

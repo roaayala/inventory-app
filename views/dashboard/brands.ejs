@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/header.ejs', title) %>
+  <body>
+    <div class="dashboard-layout">
+      <%- include('../partials/dashboard-nav', { dashboardMenu }) %>
+
+      <main class="dashboard-main">
+        <header class="categories-page main-header">
+          <h1 class="main-header__title">Manage Brands</h1>
+          <div class="main-header-actions">
+            <a href="#" class="button button--full button--primary">
+              <div class="button-icon icon-plus"></div>
+              <span class="button-label">New Brand</span>
+            </a>
+          </div>
+        </header>
+
+        <main class="categories-page main-content">
+          <% if (brands && brands.length > 0) { %> <% brands.forEach(brand => {
+          %>
+          <%- include('../partials/simple-item-card', { name: brand.name, 
+            total: brand.productTotal, 
+            editLink: '',
+            deleteLink: '' }) %>
+          <% }) %>
+          <% } else { %>
+          <div class="empty-message">
+            <span class="empty-message__text">No brand added yet!</span>
+          </div>
+          <% } %>
+        </main>
+      </main>
+    </div>
+
+    <%- include('../partials/footer') %>
+  </body>
+</html>
