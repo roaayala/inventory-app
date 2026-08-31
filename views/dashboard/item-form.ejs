@@ -1,84 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('../partials/header', title) %>
+  <%- include('../partials/header', {title}) %>
 
   <body>
     <div class="dashboard-layout">
       <%- include('../partials/dashboard-nav', { dashboardMenu }) %>
 
       <main class="form-page">
-        <header>
-          <h1><%= title %></h1>
-        </header>
+        <form action="/dashboard/products" method="POST" class="form">
+          <header class="form-header">
+            <h1 class="form-header__title"><%= title %></h1>
+          </header>
 
-        <form action="#" method="post" class="form">
-          <div>
+          <main class="form-main">
             <section class="field-group">
-              <label for="productName" class="field-label">Product Name</label>
+              <label for="productName" class="label">Product Name</label>
               <input
                 type="text"
                 name="productName"
                 id="productName"
                 placeholder="Product Name"
+                class="input"
+                minlength="6"
+                required
               />
             </section>
 
             <section class="field-group">
-              <label for="productSKU" class="field-label">Product SKU</label>
+              <label for="productSKU" class="label">Product SKU</label>
               <input
                 type="text"
                 name="productSKU"
                 id="productSKU"
                 placeholder="Product SKU"
+                class="input"
+                minlength="6"
+                required
               />
             </section>
 
             <section class="field-group">
-              <label for="prdouctPrice" class="field-label"
-                >Product Price</label
-              >
+              <label for="prdouctPrice" class="label">Product Price</label>
               <input
                 type="number"
                 name="prdouctPrice"
                 id="prdouctPrice"
                 placeholder="Product Price"
+                class="input"
+                min="1"
+                required
               />
             </section>
 
             <section class="field-group">
-              <label for="productWeight" class="field-label"
-                >Product Weight</label
-              >
+              <label for="productWeight" class="label">Product Weight</label>
               <input
-                type="text"
+                type="Number"
                 name="productWeight"
                 id="productWeight"
                 placeholder="Product Weight"
+                class="input"
+                min="1"
+                required
               />
             </section>
 
             <section class="field-group">
-              <label for="productCategory" class="field-label">
+              <label for="productCategory" class="label">
                 Product Category</label
               >
+              <select
+                name="productCategory"
+                id="productCategory"
+                class="select"
+              >
+                <% categories.forEach(category => { %>
+                <% if (category.name === 'Uncategorized') { %>
+                <option value="<%= category.id %>" class="option" selected>
+                  <%= category.name %>
+                </option>
 
-              <select name="productCategory" id="productCategory">
-                <option value="3">Category</option>
+                <%  } else { %>
+                <option value="<%= category.id %>" class="option">
+                  <%= category.name %>
+                </option>
+                <% } %>
+
+                <% }) %>
               </select>
             </section>
 
             <section class="field-group">
-              <label for="productBrand" class="field-label"
-                >Product Brand</label
-              >
+              <label for="productBrand" class="label">Product Brand</label>
+              <select name="productBrand" id="productBrand" class="select">
+                <% brands.forEach(brand => { %>
+                <% if (brand.name === 'No Brand') { %>
+                <option value="<%= brand.id %>" class="option" selected>
+                  <%= brand.name %>
+                </option>
 
-              <select name="productBrand" id="productBrand">
-                <option value="3">Brand</option>
+                <%  } else { %>
+                <option value="<%= brand.id %>" class="option">
+                  <%= brand.name %>
+                </option>
+                <% } %>
+                <% }) %>
               </select>
             </section>
-          </div>
+          </main>
 
-          <div></div>
+          <footer class="form-footer">
+            <a href="#" class="button button--outline">Cancel</a>
+            <button type="submit" class="button button--primary">Save</button>
+          </footer>
         </form>
       </main>
     </div>

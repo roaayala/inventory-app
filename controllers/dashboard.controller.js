@@ -48,12 +48,23 @@ export const renderDashboardProducts = async (req, res) => {
   });
 };
 
-export const renderNewProductForm = async (req, res) => {
+export const renderNewProductForm = async (_req, res) => {
+  const categories = await categoryService.getCategories();
+  const brands = await brandService.getBrands();
+
   res.render("dashboard/item-form", {
     title: "Add New Product",
     dashboardMenu,
     activeMenu: dashboardMenu[1],
+    categories,
+    brands,
   });
+};
+
+export const postNewProduct = async (req, res) => {
+  const body = req.body;
+  console.log(body);
+  res.redirect("products");
 };
 
 export const renderDashboardCategories = async (_req, res) => {

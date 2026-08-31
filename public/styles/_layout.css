@@ -118,7 +118,7 @@
   }
 
   .products-page.main-content {
-    grid-template-columns: 18rem minmax(0, 1fr);
+    grid-template-columns: 20rem 1fr;
   }
 }
 
@@ -143,4 +143,10 @@
   .products-container {
     grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
   }
+}
+
+/* FORM PAGE */
+
+.form-page {
+  flex: 1;
 }
