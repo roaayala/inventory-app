@@ -264,17 +264,25 @@
   border-radius: var(--rounded-xl);
 }
 
-.simple-item-card__title {
-  color: var(--neutral-900);
-  font-size: var(--text-base);
+.simple-item-card__header {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--spacing-sm);
+  margin-right: var(--spacing-sm);
+}
 
+.item__title {
+  color: var(--neutral-900);
+  font-size: var(--text-xl);
   flex: 1;
   min-width: 0;
-  margin-right: var(--spacing-sm);
-
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.item__count {
+  font-size: var(--text-sm);
 }
 
 .simple-item-card__actions {

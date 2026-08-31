@@ -1,1 +1,18 @@
-<div class="simple-item-card"></div>
+<div class="simple-item-card">
+  <div class="simple-item-card__header">
+    <h2 class="item__title"><%= name %></h2>
+    <span class="item__count"
+      ><%= total %>
+      <%= total === 1 ?
+                'item' : 'items' %></span
+    >
+  </div>
+  <div class="simple-item-card__actions">
+    <a href="<%= editLink %>" class="button button--icon button--outline">
+      <div class="icon-button icon-square-pen"></div>
+    </a>
+    <a href="<%= deleteLink %>" class="button button--icon button--outline">
+      <div class="icon-button icon-trash-2"></div>
+    </a>
+  </div>
+</div>

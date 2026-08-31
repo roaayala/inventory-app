@@ -4,9 +4,17 @@ import * as categoryRepo from "../repositories/category.repository.js";
 export const getCategories = async () => {
   const rawCategories = await categoryRepo.findAll();
 
-  const formatedCategories = rawCategories.map((cat) =>
-    CategoryBase({ ...cat, parentId: cat.parent_id }),
+  const formatedCategories = await Promise.all(
+    rawCategories.map(async (cat) => {
+      const productTotal = await categoryRepo.productsCountInCategory(cat.id);
+
+      return {
+        ...CategoryBase(cat),
+        productTotal,
+      };
+    }),
   );
+
   return formatedCategories;
 };
 

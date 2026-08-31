@@ -11,6 +11,15 @@ export const categoriesCount = async () => {
   return rows[0].count;
 };
 
+export const productsCountInCategory = async (categoryId) => {
+  const { rows } = await pool.query(
+    `SELECT COUNT(*) AS total FROM product_categories WHERE category_id = $1`,
+    [categoryId],
+  );
+
+  return parseInt(rows[0].total);
+};
+
 export const findCategoryByIds = async (ids) => {
   if (!ids || ids.length === 0) return [];
 
