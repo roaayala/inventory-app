@@ -2,6 +2,7 @@ import * as productService from "../services/product.service.js";
 import * as categoryService from "../services/category.service.js";
 import * as brandService from "../services/brand.service.js";
 import { stringifyPrice } from "../utils/helpers.js";
+import { validationResult } from "express-validator";
 
 const dashboardMenu = [
   { label: "Index", link: "/dashboard", icon: "house" },
@@ -58,12 +59,31 @@ export const renderNewProductForm = async (_req, res) => {
     activeMenu: dashboardMenu[1],
     categories,
     brands,
+    errors: [],
+    oldData: {},
   });
 };
 
 export const postNewProduct = async (req, res) => {
-  const body = req.body;
-  console.log(body);
+  const result = validationResult(req);
+
+  if (!result.isEmpty()) {
+    const categories = await categoryService.getCategories();
+    const brands = await brandService.getBrands();
+
+    console.log(result.array());
+
+    return res.status(400).render("dashboard/item-form", {
+      title: "Add New Product",
+      dashboardMenu,
+      activeMenu: dashboardMenu[1],
+      categories,
+      brands,
+      errors: result.array(),
+      oldData: req.body,
+    });
+  }
+
   res.redirect("products");
 };
 

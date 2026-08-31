@@ -20,20 +20,20 @@ export const productValidation = [
     .withMessage("Product SKU must be a text")
     .isLength({ min: 6, max: 16 })
     .withMessage(
-      "Product name at least 6 characters and maximum 16 characters long",
+      "Product SKU at least 6 characters and maximum 16 characters long",
     ),
 
   body("productPrice")
     .notEmpty()
     .withMessage("Product price must be filled")
-    .isInt({ min: 1 })
+    .isInt({ min: 1, gt: 1 })
     .withMessage("Product price must be positif number")
     .toInt(),
 
   body("productWeight")
     .notEmpty()
     .withMessage("Product weight must be filled")
-    .isInt({ min: 1 })
+    .isInt({ min: 1, gt: 1 })
     .withMessage("Product weight must be positif number")
     .toInt(),
 

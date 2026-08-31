@@ -16,6 +16,7 @@
             <section class="field-group">
               <label for="productName" class="label">Product Name</label>
               <input
+                value="<%= oldData.productName || '' %>"
                 type="text"
                 name="productName"
                 id="productName"
@@ -29,6 +30,7 @@
             <section class="field-group">
               <label for="productSKU" class="label">Product SKU</label>
               <input
+                value="<%= oldData.productSKU || '' %>"
                 type="text"
                 name="productSKU"
                 id="productSKU"
@@ -40,10 +42,11 @@
             </section>
 
             <section class="field-group">
-              <label for="prdouctPrice" class="label">Product Price</label>
+              <label for="productPrice" class="label">Product Price</label>
               <input
+                value="<%= oldData.productPrice || '' %>"
                 type="number"
-                name="prdouctPrice"
+                name="productPrice"
                 id="prdouctPrice"
                 placeholder="Product Price"
                 class="input"
@@ -55,6 +58,7 @@
             <section class="field-group">
               <label for="productWeight" class="label">Product Weight</label>
               <input
+                value="<%= oldData.productWeight || '' %>"
                 type="Number"
                 name="productWeight"
                 id="productWeight"
@@ -75,17 +79,17 @@
                 class="select"
               >
                 <% categories.forEach(category => { %>
-                <% if (category.name === 'Uncategorized') { %>
+                <% const isSelected = (oldData?.productCategory === category.id) || (!oldData?.productCategory && category.name === 'Uncategorized'); %>
+
+                <% if (isSelected) { %>
                 <option value="<%= category.id %>" class="option" selected>
                   <%= category.name %>
                 </option>
-
-                <%  } else { %>
+                <% } else { %>
                 <option value="<%= category.id %>" class="option">
                   <%= category.name %>
                 </option>
                 <% } %>
-
                 <% }) %>
               </select>
             </section>
@@ -94,12 +98,13 @@
               <label for="productBrand" class="label">Product Brand</label>
               <select name="productBrand" id="productBrand" class="select">
                 <% brands.forEach(brand => { %>
-                <% if (brand.name === 'No Brand') { %>
+                <% const isSelected = (oldData?.productBrand === brand.id) || (!oldData?.productBrand && brand.name === 'No Brand'); %>
+
+                <% if (isSelected) { %>
                 <option value="<%= brand.id %>" class="option" selected>
                   <%= brand.name %>
                 </option>
-
-                <%  } else { %>
+                <% } else { %>
                 <option value="<%= brand.id %>" class="option">
                   <%= brand.name %>
                 </option>
@@ -113,6 +118,16 @@
             <a href="#" class="button button--outline">Cancel</a>
             <button type="submit" class="button button--primary">Save</button>
           </footer>
+
+          <% if (errors && errors.length >=1) { %>
+          <div class="form-error-box">
+            <ul class="error-lists">
+              <% errors.forEach(error => { %>
+              <li class="error-message"><%= error.msg %></li>
+              <% }) %>
+            </ul>
+          </div>
+          <% } %>
         </form>
       </main>
     </div>

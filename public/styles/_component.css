@@ -349,3 +349,9 @@
   border: 1px solid var(--color-outline);
   border-radius: var(--rounded-base);
 }
+
+.form-error-box {
+  padding: var(--spacing-base);
+  border-radius: var(--rounded-base);
+  background-color: var(--color-surface);
+}
