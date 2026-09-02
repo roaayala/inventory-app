@@ -27,3 +27,5 @@ export const categoryIdsByProductIds = async (productIds) => {
 
   return rows;
 };
+
+export const insertProduct = async (newItem, categoryId) => {};

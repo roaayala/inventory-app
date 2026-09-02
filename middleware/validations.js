@@ -26,14 +26,14 @@ export const productValidation = [
   body("productPrice")
     .notEmpty()
     .withMessage("Product price must be filled")
-    .isInt({ min: 1, gt: 1 })
+    .isInt({ min: 1 })
     .withMessage("Product price must be positif number")
     .toInt(),
 
   body("productWeight")
     .notEmpty()
     .withMessage("Product weight must be filled")
-    .isInt({ min: 1, gt: 1 })
+    .isInt({ min: 1 })
     .withMessage("Product weight must be positif number")
     .toInt(),
 

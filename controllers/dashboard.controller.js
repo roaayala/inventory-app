@@ -71,8 +71,6 @@ export const postNewProduct = async (req, res) => {
     const categories = await categoryService.getCategories();
     const brands = await brandService.getBrands();
 
-    console.log(result.array());
-
     return res.status(400).render("dashboard/item-form", {
       title: "Add New Product",
       dashboardMenu,
@@ -83,6 +81,8 @@ export const postNewProduct = async (req, res) => {
       oldData: req.body,
     });
   }
+
+  await productService.createProduct(req.body);
 
   res.redirect("products");
 };

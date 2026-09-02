@@ -4,6 +4,7 @@ import * as categoryRepo from "../repositories/category.repository.js";
 import ProductDTO from "../models/product.dto.js";
 import BrandBase from "../models/brand.base.js";
 import CategoryBase from "../models/category.base.js";
+import ProductBase from "../models/product.base.js";
 
 export const getProducts = async (filters = {}) => {
   const filterCategories = Array.isArray(filters.categories)
@@ -83,3 +84,17 @@ export const getProducts = async (filters = {}) => {
 };
 
 export const getProductsCount = async () => await productRepo.productsCount();
+
+export const createProduct = async (newItem) => {
+  const newProduct = ProductBase({
+    name: newItem.productName,
+    sku: newItem.productSKU,
+    price: newItem.productPrice,
+    weight: newItem.productPrice,
+    brandId: newItem.productBrand,
+  });
+
+  const categoryId = newItem.productCategory;
+
+  await productRepo.insertProduct(newProduct, categoryId);
+};
