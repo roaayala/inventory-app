@@ -2,9 +2,8 @@
 
 import { pool } from "./pool.js";
 import BrandEntity from "../models/BrandEntity.js";
-import BrandBase from "../models/brand.base.js";
-import CategoryBase from "../models/category.base.js";
-import ProductBase from "../models/product.base.js";
+import CategoryEntity from "../models/CategoryEntity.js";
+import ProductEntity from "../models/ProductEntity.js";
 
 async function main() {
   try {
@@ -70,10 +69,10 @@ async function main() {
     );
     console.log("seed dummy brands done");
 
-    const catElectronics = CategoryBase({ name: "Electronics" });
-    const catComputerParts = CategoryBase({ name: "Computer Parts" });
-    const catClothes = CategoryBase({ name: "Clothes" });
-    const catUncategorized = CategoryBase({ name: "Uncategorized" });
+    const catElectronics = new CategoryEntity({ name: "Electronics" });
+    const catComputerParts = new CategoryEntity({ name: "Computer Parts" });
+    const catClothes = new CategoryEntity({ name: "Clothes" });
+    const catUncategorized = new CategoryEntity({ name: "Uncategorized" });
 
     await pool.query(
       `INSERT INTO categories (id, name) VALUES ($1, $2), ($3, $4), ($5, $6), ($7, $8)`,
@@ -93,7 +92,7 @@ async function main() {
     );
     console.log("seed dummy categories done");
 
-    const prodMouse = ProductBase({
+    const prodMouse = new ProductEntity({
       sku: "LOGI-MX3S-01",
       name: "Mouse Wireless MX Master 3S",
       price: 1500000,
@@ -101,7 +100,7 @@ async function main() {
       brandId: brandLogitech.id,
     });
 
-    const prodMonitor = ProductBase({
+    const prodMonitor = new ProductEntity({
       sku: "SAMS-CRV27-01",
       name: "Samsung Monitor Curved 27 Inch",
       price: 3200000,
@@ -109,7 +108,7 @@ async function main() {
       brandId: brandSamsung.id,
     });
 
-    const prodSmartTV = ProductBase({
+    const prodSmartTV = new ProductEntity({
       sku: "SAMS-SMT60-01",
       name: "Samsung Smart TV 60 Inch",
       price: 7_800_000,
@@ -117,7 +116,7 @@ async function main() {
       brandId: brandSamsung.id,
     });
 
-    const prodShoes = ProductBase({
+    const prodShoes = new ProductEntity({
       sku: "NIKE-RUN-01",
       name: "Nike Revolution Running Shoes",
       price: 850000,
