@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('../partials/header.ejs', title) %>
+  <%- include('../partials/header.ejs', { title }) %>
   <body>
     <div class="dashboard-layout">
       <%- include('../partials/dashboard-nav', { dashboardMenu }) %>
@@ -218,7 +218,7 @@
                   </li>
                   <li class="product-card__item">
                     <span class="detail-label">Brand:</span>
-                    <span><%= product.brand.name %></span>
+                    <span><%= product.brand?.name || '-' %></span>
                   </li>
                   <li class="product-card__item">
                     <span class="detail-label">Categories:</span>

@@ -1,6 +1,7 @@
 #! /usr/bin/env node
 
 import { pool } from "./pool.js";
+import BrandEntity from "../models/BrandEntity.js";
 import BrandBase from "../models/brand.base.js";
 import CategoryBase from "../models/category.base.js";
 import ProductBase from "../models/product.base.js";
@@ -10,7 +11,7 @@ async function main() {
     console.log("start");
 
     const createTable = `
-      DROP TABLE IF EXISTS product_categories CASCADE;
+      DROP TABLE IF EXISTS product_category CASCADE;
       DROP TABLE IF EXISTS products CASCADE;
       DROP TABLE IF EXISTS categories CASCADE;
       DROP TABLE IF EXISTS brands CASCADE;
@@ -35,7 +36,7 @@ async function main() {
         FOREIGN KEY (brand_id) REFERENCES brands(id) ON DELETE SET NULL
       );
 
-      CREATE TABLE IF NOT EXISTS product_categories (
+      CREATE TABLE IF NOT EXISTS product_category (
         product_id VARCHAR(255) NOT NULL,
         category_id VARCHAR(255) NOT NULL,
         PRIMARY KEY (product_id, category_id),
@@ -49,10 +50,10 @@ async function main() {
 
     console.log("Seeding dummy data...");
 
-    const brandLogitech = BrandBase({ name: "Logitech" });
-    const brandSamsung = BrandBase({ name: "Samsung" });
-    const brandNike = BrandBase({ name: "Nike" });
-    const brandNoBrand = BrandBase({ name: "No Brand" });
+    const brandLogitech = new BrandEntity({ name: "Logitech" });
+    const brandSamsung = new BrandEntity({ name: "Samsung" });
+    const brandNike = new BrandEntity({ name: "Nike" });
+    const brandNoBrand = new BrandEntity({ name: "No Brand" });
 
     await pool.query(
       `INSERT INTO brands (id, name) VALUES ($1, $2), ($3, $4), ($5, $6), ($7, $8)`,
@@ -160,7 +161,7 @@ async function main() {
     console.log("seed dummy products done");
 
     await pool.query(
-      `INSERT INTO product_categories (product_id, category_id) VALUES 
+      `INSERT INTO product_category (product_id, category_id) VALUES 
        ($1, $2),
        ($3, $4),
        ($5, $6),
@@ -177,7 +178,7 @@ async function main() {
       ],
     );
 
-    console.log("seed dummy product_categories done");
+    console.log("seed dummy product_category done");
 
     console.log("Dummy data successfully seeded!");
   } catch (error) {
