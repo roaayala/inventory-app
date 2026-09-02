@@ -28,6 +28,7 @@ export const renderDashboardIndex = async (_req, res) => {
 
 export const renderDashboardProducts = async (req, res) => {
   const { categories: categoriesQuery, brands: brandsQuery } = req.query;
+
   const activeFilters = {
     categories: Array.isArray(categoriesQuery)
       ? categoriesQuery
@@ -42,12 +43,10 @@ export const renderDashboardProducts = async (req, res) => {
   };
 
   const products = await productService.getProducts(activeFilters);
+  console.log(products);
+
   const categories = await categoryService.getCategories();
   const brands = await brandService.getBrands();
-
-  console.log(products);
-  console.log(categories);
-  console.log(brands);
 
   res.render("dashboard/products", {
     title: "Products Dashboard",

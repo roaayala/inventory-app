@@ -79,7 +79,6 @@ async function main() {
       [
         catElectronics.id,
         catElectronics.name,
-
         catComputerParts.id,
         catComputerParts.name,
 

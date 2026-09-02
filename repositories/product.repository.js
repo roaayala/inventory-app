@@ -20,17 +20,19 @@ export const categoryIdsByProductIds = async (productIds) => {
 
   const placeholders = newPlaceholders(productIds);
 
-  const { rows } = await pool.query(
-    `SELECT category_id, product_id FROM product_categories WHERE product_id IN (${placeholders})`,
-    productIds,
-  );
+  const query = `SELECT category_id, product_id FROM product_category WHERE product_id IN (${placeholders})`;
 
-  return rows;
+  const { rows } = await pool.query(query, productIds);
+
+  return rows.map((row) => ({
+    productId: row.product_id,
+    categoryId: row.category_id,
+  }));
 };
 
 export const insertProduct = async (newItem, categoryId) => {
   // products
   console.log(newItem);
-  // product_categories
+  // product_category
   console.log(categoryId);
 };

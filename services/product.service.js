@@ -1,10 +1,12 @@
 import * as productRepo from "../repositories/product.repository.js";
 import * as brandRepo from "../repositories/brand.repository.js";
 import * as categoryRepo from "../repositories/category.repository.js";
-import ProductDTO from "../models/product.dto.js";
-import BrandBase from "../models/brand.base.js";
-import CategoryBase from "../models/category.base.js";
+
 import ProductBase from "../models/product.base.js";
+import ProductEntity from "../models/ProductEntity.js";
+import BrandEntity from "../models/BrandEntity.js";
+import CategoryEntity from "../models/CategoryEntity.js";
+import ProductResponseDTO from "../models/ProductResponseDTO.js";
 
 export const getProducts = async (filters = {}) => {
   const filterCategories = Array.isArray(filters.categories)
@@ -19,22 +21,24 @@ export const getProducts = async (filters = {}) => {
       ? [filters.brands]
       : [];
 
-  const rawProducts = await productRepo.findAll();
+  const products = (await productRepo.findAll()).map((product) => {
+    return new ProductEntity(product);
+  });
 
-  if (rawProducts.length === 0) return [];
+  if (products.length === 0) return [];
 
-  const productCategories = await productRepo.categoryIdsByProductIds(
-    rawProducts.map((p) => p.id),
+  const productCategory = await productRepo.categoryIdsByProductIds(
+    products.map((p) => p.id),
   );
 
-  const filteredProducts = rawProducts.filter((product) => {
+  const filteredProducts = products.filter((product) => {
     const matchedBrand =
       filterBrands.length === 0 ||
-      filterBrands.includes(String(product.brand_id));
+      filterBrands.includes(String(product.brandId));
 
-    const mapCategories = productCategories
-      .filter((pc) => pc.product_id === product.id)
-      .map((pc) => String(pc.category_id));
+    const mapCategories = productCategory
+      .filter((pc) => pc.productId === product.id)
+      .map((pc) => String(pc.categoryId));
 
     const matchedCategories =
       filterCategories.length === 0 ||
@@ -46,39 +50,38 @@ export const getProducts = async (filters = {}) => {
   if (filteredProducts.length === 0) return [];
 
   const brandIds = filteredProducts.reduce((accumulator, current) => {
-    if (!accumulator.includes(current.brand_id)) {
-      accumulator = [...accumulator, current.brand_id];
+    if (!accumulator.includes(current.brandId)) {
+      accumulator = [...accumulator, current.brandId];
       return accumulator;
     }
     return accumulator;
   }, []);
 
-  const categoryIds = productCategories
-    .filter((pc) => filteredProducts.some((p) => p.id === pc.product_id))
-    .map((pc) => pc.category_id);
+  const categoryIds = productCategory
+    .filter((pc) => filteredProducts.some((p) => p.id === pc.productId))
+    .map((pc) => pc.categoryId);
 
-  const rawBrands = await brandRepo.findBrandByIds(brandIds);
-  const rawCategories = await categoryRepo.findCategoryByIds(categoryIds);
+  const brands = (await brandRepo.findBrandByIds(brandIds)).map(
+    (brand) => new BrandEntity(brand),
+  );
+
+  const categories = (await categoryRepo.findCategoryByIds(categoryIds)).map(
+    (category) => new CategoryEntity(category),
+  );
 
   return filteredProducts.map((product) => {
-    const matchedBrand = rawBrands.find(
-      (brand) => brand.id === product.brand_id,
-    );
+    const brand = brands.find((b) => b.id === product.brandId) || null;
 
-    const productCatIds = productCategories
-      .filter((pc) => pc.product_id === product.id)
-      .map((pc) => pc.category_id);
+    const pivot = productCategory.find((pc) => pc.productId === product.id);
 
-    const matchedCategories = rawCategories.filter((cat) =>
-      productCatIds.includes(cat.id),
-    );
+    const category = pivot
+      ? categories.find((c) => c.id === pivot.categoryId) || null
+      : null;
 
-    return ProductDTO({
-      ...product,
-      brand: matchedBrand ? BrandBase(matchedBrand) : null,
-      categories: matchedCategories.map((cat) =>
-        CategoryBase({ id: cat.id, name: cat.name, parentId: cat.parent_id }),
-      ),
+    return ProductResponseDTO({
+      productEntity: product,
+      brandEntity: brand,
+      categoryEntity: category,
     });
   });
 };
