@@ -14,9 +14,14 @@
       <a href="#" class="button button--icon button--outline">
         <div class="icon-button icon-square-pen"></div>
       </a>
-      <a href="#" class="button button--icon button--outline">
-        <div class="icon-button icon-trash-2"></div>
-      </a>
+      <form
+        action="/dashboard/products/<%= product.id %>?_method=DELETE"
+        method="POST"
+      >
+        <button type="submit" class="button button--icon button--outline">
+          <div class="icon-button icon-trash-2"></div>
+        </button>
+      </form>
     </div>
   </header>
 

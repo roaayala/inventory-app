@@ -7,11 +7,15 @@ const dashboardRoute = Router();
 dashboardRoute.get("/", dashboardController.renderDashboardIndex);
 
 dashboardRoute.get("/products", dashboardController.renderDashboardProducts);
+
 dashboardRoute.post(
   "/products",
   productValidation,
   dashboardController.postNewProduct,
 );
+
+dashboardRoute.delete("/products/:id", dashboardController.deleteProduct);
+
 dashboardRoute.get("/products/new", dashboardController.renderNewProductForm);
 
 dashboardRoute.get(

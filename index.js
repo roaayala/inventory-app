@@ -2,6 +2,7 @@ import "dotenv/config";
 import path from "path";
 import { fileURLToPath } from "url";
 import express from "express";
+import methodOverride from "method-override";
 
 import indexRoute from "./routes/index.route.js";
 import dashboardRoute from "./routes/dashboard.route.js";
@@ -17,6 +18,7 @@ app.set("view engine", "ejs");
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride("_method"));
 
 app.use("/", indexRoute);
 app.use("/dashboard", dashboardRoute);

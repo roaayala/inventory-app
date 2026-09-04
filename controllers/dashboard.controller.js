@@ -96,7 +96,12 @@ export const postNewProduct = async (req, res) => {
 
   await productService.createProduct(newProduct);
 
-  res.redirect("products");
+  res.redirect("/dashboard/products");
+};
+
+export const deleteProduct = async (req, res) => {
+  console.log(req.params);
+  res.redirect("/dashboard/products");
 };
 
 export const renderDashboardCategories = async (_req, res) => {
