@@ -2,11 +2,9 @@ import * as productRepo from "../repositories/product.repository.js";
 import * as brandRepo from "../repositories/brand.repository.js";
 import * as categoryRepo from "../repositories/category.repository.js";
 
-import ProductBase from "../models/product.base.js";
-import ProductEntity from "../models/ProductEntity.js";
-import BrandEntity from "../models/BrandEntity.js";
-import CategoryEntity from "../models/CategoryEntity.js";
-import ProductResponseDTO from "../models/ProductResponseDTO.js";
+import { ProductEntity, ProductResponseDTO } from "../models/Product.js";
+import { BrandEntity } from "../models/Brand.js";
+import { CategoryEntity } from "../models/Category.js";
 
 export const getProducts = async (filters = {}) => {
   const filterCategories = Array.isArray(filters.categories)
@@ -89,13 +87,9 @@ export const getProducts = async (filters = {}) => {
 export const getProductsCount = async () => await productRepo.productsCount();
 
 export const createProduct = async (newItem) => {
-  const newProduct = ProductBase({
-    name: newItem.productName,
-    sku: newItem.productSKU,
-    price: newItem.productPrice,
-    weight: newItem.productPrice,
-    brandId: newItem.productBrand,
-  });
+  const newProduct = new ProductEntity(newItem);
+
+  console.log(newProduct);
 
   const categoryId = newItem.productCategory;
 

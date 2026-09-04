@@ -43,8 +43,6 @@ export const renderDashboardProducts = async (req, res) => {
   };
 
   const products = await productService.getProducts(activeFilters);
-  console.log(products);
-
   const categories = await categoryService.getCategories();
   const brands = await brandService.getBrands();
 

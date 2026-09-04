@@ -1,16 +1,15 @@
-import BrandBase from "../models/brand.base.js";
+import { BrandResponseDTO } from "../models/Brand.js";
+
 import * as brandRepo from "../repositories/brand.repository.js";
 
 export const getBrands = async () => {
-  const rawBrands = await brandRepo.findAll();
+  const brands = await brandRepo.findAll();
 
   const formatedBrands = await Promise.all(
-    rawBrands.map(async (brand) => {
+    brands.map(async (brand) => {
       const productTotal = await brandRepo.productsCountInBrand(brand.id);
-      return {
-        ...BrandBase(brand),
-        productTotal,
-      };
+
+      return BrandResponseDTO(brand, productTotal);
     }),
   );
 

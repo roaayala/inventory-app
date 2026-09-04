@@ -222,10 +222,8 @@
                   </li>
                   <li class="product-card__item">
                     <span class="detail-label">Categories:</span>
-                    <% if (product.categories && product.categories.length > 0)
-                    { %> <% product.categories.forEach(category => { %>
-                    <span class="badge"><%= category.name %></span>
-                    <% }) %>
+                    <% if (product.category ) { %>
+                    <span class="badge"><%= product.category.name %></span>
                     <% } else { %>
                     <span class="text-muted">-</span>
                     <% } %>
