@@ -1,0 +1,17 @@
+.error-box {
+  padding: var(--spacing-lg);
+  border-radius: var(--rounded-base);
+  background-color: var(--color-surface);
+}
+
+.error-box__title {
+  font-size: var(--text-lg);
+  font-weight: 600;
+
+  display: block;
+  margin-bottom: var(--spacing-sm);
+}
+
+.error-wrapper {
+  padding-left: var(--spacing-base);
+}

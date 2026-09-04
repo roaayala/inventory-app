@@ -7,13 +7,13 @@ export const findAll = async () => {
 };
 
 export const categoriesCount = async () => {
-  const { rows } = await pool.query(`SELECT COUNT(*) FROM categories`);
-  return rows[0].count;
+  const { rows } = await pool.query(`SELECT COUNT(*) AS total FROM categories`);
+  return parseInt(rows[0].total);
 };
 
 export const productsCountInCategory = async (categoryId) => {
   const { rows } = await pool.query(
-    `SELECT COUNT(*) AS total FROM product_categories WHERE category_id = $1`,
+    `SELECT COUNT(*) as total FROM product_category WHERE category_id = $1`,
     [categoryId],
   );
 

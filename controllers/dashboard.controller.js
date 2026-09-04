@@ -3,6 +3,7 @@ import * as categoryService from "../services/category.service.js";
 import * as brandService from "../services/brand.service.js";
 import { stringifyPrice } from "../utils/helpers.js";
 import { validationResult } from "express-validator";
+import { ProductRequestDTO } from "../models/Product.js";
 
 const dashboardMenu = [
   { label: "Index", link: "/dashboard", icon: "house" },
@@ -91,13 +92,16 @@ export const postNewProduct = async (req, res) => {
     });
   }
 
-  await productService.createProduct(req.body);
+  const newProduct = ProductRequestDTO(req.body);
+
+  await productService.createProduct(newProduct);
 
   res.redirect("products");
 };
 
 export const renderDashboardCategories = async (_req, res) => {
   const categories = await categoryService.getCategories();
+  console.log(categories);
 
   res.render("dashboard/categories", {
     title: "Categories Dashboard",

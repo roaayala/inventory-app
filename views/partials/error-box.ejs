@@ -1,0 +1,10 @@
+<% if (errors && errors.length >= 1) { %>
+<div class="error-box">
+  <span class="error-box__title">Error list:</span>
+  <ul class="error-wrapper">
+    <% errors.forEach(error => { %>
+    <li class="error-message"><%= error.msg %></li>
+    <% }) %>
+  </ul>
+</div>
+<% } %>

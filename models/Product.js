@@ -9,6 +9,17 @@ export class ProductEntity {
   }
 }
 
+export const ProductRequestDTO = (reqBody) => {
+  return {
+    sku: reqBody.sku,
+    name: reqBody.name,
+    weight: reqBody.weight,
+    price: reqBody.price,
+    categoryId: reqBody.categoryId,
+    brandId: reqBody.brandId,
+  };
+};
+
 export const ProductResponseDTO = ({
   productEntity,
   categoryEntity,

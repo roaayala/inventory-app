@@ -89,9 +89,7 @@ export const getProductsCount = async () => await productRepo.productsCount();
 export const createProduct = async (newItem) => {
   const newProduct = new ProductEntity(newItem);
 
-  console.log(newProduct);
-
-  const categoryId = newItem.productCategory;
+  const categoryId = newItem.categoryId;
 
   await productRepo.insertProduct(newProduct, categoryId);
 };

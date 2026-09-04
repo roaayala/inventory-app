@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('../partials/header', {title}) %>
+  <%- include('../partials/header', { title }) %>
 
   <body>
     <div class="dashboard-layout">
       <%- include('../partials/dashboard-nav', { dashboardMenu }) %>
 
       <main class="form-page">
-        <form action="/dashboard/products" method="POST" class="form">
-          <header class="form-header">
-            <h1 class="form-header__title"><%= title %></h1>
+        <form action="/dashboard/products" method="POST" class="form-item">
+          <header class="form-item-header">
+            <h1 class="form-item-header__title"><%= title %></h1>
           </header>
 
-          <main class="form-main">
+          <main class="form-item-main">
             <section class="field-group">
-              <label for="productName" class="label">Product Name</label>
+              <label for="name" class="label">Product Name</label>
               <input
-                value="<%= oldData.productName || '' %>"
+                value="<%= oldData.name || '' %>"
                 type="text"
-                name="productName"
-                id="productName"
+                name="name"
+                id="name"
                 placeholder="Product Name"
                 class="input"
                 minlength="6"
@@ -28,12 +28,12 @@
             </section>
 
             <section class="field-group">
-              <label for="productSKU" class="label">Product SKU</label>
+              <label for="sku" class="label">Product SKU</label>
               <input
-                value="<%= oldData.productSKU || '' %>"
+                value="<%= oldData.sku || '' %>"
                 type="text"
-                name="productSKU"
-                id="productSKU"
+                name="sku"
+                id="sku"
                 placeholder="Product SKU"
                 class="input"
                 minlength="6"
@@ -42,12 +42,12 @@
             </section>
 
             <section class="field-group">
-              <label for="productPrice" class="label">Product Price</label>
+              <label for="price" class="label">Product Price</label>
               <input
-                value="<%= oldData.productPrice || '' %>"
+                value="<%= oldData.price || '' %>"
                 type="number"
-                name="productPrice"
-                id="prdouctPrice"
+                name="price"
+                id="price"
                 placeholder="Product Price"
                 class="input"
                 min="1"
@@ -56,12 +56,12 @@
             </section>
 
             <section class="field-group">
-              <label for="productWeight" class="label">Product Weight</label>
+              <label for="weight" class="label">Product Weight</label>
               <input
-                value="<%= oldData.productWeight || '' %>"
+                value="<%= oldData.weight || '' %>"
                 type="Number"
-                name="productWeight"
-                id="productWeight"
+                name="weight"
+                id="weight"
                 placeholder="Product Weight"
                 class="input"
                 min="1"
@@ -70,16 +70,10 @@
             </section>
 
             <section class="field-group">
-              <label for="productCategory" class="label">
-                Product Category</label
-              >
-              <select
-                name="productCategory"
-                id="productCategory"
-                class="select"
-              >
+              <label for="categoryId" class="label"> Product Category</label>
+              <select name="categoryId" id="categoryId" class="select">
                 <% categories.forEach(category => { %>
-                <% const isSelected = (oldData?.productCategory === category.id) || (!oldData?.productCategory && category.name === 'Uncategorized'); %>
+                <% const isSelected = (oldData?.categoryId === category.id) || (!oldData?.categoryId && category.name === 'Uncategorized'); %>
 
                 <% if (isSelected) { %>
                 <option value="<%= category.id %>" class="option" selected>
@@ -95,10 +89,10 @@
             </section>
 
             <section class="field-group">
-              <label for="productBrand" class="label">Product Brand</label>
-              <select name="productBrand" id="productBrand" class="select">
+              <label for="branIdd" class="label">Product Brand</label>
+              <select name="brandId" id="brand" class="select">
                 <% brands.forEach(brand => { %>
-                <% const isSelected = (oldData?.productBrand === brand.id) || (!oldData?.productBrand && brand.name === 'No Brand'); %>
+                <% const isSelected = (oldData?.brandId === brand.id) || (!oldData?.brandId && brand.name === 'No Brand'); %>
 
                 <% if (isSelected) { %>
                 <option value="<%= brand.id %>" class="option" selected>
@@ -114,20 +108,12 @@
             </section>
           </main>
 
-          <footer class="form-footer">
+          <footer class="form-item-footer">
             <a href="#" class="button button--outline">Cancel</a>
             <button type="submit" class="button button--primary">Save</button>
           </footer>
 
-          <% if (errors && errors.length >=1) { %>
-          <div class="form-error-box">
-            <ul class="error-lists">
-              <% errors.forEach(error => { %>
-              <li class="error-message"><%= error.msg %></li>
-              <% }) %>
-            </ul>
-          </div>
-          <% } %>
+          <%- include('../partials/error-box', { errors }) %>
         </form>
       </main>
     </div>

@@ -10,9 +10,9 @@ export const findAll = async () => {
 };
 
 export const productsCount = async () => {
-  const { rows } = await pool.query(`SELECT COUNT(*) FROM products`);
+  const { rows } = await pool.query(`SELECT COUNT(*) AS total FROM products`);
 
-  return rows[0].count;
+  return parseInt(rows[0].total);
 };
 
 export const categoryIdsByProductIds = async (productIds) => {
@@ -31,8 +31,41 @@ export const categoryIdsByProductIds = async (productIds) => {
 };
 
 export const insertProduct = async (newItem, categoryId) => {
-  // products
-  console.log(newItem);
-  // product_category
-  console.log(categoryId);
+  const client = await pool.connect();
+
+  try {
+    // product
+    const productQuery = `INSERT INTO products (id, name, sku, price, weight, brand_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id`;
+
+    const product = await pool.query(productQuery, [
+      newItem.id,
+      newItem.name,
+      newItem.sku,
+      newItem.price,
+      newItem.weight,
+      newItem.brandId,
+    ]);
+
+    const productId = product.rows[0].id;
+
+    // product_category
+    const productCategoryQuery = `INSERT INTO product_category (product_id, category_id) values ($1, $2) RETURNING product_id, category_id`;
+
+    const productCategory = await pool.query(productCategoryQuery, [
+      productId,
+      categoryId,
+    ]);
+
+    await client.query("COMMIT");
+
+    return {
+      product: product.rows[0],
+      productCategory: productCategory.rows[0],
+    };
+  } catch (error) {
+    await client.query("ROLLBACK");
+    throw error;
+  } finally {
+    client.release();
+  }
 };
