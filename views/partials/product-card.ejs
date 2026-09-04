@@ -1,0 +1,53 @@
+<% if (!product) { %>
+<div class="product-card">
+  <div class="product-card product-card--empty">
+    <div class="product-card__header">
+      <h3 class="product-card__title">No products found!</h3>
+    </div>
+  </div>
+</div>
+<% } else { %>
+<div class="product-card">
+  <header class="product-card__header">
+    <h3 class="product-card__title"><%= product.name %></h3>
+    <div class="product-card__actions">
+      <a href="#" class="button button--icon button--outline">
+        <div class="icon-button icon-square-pen"></div>
+      </a>
+      <a href="#" class="button button--icon button--outline">
+        <div class="icon-button icon-trash-2"></div>
+      </a>
+    </div>
+  </header>
+
+  <ul class="product-card__details">
+    <li class="product-card__item">
+      <span class="detail-label">SKU:</span>
+      <span><%= product.sku %></span>
+    </li>
+    <li class="product-card__item">
+      <span class="detail-label">Price:</span>
+      <span>Rp<%= stringifyPrice(product.price) %></span>
+    </li>
+    <li class="product-card__item">
+      <span class="detail-label">Weight:</span>
+      <span>
+        <%= product.weight %>
+        Kg
+      </span>
+    </li>
+    <li class="product-card__item">
+      <span class="detail-label">Brand:</span>
+      <span><%= product.brand?.name || '-' %></span>
+    </li>
+    <li class="product-card__item">
+      <span class="detail-label">Categories:</span>
+      <% if (product.category ) { %>
+      <span class="badge"><%= product.category.name %></span>
+      <% } else { %>
+      <span class="text-muted">-</span>
+      <% } %>
+    </li>
+  </ul>
+</div>
+<% } %>
