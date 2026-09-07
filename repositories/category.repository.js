@@ -1,5 +1,5 @@
 import { pool } from "../db/pool.js";
-import { newPlaceholders } from "../utils/helpers.js";
+import { CONSTANTS, newPlaceholders } from "../utils/helpers.js";
 
 export const findAll = async () => {
   const { rows } = await pool.query(`SELECT id, name FROM categories`);
@@ -44,8 +44,43 @@ export const insertCategory = async (categoryEntity) => {
 };
 
 export const deleteCategory = async (id) => {
-  const query = "DELETE FROM categories WHERE id = $1 RETURNING *";
-  const { rows } = await pool.query(query, [id]);
+  const UNCATEGORIZED_ID = CONSTANTS.SYSTEM_DEFAULTS.UNCATEGORIZED_ID;
 
-  return rows[0];
+  if (id === UNCATEGORIZED_ID) {
+    throw new Error("Uncategorized category cannot be deleted.");
+  }
+
+  const client = await pool.connect();
+
+  try {
+    await client.query("BEGIN");
+
+    // set category for to uncategorid where product have relation to targeted category id
+    const productQuery = `UPDATE product_category SET category_id = $1 WHERE category_id = $2`;
+
+    const product = await client.query(productQuery, [UNCATEGORIZED_ID, id]);
+
+    if (product.rows.length === 0) {
+      throw new Error(`Product id ${id} not found.`);
+    }
+
+    // product_category
+    const productCategoryQuery = `DELETE FROM product_category WHERE product_id = $1`;
+
+    const productCategory = await pool.query(productCategoryQuery, [
+      product.rows[0].id,
+    ]);
+
+    await client.query("COMMIT");
+
+    return {
+      product: product.rows[0],
+      productCategory: productCategory.rows,
+    };
+  } catch (error) {
+    await client.query("ROLLBACK");
+    throw error;
+  } finally {
+    client.release();
+  }
 };

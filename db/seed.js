@@ -1,9 +1,11 @@
 #! /usr/bin/env node
 
 import { pool } from "./pool.js";
-import BrandEntity from "../models/BrandEntity.js";
-import CategoryEntity from "../models/CategoryEntity.js";
-import ProductEntity from "../models/ProductEntity.js";
+import { BrandEntity } from "../models/Brand.js";
+import { CategoryEntity } from "../models/Category.js";
+import { ProductEntity } from "../models/Product.js";
+
+import { CONSTANTS } from "../utils/helpers.js";
 
 async function main() {
   try {
@@ -32,7 +34,7 @@ async function main() {
         price INT NOT NULL,
         weight INT NOT NULL,
         brand_id VARCHAR(255),
-        FOREIGN KEY (brand_id) REFERENCES brands(id) ON DELETE SET NULL
+        FOREIGN KEY (brand_id) REFERENCES brands(id)
       );
 
       CREATE TABLE IF NOT EXISTS product_category (
@@ -52,7 +54,10 @@ async function main() {
     const brandLogitech = new BrandEntity({ name: "Logitech" });
     const brandSamsung = new BrandEntity({ name: "Samsung" });
     const brandNike = new BrandEntity({ name: "Nike" });
-    const brandNoBrand = new BrandEntity({ name: "No Brand" });
+    const brandNoBrand = new BrandEntity({
+      id: CONSTANTS.SYSTEM_DEFAULTS.NO_BRAND_ID,
+      name: "No Brand",
+    });
 
     await pool.query(
       `INSERT INTO brands (id, name) VALUES ($1, $2), ($3, $4), ($5, $6), ($7, $8)`,
@@ -72,7 +77,10 @@ async function main() {
     const catElectronics = new CategoryEntity({ name: "Electronics" });
     const catComputerParts = new CategoryEntity({ name: "Computer Parts" });
     const catClothes = new CategoryEntity({ name: "Clothes" });
-    const catUncategorized = new CategoryEntity({ name: "Uncategorized" });
+    const catUncategorized = new CategoryEntity({
+      id: CONSTANTS.SYSTEM_DEFAULTS.UNCATEGORIZED_ID,
+      name: "Uncategorized",
+    });
 
     await pool.query(
       `INSERT INTO categories (id, name) VALUES ($1, $2), ($3, $4), ($5, $6), ($7, $8)`,

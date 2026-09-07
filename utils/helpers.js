@@ -6,3 +6,10 @@ export const stringifyPrice = (price) => {
 
   return new Intl.NumberFormat("id-ID").format(price);
 };
+
+export const CONSTANTS = {
+  SYSTEM_DEFAULTS: {
+    UNCATEGORIZED_ID: "uncategorized",
+    NO_BRAND_ID: "no-brand",
+  },
+};
