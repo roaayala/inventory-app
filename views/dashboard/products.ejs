@@ -33,7 +33,7 @@
               <%- include('../partials/product-card', { product }) %>
               <% }) %>
               <% } else { %>
-              <%- include('../partials/product-card') %>
+              <%- include('../partials/product-card', { product: false }) %>
               <% } %>
             </main>
           </section>
