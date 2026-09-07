@@ -5,6 +5,12 @@ export class CategoryEntity {
   }
 }
 
+export const CategoryRequestDTO = (reqBody) => {
+  return {
+    name: reqBody.name,
+  };
+};
+
 export const CategoryResponseDTO = (categoryEntity, productTotal) => {
   return {
     id: categoryEntity.id,

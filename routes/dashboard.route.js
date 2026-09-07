@@ -1,5 +1,8 @@
 import { Router } from "express";
-import { productValidation } from "../middleware/validations.js";
+import {
+  categoryValidation,
+  productValidation,
+} from "../middleware/validations.js";
 import * as dashboardController from "../controllers/dashboard.controller.js";
 
 const dashboardRoute = Router();
@@ -26,6 +29,12 @@ dashboardRoute.get(
 dashboardRoute.get(
   "/categories/new",
   dashboardController.renderNewCategoryForm,
+);
+
+dashboardRoute.post(
+  "/categories",
+  categoryValidation,
+  dashboardController.postNewCategory,
 );
 
 dashboardRoute.get("/brands", dashboardController.renderDashboardBrands);

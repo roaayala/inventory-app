@@ -49,3 +49,16 @@ export const productValidation = [
     .isUUID()
     .withMessage("Invalid product brand ID"),
 ];
+
+export const categoryValidation = [
+  body("name")
+    .trim()
+    .notEmpty()
+    .withMessage("Category name must be filled")
+    .isString()
+    .withMessage("Category name must be a text")
+    .isLength({ min: 2, max: 32 })
+    .withMessage(
+      "Category name at least 2 characters and maximum 32 characters long",
+    ),
+];

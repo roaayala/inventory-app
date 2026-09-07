@@ -4,6 +4,7 @@ import * as brandService from "../services/brand.service.js";
 import { stringifyPrice } from "../utils/helpers.js";
 import { validationResult } from "express-validator";
 import { ProductRequestDTO } from "../models/Product.js";
+import { CategoryRequestDTO } from "../models/Category.js";
 
 const dashboardMenu = [
   { label: "Index", link: "/dashboard", icon: "house" },
@@ -137,7 +138,29 @@ export const renderNewCategoryForm = async (_req, res) => {
   });
 };
 
-export const postNewCategory = async () => {};
+export const postNewCategory = async (req, res) => {
+  const result = validationResult(req);
+
+  if (!result.isEmpty()) {
+    return res.status(400).render("dashboard/item-form", {
+      title: "Add New Category",
+      dashboardMenu,
+      activeMenu: dashboardMenu[2],
+      prevPage: "/dashboard/categories",
+      formUrlEndpoint: "/dashboard/categories",
+      isProductForm: false,
+      fieldNamePrefix: "Category",
+      errors: result.array(),
+      oldData: req.body,
+    });
+  }
+
+  const newCategory = CategoryRequestDTO(req.body);
+
+  await categoryService.createCategory(newCategory);
+
+  res.redirect("/dashboard/categories");
+};
 
 export const renderDashboardBrands = async (_req, res) => {
   const brands = await brandService.getBrands();

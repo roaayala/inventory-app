@@ -1,4 +1,4 @@
-import { CategoryResponseDTO } from "../models/Category.js";
+import { CategoryEntity, CategoryResponseDTO } from "../models/Category.js";
 import * as categoryRepo from "../repositories/category.repository.js";
 
 export const getCategories = async () => {
@@ -17,3 +17,9 @@ export const getCategories = async () => {
 
 export const getCategoriesCount = async () =>
   await categoryRepo.categoriesCount();
+
+export const createCategory = async (newItem) => {
+  const newCategory = new CategoryEntity(newItem);
+
+  await categoryRepo.insertCategory(newCategory);
+};

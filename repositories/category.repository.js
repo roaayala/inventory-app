@@ -32,3 +32,13 @@ export const findCategoryByIds = async (ids) => {
 
   return rows;
 };
+
+export const insertCategory = async (categoryEntity) => {
+  const query = `INSERT INTO categories (id, name) VALUES ($1, $2) RETURNING *`;
+  const { rows } = await pool.query(query, [
+    categoryEntity.id,
+    categoryEntity.name,
+  ]);
+
+  return rows[0];
+};
