@@ -67,6 +67,10 @@ export const renderNewProductForm = async (_req, res) => {
     title: "Add New Product",
     dashboardMenu,
     activeMenu: dashboardMenu[1],
+    prevPage: "/dashboard/products",
+    formUrlEndpoint: "/dashboard/products",
+    isProductForm: true,
+    fieldNamePrefix: "Product",
     categories,
     brands,
     errors: [],
@@ -85,6 +89,10 @@ export const postNewProduct = async (req, res) => {
       title: "Add New Product",
       dashboardMenu,
       activeMenu: dashboardMenu[1],
+      prevPage: "/dashboard/products",
+      formUrlEndpoint: "/dashboard/products",
+      isProductForm: true,
+      fieldNamePrefix: "Product",
       categories,
       brands,
       errors: result.array(),
@@ -114,6 +122,22 @@ export const renderDashboardCategories = async (_req, res) => {
     activeMenu: dashboardMenu[2],
   });
 };
+
+export const renderNewCategoryForm = async (_req, res) => {
+  res.render("dashboard/item-form", {
+    title: "Add New Category",
+    dashboardMenu,
+    activeMenu: dashboardMenu[2],
+    prevPage: "/dashboard/categories",
+    formUrlEndpoint: "/dashboard/categories",
+    isProductForm: false,
+    fieldNamePrefix: "Category",
+    errors: [],
+    oldData: {},
+  });
+};
+
+export const postNewCategory = async () => {};
 
 export const renderDashboardBrands = async (_req, res) => {
   const brands = await brandService.getBrands();

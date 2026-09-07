@@ -7,34 +7,38 @@
       <%- include('../partials/dashboard-nav', { dashboardMenu }) %>
 
       <main class="form-page">
-        <form action="/dashboard/products" method="POST" class="form-item">
+        <form action="<%= formUrlEndpoint %>" method="POST" class="form-item">
           <header class="form-item-header">
             <h1 class="form-item-header__title"><%= title %></h1>
           </header>
 
           <main class="form-item-main">
             <section class="field-group">
-              <label for="name" class="label">Product Name</label>
+              <label for="name" class="label"
+                ><%= fieldNamePrefix %>
+                Name</label
+              >
               <input
                 value="<%= oldData.name || '' %>"
                 type="text"
                 name="name"
                 id="name"
-                placeholder="Product Name"
+                placeholder="<%= fieldNamePrefix %> Name"
                 class="input"
                 minlength="6"
                 required
               />
             </section>
 
+            <% if (isProductForm) { %>
             <section class="field-group">
-              <label for="sku" class="label">Product SKU</label>
+              <label for="sku" class="label"><%= fieldNamePrefix %> SKU</label>
               <input
                 value="<%= oldData.sku || '' %>"
                 type="text"
                 name="sku"
                 id="sku"
-                placeholder="Product SKU"
+                placeholder="<%= fieldNamePrefix %> SKU"
                 class="input"
                 minlength="6"
                 required
@@ -42,13 +46,15 @@
             </section>
 
             <section class="field-group">
-              <label for="price" class="label">Product Price</label>
+              <label for="price" class="label"
+                ><%= fieldNamePrefix %> Price</label
+              >
               <input
                 value="<%= oldData.price || '' %>"
                 type="number"
                 name="price"
                 id="price"
-                placeholder="Product Price"
+                placeholder="<%= fieldNamePrefix %> Price"
                 class="input"
                 min="1"
                 required
@@ -56,13 +62,15 @@
             </section>
 
             <section class="field-group">
-              <label for="weight" class="label">Product Weight</label>
+              <label for="weight" class="label"
+                ><%= fieldNamePrefix %> Weight</label
+              >
               <input
                 value="<%= oldData.weight || '' %>"
                 type="Number"
                 name="weight"
                 id="weight"
-                placeholder="Product Weight"
+                placeholder="<%= fieldNamePrefix %> Weight"
                 class="input"
                 min="1"
                 required
@@ -70,7 +78,9 @@
             </section>
 
             <section class="field-group">
-              <label for="categoryId" class="label"> Product Category</label>
+              <label for="categoryId" class="label">
+                <%= fieldNamePrefix %> Category</label
+              >
               <select name="categoryId" id="categoryId" class="select">
                 <% categories.forEach(category => { %>
                 <% const isSelected = (oldData?.categoryId === category.id) || (!oldData?.categoryId && category.name === 'Uncategorized'); %>
@@ -89,7 +99,9 @@
             </section>
 
             <section class="field-group">
-              <label for="branIdd" class="label">Product Brand</label>
+              <label for="branIdd" class="label"
+                ><%= fieldNamePrefix %> Brand</label
+              >
               <select name="brandId" id="brand" class="select">
                 <% brands.forEach(brand => { %>
                 <% const isSelected = (oldData?.brandId === brand.id) || (!oldData?.brandId && brand.name === 'No Brand'); %>
@@ -106,10 +118,11 @@
                 <% }) %>
               </select>
             </section>
+            <% } %>
           </main>
 
           <footer class="form-item-footer">
-            <a href="#" class="button button--outline">Cancel</a>
+            <a href="<%= prevPage %> " class="button button--outline">Cancel</a>
             <button type="submit" class="button button--primary">Save</button>
           </footer>
 

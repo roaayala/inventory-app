@@ -23,6 +23,11 @@ dashboardRoute.get(
   dashboardController.renderDashboardCategories,
 );
 
+dashboardRoute.get(
+  "/categories/new",
+  dashboardController.renderNewCategoryForm,
+);
+
 dashboardRoute.get("/brands", dashboardController.renderDashboardBrands);
 
 export default dashboardRoute;
