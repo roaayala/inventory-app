@@ -162,6 +162,12 @@ export const postNewCategory = async (req, res) => {
   res.redirect("/dashboard/categories");
 };
 
+export const deleteCategory = async (req, res) => {
+  await categoryService.deleteCategory(req.params.id);
+
+  res.redirect("/dashboard/categories");
+};
+
 export const renderDashboardBrands = async (_req, res) => {
   const brands = await brandService.getBrands();
 

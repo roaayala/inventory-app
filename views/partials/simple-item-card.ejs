@@ -3,16 +3,17 @@
     <h2 class="item__title"><%= name %></h2>
     <span class="item__count"
       ><%= total %>
-      <%= total === 1 ?
-                'item' : 'items' %></span
+      <%= total === 1 ? 'item' : 'items' %></span
     >
   </div>
   <div class="simple-item-card__actions">
     <a href="<%= editLink %>" class="button button--icon button--outline">
       <div class="icon-button icon-square-pen"></div>
     </a>
-    <a href="<%= deleteLink %>" class="button button--icon button--outline">
-      <div class="icon-button icon-trash-2"></div>
-    </a>
+    <form action="<%= deleteLink %>?_method=DELETE" method="POST">
+      <button type="submit" class="button button--icon button--outline">
+        <div class="icon-button icon-trash-2"></div>
+      </button>
+    </form>
   </div>
 </div>

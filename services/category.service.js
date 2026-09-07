@@ -23,3 +23,6 @@ export const createCategory = async (newItem) => {
 
   await categoryRepo.insertCategory(newCategory);
 };
+
+export const deleteCategory = async (id) =>
+  await categoryRepo.deleteCategory(id);

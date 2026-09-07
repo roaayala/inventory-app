@@ -17,8 +17,6 @@ dashboardRoute.post(
   dashboardController.postNewProduct,
 );
 
-dashboardRoute.delete("/products/:id", dashboardController.deleteProduct);
-
 dashboardRoute.get("/products/new", dashboardController.renderNewProductForm);
 
 dashboardRoute.get(
@@ -36,6 +34,10 @@ dashboardRoute.post(
   categoryValidation,
   dashboardController.postNewCategory,
 );
+
+dashboardRoute.delete("/products/:id", dashboardController.deleteProduct);
+
+dashboardRoute.delete("/categories/:id", dashboardController.deleteCategory);
 
 dashboardRoute.get("/brands", dashboardController.renderDashboardBrands);
 

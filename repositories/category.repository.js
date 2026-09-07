@@ -42,3 +42,10 @@ export const insertCategory = async (categoryEntity) => {
 
   return rows[0];
 };
+
+export const deleteCategory = async (id) => {
+  const query = "DELETE FROM categories WHERE id = $1 RETURNING *";
+  const { rows } = await pool.query(query, [id]);
+
+  return rows[0];
+};
