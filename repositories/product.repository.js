@@ -69,3 +69,37 @@ export const insertProduct = async (newItem, categoryId) => {
     client.release();
   }
 };
+
+export const deleteProduct = async (id) => {
+  const client = await pool.connect();
+
+  try {
+    // product
+    const productQuery = `DELETE FROM products WHERE id = $1 RETURNING id`;
+
+    const product = await pool.query(productQuery, [id]);
+
+    if (product.rows.length === 0) {
+      throw new Error(`Product id ${id} not found.`);
+    }
+
+    // product_category
+    const productCategoryQuery = `DELETE FROM product_category WHERE product_id = $1`;
+
+    const productCategory = await pool.query(productCategoryQuery, [
+      product.rows[0].id,
+    ]);
+
+    await client.query("COMMIT");
+
+    return {
+      product: product.rows[0],
+      productCategory: productCategory.rows,
+    };
+  } catch (error) {
+    await client.query("ROLLBACK");
+    throw error;
+  } finally {
+    client.release();
+  }
+};

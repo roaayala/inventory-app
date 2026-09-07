@@ -100,13 +100,12 @@ export const postNewProduct = async (req, res) => {
 };
 
 export const deleteProduct = async (req, res) => {
-  console.log(req.params);
+  await productService.deleteProduct(req.params.id);
   res.redirect("/dashboard/products");
 };
 
 export const renderDashboardCategories = async (_req, res) => {
   const categories = await categoryService.getCategories();
-  console.log(categories);
 
   res.render("dashboard/categories", {
     title: "Categories Dashboard",

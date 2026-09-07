@@ -93,3 +93,8 @@ export const createProduct = async (newItem) => {
 
   await productRepo.insertProduct(newProduct, categoryId);
 };
+
+export const deleteProduct = async (id) => {
+  const deleteAction = await productRepo.deleteProduct(id);
+  console.log(deleteAction);
+};
