@@ -1,4 +1,4 @@
-import { BrandResponseDTO } from "../models/Brand.js";
+import { BrandEntity, BrandResponseDTO } from "../models/Brand.js";
 
 import * as brandRepo from "../repositories/brand.repository.js";
 
@@ -17,3 +17,9 @@ export const getBrands = async () => {
 };
 
 export const getBrandsCount = async () => await brandRepo.brandsCount();
+
+export const createBrand = async (newItem) => {
+  const newBrand = new BrandEntity(newItem);
+
+  await brandRepo.insertBrand(newBrand);
+};

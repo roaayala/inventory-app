@@ -5,6 +5,7 @@ import { stringifyPrice } from "../utils/helpers.js";
 import { validationResult } from "express-validator";
 import { ProductRequestDTO } from "../models/Product.js";
 import { CategoryRequestDTO } from "../models/Category.js";
+import { BrandRequestDTO } from "../models/Brand.js";
 
 const dashboardMenu = [
   { label: "Index", link: "/dashboard", icon: "house" },
@@ -177,4 +178,42 @@ export const renderDashboardBrands = async (_req, res) => {
     dashboardMenu,
     activeMenu: dashboardMenu[3],
   });
+};
+
+export const renderNewBrandForm = async (_req, res) => {
+  res.render("dashboard/item-form", {
+    title: "Add New Brand",
+    dashboardMenu,
+    activeMenu: dashboardMenu[3],
+    prevPage: "/dashboard/brands",
+    formUrlEndpoint: "/dashboard/brands",
+    isProductForm: false,
+    fieldNamePrefix: "Brand",
+    errors: [],
+    oldData: {},
+  });
+};
+
+export const postNewBrand = async (req, res) => {
+  const result = validationResult(req);
+
+  if (!result.isEmpty()) {
+    return res.status(400).render("dashboard/item-form", {
+      title: "Add New Brand",
+      dashboardMenu,
+      activeMenu: dashboardMenu[3],
+      prevPage: "/dashboard/brands",
+      formUrlEndpoint: "/dashboard/brands",
+      isProductForm: false,
+      fieldNamePrefix: "Brand",
+      errors: result.array(),
+      oldData: req.body,
+    });
+  }
+
+  const newBrand = BrandRequestDTO(req.body);
+
+  await brandService.createBrand(newBrand);
+
+  res.redirect("/dashboard/brands");
 };

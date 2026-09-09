@@ -5,6 +5,12 @@ export class BrandEntity {
   }
 }
 
+export const BrandRequestDTO = (reqBody) => {
+  return {
+    name: reqBody.name,
+  };
+};
+
 export const BrandResponseDTO = (brandEntity, productTotal) => {
   return {
     id: brandEntity.id,

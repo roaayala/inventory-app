@@ -34,3 +34,11 @@ export const productsCountInBrand = async (brandId) => {
 
   return parseInt(rows[0].total);
 };
+
+export const insertBrand = async (brandEntity) => {
+  const query = "INSERT INTO brands (id, name) VALUES($1, $2) RETURNING *";
+
+  const { rows } = await pool.query(query, [brandEntity.id, brandEntity.name]);
+
+  return rows[0];
+};

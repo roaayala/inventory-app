@@ -1,5 +1,6 @@
 import { Router } from "express";
 import {
+  brandValidation,
   categoryValidation,
   productValidation,
 } from "../middleware/validations.js";
@@ -40,5 +41,13 @@ dashboardRoute.delete("/products/:id", dashboardController.deleteProduct);
 dashboardRoute.delete("/categories/:id", dashboardController.deleteCategory);
 
 dashboardRoute.get("/brands", dashboardController.renderDashboardBrands);
+
+dashboardRoute.get("/brands/new", dashboardController.renderNewBrandForm);
+
+dashboardRoute.post(
+  "/brands",
+  brandValidation,
+  dashboardController.postNewBrand,
+);
 
 export default dashboardRoute;

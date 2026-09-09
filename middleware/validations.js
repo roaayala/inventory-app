@@ -62,3 +62,16 @@ export const categoryValidation = [
       "Category name at least 2 characters and maximum 32 characters long",
     ),
 ];
+
+export const brandValidation = [
+  body("name")
+    .trim()
+    .notEmpty()
+    .withMessage("Brand name must be filled")
+    .isString()
+    .withMessage("Brand name must be a text")
+    .isLength({ min: 2, max: 32 })
+    .withMessage(
+      "Brand name at least 2 characters and maximum 32 characters long",
+    ),
+];
