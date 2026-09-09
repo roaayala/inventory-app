@@ -12,6 +12,13 @@ export const CategoryRequestDTO = (reqBody) => {
 };
 
 export const CategoryResponseDTO = (categoryEntity, productTotal) => {
+  if (productTotal === null) {
+    return {
+      id: categoryEntity.id,
+      name: categoryEntity.name,
+    };
+  }
+
   return {
     id: categoryEntity.id,
     name: categoryEntity.name,
