@@ -47,7 +47,7 @@ export const deleteCategory = async (id) => {
   const UNCATEGORIZED_ID = CONSTANTS.SYSTEM_DEFAULTS.UNCATEGORIZED_ID;
 
   if (id === UNCATEGORIZED_ID) {
-    throw new Error("Uncategorized category cannot be deleted.");
+    throw new Error("Uncategorized cannot be deleted.");
   }
 
   const client = await pool.connect();

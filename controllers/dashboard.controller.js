@@ -217,3 +217,8 @@ export const postNewBrand = async (req, res) => {
 
   res.redirect("/dashboard/brands");
 };
+
+export const deleteBrand = async (req, res) => {
+  await brandService.deleteBrand(req.params.id);
+  res.redirect("/dashboard/brands");
+};

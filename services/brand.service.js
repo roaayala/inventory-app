@@ -23,3 +23,5 @@ export const createBrand = async (newItem) => {
 
   await brandRepo.insertBrand(newBrand);
 };
+
+export const deleteBrand = async (id) => await brandRepo.deleteBrand(id);
