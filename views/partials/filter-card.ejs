@@ -48,37 +48,6 @@
             </label>
           </div>
 
-          <% if (category.children && category.children.length > 0) { %> <%
-          category.children.forEach(children => { %>
-          <div class="field-group--inline-nested">
-            <% const isChildChecked =
-            activeFilters.categories.includes(String(children.id)); %> <% if
-            (isChildChecked) { %>
-            <input
-              class="checkbox-input"
-              type="checkbox"
-              name="categories"
-              id="<%= children.id %>"
-              value="<%= children.id %>"
-              checked
-            />
-            <% } else { %>
-            <input
-              class="checkbox-input"
-              type="checkbox"
-              name="categories"
-              id="<%= children.id %>"
-              value="<%= children.id %>"
-            />
-            <% } %>
-
-            <label class="checkbox-input-label" for="<%= children.id %>">
-              <%= children.name %>
-            </label>
-          </div>
-          <% }) %>
-          <% } %>
-
           <% }) %>
 
           <% } else { %>
@@ -86,6 +55,7 @@
           <% } %>
         </div>
       </section>
+
       <section class="form-section">
         <h3 class="form-section__title">Filter by Brands</h3>
         <div class="form-section__lists">
@@ -113,7 +83,7 @@
             />
             <% } %>
 
-            <label class="checkbox-input__label" for="<%= brand.id %>">
+            <label class="label" for="<%= brand.id %>">
               <%= brand.name %></label
             >
           </div>
