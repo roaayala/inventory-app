@@ -55,28 +55,34 @@ export const deleteCategory = async (id) => {
   try {
     await client.query("BEGIN");
 
-    // set category for to uncategorid where product have relation to targeted category id
-    const productQuery = `UPDATE product_category SET category_id = $1 WHERE category_id = $2`;
+    // move relation to uncategorized
+    const copyRelationQuery = `
+    INSERT INTO product_category (product_id, category_id)
+    SELECT product_id, $1
+    FROM product_category
+    WHERE category_id = $2
+    ON CONFLICT DO NOTHING;
+    `;
 
-    const product = await client.query(productQuery, [UNCATEGORIZED_ID, id]);
+    await client.query(copyRelationQuery, [UNCATEGORIZED_ID, id]);
 
-    if (product.rows.length === 0) {
-      throw new Error(`Product id ${id} not found.`);
-    }
-
-    // product_category
-    const productCategoryQuery = `DELETE FROM product_category WHERE product_id = $1`;
-
-    const productCategory = await pool.query(productCategoryQuery, [
-      product.rows[0].id,
+    // remove old relation
+    await client.query(`DELETE FROM product_category WHERE category_id = $1`, [
+      id,
     ]);
+
+    // delete main relation
+    const deleteCategoryQuery = `DELETE FROM categories WHERE id = $1 RETURNING *`;
+
+    const { rows } = await client.query(deleteCategoryQuery, [id]);
+
+    if (rows.length === 0) {
+      throw new Error(`Category with ID ${id} not found.`);
+    }
 
     await client.query("COMMIT");
 
-    return {
-      product: product.rows[0],
-      productCategory: productCategory.rows,
-    };
+    return rows[0];
   } catch (error) {
     await client.query("ROLLBACK");
     throw error;
