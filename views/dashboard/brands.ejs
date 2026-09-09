@@ -24,7 +24,7 @@
           %>
           <%- include('../partials/simple-item-card', { name: brand.name, 
             total: brand.productTotal, 
-            editLink: '',
+            editLink: `/dashboard/brands/${brand.id}/edit`,
             deleteLink: `/dashboard/brands/${brand.id}` }) %>
           <% }) %>
           <% } else { %>

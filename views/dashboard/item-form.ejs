@@ -13,6 +13,10 @@
           </header>
 
           <main class="form-item-main">
+            <% if (isEditForm) { %>
+            <input type="hidden" name="id" value="<%= oldData.id %>" />
+            <% } %>
+
             <section class="field-group">
               <label for="name" class="label"
                 ><%= fieldNamePrefix %>

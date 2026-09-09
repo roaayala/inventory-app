@@ -40,13 +40,13 @@ export const productValidation = [
   body("categoryId")
     .notEmpty()
     .withMessage("Product category must be filled")
-    .isUUID()
+    .isString()
     .withMessage("Invalid product category ID"),
 
   body("brandId")
     .notEmpty()
     .withMessage("Product brand must be filled")
-    .isUUID()
+    .isString()
     .withMessage("Invalid product brand ID"),
 ];
 

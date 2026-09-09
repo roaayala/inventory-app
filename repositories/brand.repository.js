@@ -7,6 +7,15 @@ export const findAll = async () => {
   return rows;
 };
 
+export const findOne = async (id) => {
+  const { rows } = await pool.query(
+    `SELECT id, name FROM brands WHERE id = $1`,
+    [id],
+  );
+
+  return rows[0];
+};
+
 export const findBrandByIds = async (brandIds) => {
   if (!brandIds || brandIds.length === 0) return [];
 
@@ -78,4 +87,12 @@ export const deleteBrand = async (id) => {
   } finally {
     client.release();
   }
+};
+
+export const updateBrand = async (brandEntity) => {
+  const query = "UPDATE brands SET name = $1 WHERE id = $2 RETURNING *";
+
+  const { rows } = await pool.query(query, [brandEntity.name, brandEntity.id]);
+
+  return rows[0];
 };

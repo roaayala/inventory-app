@@ -72,6 +72,7 @@ export const renderNewProductForm = async (_req, res) => {
     prevPage: "/dashboard/products",
     formUrlEndpoint: "/dashboard/products",
     isProductForm: true,
+    isEditForm: false,
     fieldNamePrefix: "Product",
     categories,
     brands,
@@ -94,6 +95,7 @@ export const postNewProduct = async (req, res) => {
       prevPage: "/dashboard/products",
       formUrlEndpoint: "/dashboard/products",
       isProductForm: true,
+      isEditForm: false,
       fieldNamePrefix: "Product",
       categories,
       brands,
@@ -188,6 +190,7 @@ export const renderNewBrandForm = async (_req, res) => {
     prevPage: "/dashboard/brands",
     formUrlEndpoint: "/dashboard/brands",
     isProductForm: false,
+    isEditForm: false,
     fieldNamePrefix: "Brand",
     errors: [],
     oldData: {},
@@ -205,6 +208,7 @@ export const postNewBrand = async (req, res) => {
       prevPage: "/dashboard/brands",
       formUrlEndpoint: "/dashboard/brands",
       isProductForm: false,
+      isEditForm: false,
       fieldNamePrefix: "Brand",
       errors: result.array(),
       oldData: req.body,
@@ -220,5 +224,45 @@ export const postNewBrand = async (req, res) => {
 
 export const deleteBrand = async (req, res) => {
   await brandService.deleteBrand(req.params.id);
+  res.redirect("/dashboard/brands");
+};
+
+export const renderEditBrandForm = async (req, res) => {
+  const brand = await brandService.getBrand(req.params.id);
+
+  res.render("dashboard/item-form", {
+    title: "Edit Brand",
+    dashboardMenu,
+    activeMenu: dashboardMenu[3],
+    prevPage: "/dashboard/brands",
+    formUrlEndpoint: `/dashboard/brands/${req.params.id}?_method=PUT`,
+    isProductForm: false,
+    isEditForm: true,
+    fieldNamePrefix: "Brand",
+    errors: [],
+    oldData: brand,
+  });
+};
+
+export const updateBrand = async (req, res) => {
+  const result = validationResult(req);
+
+  if (!result.isEmpty()) {
+    return res.status(400).render("dashboard/item-form", {
+      title: "Edit Brand",
+      dashboardMenu,
+      activeMenu: dashboardMenu[3],
+      prevPage: "/dashboard/brands",
+      formUrlEndpoint: `/dashboard/brands/${req.params.id}?_method=PUT`,
+      isProductForm: false,
+      isEditForm: true,
+      fieldNamePrefix: "Brand",
+      errors: result.array(),
+      oldData: req.body,
+    });
+  }
+
+  await brandService.updateBrand(req.body);
+
   res.redirect("/dashboard/brands");
 };

@@ -16,6 +16,14 @@ export const getBrands = async () => {
   return formatedBrands;
 };
 
+export const getBrand = async (id) => {
+  const brand = await brandRepo.findOne(id);
+
+  const formatedBrand = BrandResponseDTO(brand, null);
+
+  return formatedBrand;
+};
+
 export const getBrandsCount = async () => await brandRepo.brandsCount();
 
 export const createBrand = async (newItem) => {
@@ -25,3 +33,8 @@ export const createBrand = async (newItem) => {
 };
 
 export const deleteBrand = async (id) => await brandRepo.deleteBrand(id);
+
+export const updateBrand = async (reqBody) => {
+  const updatedBrand = new BrandEntity(reqBody);
+  await brandRepo.updateBrand(updatedBrand);
+};

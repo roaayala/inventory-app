@@ -12,6 +12,13 @@ export const BrandRequestDTO = (reqBody) => {
 };
 
 export const BrandResponseDTO = (brandEntity, productTotal) => {
+  if (productTotal === null) {
+    return {
+      id: brandEntity.id,
+      name: brandEntity.name,
+    };
+  }
+
   return {
     id: brandEntity.id,
     name: brandEntity.name,
