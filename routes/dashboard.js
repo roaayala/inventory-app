@@ -7,25 +7,33 @@ import {
 import * as dashboardController from "../controllers/dashboard.js";
 
 import * as indexDashboardController from "../controllers/indexDashboard.js";
+import * as productDashboardController from "../controllers/productDashboard.js";
 
 const dashboardRouter = Router();
 
 // INDEX
 dashboardRouter.get("/", indexDashboardController.renderDashboardIndex);
 
-// ==========================================
-// 2. PRODUCTS ROUTES
-// ==========================================
-dashboardRouter.get("/products", dashboardController.renderDashboardProducts);
-dashboardRouter.get("/products/new", dashboardController.renderNewProductForm);
+// PRODUCTS
+dashboardRouter.get(
+  "/products",
+  productDashboardController.renderDashboardProducts,
+);
+dashboardRouter.get(
+  "/products/new",
+  productDashboardController.renderNewProductForm,
+);
 
 dashboardRouter.post(
   "/products",
   productValidation,
-  dashboardController.postNewProduct,
+  productDashboardController.postNewProduct,
 );
 
-dashboardRouter.delete("/products/:id", dashboardController.deleteProduct);
+dashboardRouter.delete(
+  "/products/:id",
+  productDashboardController.deleteProduct,
+);
 
 // ==========================================
 // 3. CATEGORIES ROUTES
