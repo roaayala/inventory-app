@@ -8,6 +8,7 @@ import * as dashboardController from "../controllers/dashboard.js";
 
 import * as indexDashboardController from "../controllers/indexDashboard.js";
 import * as productDashboardController from "../controllers/productDashboard.js";
+import * as brandDashboardController from "../controllers/brandDashboard.js";
 
 const dashboardRouter = Router();
 
@@ -61,28 +62,26 @@ dashboardRouter.post(
 
 dashboardRouter.delete("/categories/:id", dashboardController.deleteCategory);
 
-// ==========================================
-// 4. BRANDS ROUTES
-// ==========================================
-dashboardRouter.get("/brands", dashboardController.renderDashboardBrands);
-dashboardRouter.get("/brands/new", dashboardController.renderNewBrandForm);
+// BRANDS
+dashboardRouter.get("/brands", brandDashboardController.renderDashboardBrands);
+dashboardRouter.get("/brands/new", brandDashboardController.renderNewBrandForm);
 dashboardRouter.get(
   "/brands/:id/edit",
-  dashboardController.renderEditBrandForm,
+  brandDashboardController.renderEditBrandForm,
 );
 
 dashboardRouter.post(
   "/brands",
   brandValidation,
-  dashboardController.postNewBrand,
+  brandDashboardController.postNewBrand,
 );
 
 dashboardRouter.put(
   "/brands/:id",
   brandValidation,
-  dashboardController.updateBrand,
+  brandDashboardController.updateBrand,
 );
 
-dashboardRouter.delete("/brands/:id", dashboardController.deleteBrand);
+dashboardRouter.delete("/brands/:id", brandDashboardController.deleteBrand);
 
 export default dashboardRouter;
