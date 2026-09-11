@@ -5,7 +5,7 @@ import express from "express";
 import methodOverride from "method-override";
 
 import indexRoute from "./routes/index.route.js";
-import dashboardRoute from "./routes/dashboard.route.js";
+import dashboardRouter from "./routes/dashboard.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
 app.use("/", indexRoute);
-app.use("/dashboard", dashboardRoute);
+app.use("/dashboard", dashboardRouter);
 
 app.use((_req, res, _next) => {
   res.send("<h1>Page not found</h1>");

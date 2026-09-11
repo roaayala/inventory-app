@@ -6,6 +6,15 @@ export const findAll = async () => {
   return rows;
 };
 
+export const findOne = async (id) => {
+  const { rows } = await pool.query(
+    `SELECT id, name FROM categories WHERE id = $1`,
+    [id],
+  );
+
+  return rows[0];
+};
+
 export const categoriesCount = async () => {
   const { rows } = await pool.query(`SELECT COUNT(*) AS total FROM categories`);
   return parseInt(rows[0].total);

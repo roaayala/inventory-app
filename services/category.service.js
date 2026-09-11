@@ -15,6 +15,14 @@ export const getCategories = async () => {
   return formatedCategories;
 };
 
+export const getCategory = async (id) => {
+  const brand = await categoryRepo.findOne(id);
+
+  const formatedBrand = CategoryResponseDTO(brand, null);
+
+  return formatedBrand;
+};
+
 export const getCategoriesCount = async () =>
   await categoryRepo.categoriesCount();
 

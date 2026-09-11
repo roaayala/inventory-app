@@ -1,33 +1,13 @@
 import * as productService from "../services/product.service.js";
 import * as categoryService from "../services/category.service.js";
 import * as brandService from "../services/brand.service.js";
-import { stringifyPrice } from "../utils/helpers.js";
+import { CONSTANTS, stringifyPrice } from "../utils/helpers.js";
 import { validationResult } from "express-validator";
 import { ProductRequestDTO } from "../models/Product.js";
 import { CategoryRequestDTO } from "../models/Category.js";
 import { BrandRequestDTO } from "../models/Brand.js";
 
-const dashboardMenu = [
-  { label: "Index", link: "/dashboard", icon: "house" },
-  { label: "Products", link: "/dashboard/products", icon: "box" },
-  { label: "Categories", link: "/dashboard/categories", icon: "boxes" },
-  { label: "Brands", link: "/dashboard/brands", icon: "crown" },
-];
-
-export const renderDashboardIndex = async (_req, res) => {
-  const productsCount = await productService.getProductsCount();
-  const categoriesCount = await categoryService.getCategoriesCount();
-  const brandsCount = await brandService.getBrandsCount();
-
-  res.render("dashboard/index", {
-    title: "Home Dashboard",
-    dashboardMenu,
-    activeMenu: dashboardMenu[0],
-    productsCount,
-    categoriesCount,
-    brandsCount,
-  });
-};
+const dashboardMenu = CONSTANTS.DASHBOARD_MENU;
 
 export const renderDashboardProducts = async (req, res) => {
   const { categories: categoriesQuery, brands: brandsQuery } = req.query;
@@ -169,6 +149,13 @@ export const postNewCategory = async (req, res) => {
 
 export const deleteCategory = async (req, res) => {
   await categoryService.deleteCategory(req.params.id);
+
+  res.redirect("/dashboard/categories");
+};
+
+export const renderEditCategoryForm = async (req, res) => {
+  const category = await categoryService.getCategory(req.params.id);
+  console.log(category);
 
   res.redirect("/dashboard/categories");
 };

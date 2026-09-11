@@ -23,7 +23,7 @@
           categories.forEach(category => { %>
           <%- include('../partials/simple-item-card', { name: category.name, 
             total: category.productTotal, 
-            editLink: ``,
+            editLink: `/dashboard/categories/${category.id}/edit`,
             deleteLink: `/dashboard/categories/${category.id}`}) %>
           <% }) %>
           <% } else { %>
