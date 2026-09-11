@@ -4,10 +4,10 @@ import {
   categoryValidation,
   productValidation,
 } from "../middleware/validations.js";
-import * as dashboardController from "../controllers/dashboard.js";
 
 import * as indexDashboardController from "../controllers/indexDashboard.js";
 import * as productDashboardController from "../controllers/productDashboard.js";
+import * as categoryDashboardController from "../controllers/categoryDashboard.js";
 import * as brandDashboardController from "../controllers/brandDashboard.js";
 
 const dashboardRouter = Router();
@@ -36,31 +36,33 @@ dashboardRouter.delete(
   productDashboardController.deleteProduct,
 );
 
-// ==========================================
-// 3. CATEGORIES ROUTES
-// ==========================================
+// CATEGORIES
+
 dashboardRouter.get(
   "/categories",
-  dashboardController.renderDashboardCategories,
+  categoryDashboardController.renderDashboardCategories,
 );
 
 dashboardRouter.get(
   "/categories/new",
-  dashboardController.renderNewCategoryForm,
+  categoryDashboardController.renderNewCategoryForm,
 );
 
 dashboardRouter.get(
   "/categories/:id/edit",
-  dashboardController.renderEditCategoryForm,
+  categoryDashboardController.renderEditCategoryForm,
 );
 
 dashboardRouter.post(
   "/categories",
   categoryValidation,
-  dashboardController.postNewCategory,
+  categoryDashboardController.postNewCategory,
 );
 
-dashboardRouter.delete("/categories/:id", dashboardController.deleteCategory);
+dashboardRouter.delete(
+  "/categories/:id",
+  categoryDashboardController.deleteCategory,
+);
 
 // BRANDS
 dashboardRouter.get("/brands", brandDashboardController.renderDashboardBrands);
