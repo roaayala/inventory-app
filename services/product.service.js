@@ -108,3 +108,10 @@ export const createProduct = async (newItem) => {
 };
 
 export const deleteProduct = async (id) => await productRepo.deleteProduct(id);
+
+export const updateProduct = async (reqBody) => {
+  return await productRepo.updateProduct(
+    new ProductEntity(reqBody),
+    reqBody.categoryId,
+  );
+};

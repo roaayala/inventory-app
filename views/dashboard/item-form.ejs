@@ -89,7 +89,7 @@
               >
               <select name="categoryId" id="categoryId" class="select">
                 <% categories.forEach(category => { %>
-                <% const isSelected = (oldData?.categoryId === category.id) || (!oldData?.categoryId && category.name === 'Uncategorized'); %>
+                <% const isSelected = (oldData?.categoryId === category.id) || (!oldData?.categoryId && category.name === 'Uncategorized')  %>
 
                 <% if (isSelected) { %>
                 <option value="<%= category.id %>" class="option" selected>

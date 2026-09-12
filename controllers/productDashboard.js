@@ -99,6 +99,16 @@ export const renderEditProductForm = async (req, res) => {
   const categories = await categoryService.getCategories();
   const brands = await brandService.getBrands();
 
+  const oldData = {
+    id: product.id,
+    name: product.name,
+    sku: product.sku,
+    price: product.price,
+    weight: product.weight,
+    categoryId: product.category.id,
+    brandId: product.brand.id,
+  };
+
   res.render("dashboard/item-form", {
     title: "Edit Product",
     dashboardMenu,
@@ -111,6 +121,36 @@ export const renderEditProductForm = async (req, res) => {
     categories,
     brands,
     errors: [],
-    oldData: product,
+    oldData,
   });
+};
+
+export const updateProduct = async (req, res) => {
+  const result = validationResult(req);
+
+  if (!result.isEmpty()) {
+    const categories = await categoryService.getCategories();
+    const brands = await brandService.getBrands();
+
+    return res.status(400).render("dashboard/item-form", {
+      title: "Edit Product",
+      dashboardMenu,
+      activeMenu: dashboardMenu[1],
+      prevPage: "/dashboard/products",
+      formUrlEndpoint: `/dashboard/products/${req.params.id}?_method=PUT`,
+      isProductForm: true,
+      isEditForm: true,
+      fieldNamePrefix: "Product",
+      categories,
+      brands,
+      errors: result.array(),
+      oldData: req.body,
+    });
+  }
+
+  const updatedProduct = ProductRequestDTO({ ...req.body });
+
+  await productService.updateProduct({ id: req.body.id, ...updatedProduct });
+
+  res.redirect("/dashboard/products");
 };

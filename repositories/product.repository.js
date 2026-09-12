@@ -112,3 +112,48 @@ export const deleteProduct = async (id) => {
     client.release();
   }
 };
+
+export const updateProduct = async (newProductEntity, categoryId) => {
+  const client = await pool.connect();
+
+  try {
+    await client.query("BEGIN");
+
+    const updateProductQuery = `UPDATE products
+    SET name = $1, sku = $2, price = $3, weight = $4, brand_id = $5
+    WHERE id = $6 
+    RETURNING *
+    `;
+
+    const { rows: updateProductRows } = await client.query(updateProductQuery, [
+      newProductEntity.name,
+      newProductEntity.sku,
+      newProductEntity.price,
+      newProductEntity.weight,
+      newProductEntity.brandId,
+      newProductEntity.id,
+    ]);
+
+    const productId = updateProductRows[0].id;
+
+    // delete old category relation
+    await client.query("DELETE FROM product_category WHERE product_id = $1", [
+      productId,
+    ]);
+
+    // insert new relation
+    await client.query(
+      "INSERT INTO product_category (product_id, category_id) VALUES ($1, $2)",
+      [productId, categoryId],
+    );
+
+    await client.query("COMMIT");
+
+    return updateProductRows[0];
+  } catch (error) {
+    await client.query("ROLLBACK");
+    throw error;
+  } finally {
+    client.release();
+  }
+};

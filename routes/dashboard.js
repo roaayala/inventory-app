@@ -41,6 +41,12 @@ dashboardRouter.delete(
   productDashboardController.deleteProduct,
 );
 
+dashboardRouter.put(
+  "/products/:id",
+  productValidation,
+  productDashboardController.updateProduct,
+);
+
 // CATEGORIES
 
 dashboardRouter.get(
