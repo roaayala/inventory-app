@@ -25,6 +25,11 @@ dashboardRouter.get(
   productDashboardController.renderNewProductForm,
 );
 
+dashboardRouter.get(
+  "/products/:id/edit",
+  productDashboardController.renderEditProductForm,
+);
+
 dashboardRouter.post(
   "/products",
   productValidation,

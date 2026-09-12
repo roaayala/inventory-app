@@ -64,6 +64,8 @@ export const deleteCategory = async (req, res) => {
 };
 
 export const renderEditCategoryForm = async (req, res) => {
+  // error handling for restricted id
+
   const category = await categoryService.getCategory(req.params.id);
 
   res.render("dashboard/item-form", {

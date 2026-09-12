@@ -93,3 +93,24 @@ export const deleteProduct = async (req, res) => {
   await productService.deleteProduct(req.params.id);
   res.redirect("/dashboard/products");
 };
+
+export const renderEditProductForm = async (req, res) => {
+  const product = await productService.getProduct(req.params.id);
+  const categories = await categoryService.getCategories();
+  const brands = await brandService.getBrands();
+
+  res.render("dashboard/item-form", {
+    title: "Edit Product",
+    dashboardMenu,
+    activeMenu: dashboardMenu[1],
+    prevPage: "/dashboard/products",
+    formUrlEndpoint: `/dashboard/products/${req.params.id}?_method=PUT`,
+    isProductForm: true,
+    isEditForm: true,
+    fieldNamePrefix: "Product",
+    categories,
+    brands,
+    errors: [],
+    oldData: product,
+  });
+};

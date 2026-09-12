@@ -61,6 +61,8 @@ export const deleteBrand = async (req, res) => {
 };
 
 export const renderEditBrandForm = async (req, res) => {
+  // error handling for restricted id
+
   const brand = await brandService.getBrand(req.params.id);
 
   res.render("dashboard/item-form", {

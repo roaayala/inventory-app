@@ -11,7 +11,10 @@
   <header class="product-card__header">
     <h3 class="product-card__title"><%= product.name %></h3>
     <div class="product-card__actions">
-      <a href="#" class="button button--icon button--outline">
+      <a
+        href="/dashboard/products/<%= product.id %>/edit"
+        class="button button--icon button--outline"
+      >
         <div class="icon-button icon-square-pen"></div>
       </a>
       <form

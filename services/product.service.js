@@ -84,6 +84,19 @@ export const getProducts = async (filters = {}) => {
   });
 };
 
+export const getProduct = async (id) => {
+  const product = new ProductEntity(await productRepo.findOne(id));
+  const pc = (await productRepo.categoryIdsByProductIds([id]))[0];
+  const category = await categoryRepo.findOne(pc.categoryId);
+  const brand = await brandRepo.findOne(product.brandId);
+
+  return ProductResponseDTO({
+    productEntity: product,
+    brandEntity: brand,
+    categoryEntity: category,
+  });
+};
+
 export const getProductsCount = async () => await productRepo.productsCount();
 
 export const createProduct = async (newItem) => {
