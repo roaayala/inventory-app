@@ -99,3 +99,14 @@ export const deleteCategory = async (id) => {
     client.release();
   }
 };
+
+export const updateCategory = async (categoryEntity) => {
+  const query = "UPDATE categories SET name = $1 WHERE id = $2 RETURNING *";
+
+  const { rows } = await pool.query(query, [
+    categoryEntity.name,
+    categoryEntity.id,
+  ]);
+
+  return rows[0];
+};

@@ -34,3 +34,8 @@ export const createCategory = async (newItem) => {
 
 export const deleteCategory = async (id) =>
   await categoryRepo.deleteCategory(id);
+
+export const updateCategory = async (reqBody) => {
+  const updateCategory = new CategoryEntity(reqBody);
+  await categoryRepo.updateCategory(updateCategory);
+};

@@ -65,7 +65,40 @@ export const deleteCategory = async (req, res) => {
 
 export const renderEditCategoryForm = async (req, res) => {
   const category = await categoryService.getCategory(req.params.id);
-  console.log(category);
+
+  res.render("dashboard/item-form", {
+    title: "Edit Category",
+    dashboardMenu,
+    activeMenu: dashboardMenu[2],
+    prevPage: "/dashboard/categories",
+    formUrlEndpoint: `/dashboard/categories/${req.params.id}?_method=PUT`,
+    isProductForm: false,
+    isEditForm: true,
+    fieldNamePrefix: "Category",
+    errors: [],
+    oldData: category,
+  });
+};
+
+export const updateCategory = async (req, res) => {
+  const result = validationResult(req);
+
+  if (!result.isEmpty()) {
+    return res.status(400).render("dashboard/item-form", {
+      title: "Edit Category",
+      dashboardMenu,
+      activeMenu: dashboardMenu[3],
+      prevPage: "/dashboard/categories",
+      formUrlEndpoint: `/dashboard/categories/${req.params.id}?_method=PUT`,
+      isProductForm: false,
+      isEditForm: true,
+      fieldNamePrefix: "Category",
+      errors: result.array(),
+      oldData: req.body,
+    });
+  }
+
+  await categoryService.updateCategory(req.body);
 
   res.redirect("/dashboard/categories");
 };

@@ -64,6 +64,12 @@ dashboardRouter.delete(
   categoryDashboardController.deleteCategory,
 );
 
+dashboardRouter.put(
+  "/categories/:id",
+  categoryValidation,
+  categoryDashboardController.updateCategory,
+);
+
 // BRANDS
 dashboardRouter.get("/brands", brandDashboardController.renderDashboardBrands);
 dashboardRouter.get("/brands/new", brandDashboardController.renderNewBrandForm);
