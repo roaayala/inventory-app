@@ -1,9 +1,0 @@
-.none {
-  display: none;
-}
-
-.field-group--inline {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-}

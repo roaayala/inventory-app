@@ -45,7 +45,6 @@ dashboardRouter.put(
 );
 
 // CATEGORIES
-
 dashboardRouter.get(
   "/categories",
   categoryDashboardController.renderCategoriesDashboard,

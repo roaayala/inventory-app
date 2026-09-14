@@ -1,13 +1,23 @@
 <nav class="dashboard-nav">
-  <% dashboardMenu.forEach(menu => { %>
+  <div class="container">
+    <div class="dashboard-nav__wrapper">
+      <button type="button" id="mobileMenuToggle">
+        <div class="icon-x"></div>
+        <div class="icon-menu hidden"></div>
+      </button>
+      <a href="/dashboard" class="dashboard-nav__title">Dashboard</a>
+    </div>
 
-  <a
-    href="<%= menu.link %>"
-    class="nav-link <%= activeMenu.label === menu.label ? 'nav-link--active' : '' %>"
-  >
-    <div class="icon-<%= menu.icon %> nav-link__icon"></div>
-    <span class="nav-link__label"><%= menu.label %></span>
-  </a>
-
-  <% }) %>
+    <div class="nav-links">
+      <% dashboardMenu.forEach(menu => { %>
+      <a
+        href="<%= menu.link %>"
+        class="nav-link <%= activeMenu.label === menu.label ? 'nav-link--active' : '' %>"
+      >
+        <div class="icon-<%= menu.icon %> nav-link__icon"></div>
+        <span class="nav-link__label"><%= menu.label %></span>
+      </a>
+      <% }) %>
+    </div>
+  </div>
 </nav>
