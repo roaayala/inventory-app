@@ -5,35 +5,32 @@ import {
   productValidation,
 } from "../middleware/validations.js";
 
-import * as indexDashboardController from "../controllers/indexDashboard.js";
-import * as productDashboardController from "../controllers/productDashboard.js";
-import * as categoryDashboardController from "../controllers/categoryDashboard.js";
-import * as brandDashboardController from "../controllers/brandDashboard.js";
+import indexDashboardController from "../controllers/indexDashboard.js";
+import productDashboardController from "../controllers/productDashboard.js";
+import categoryDashboardController from "../controllers/categoryDashboard.js";
+import brandDashboardController from "../controllers/brandDashboard.js";
 
 const dashboardRouter = Router();
 
 // INDEX
-dashboardRouter.get("/", indexDashboardController.renderDashboardIndex);
+dashboardRouter.get("/", indexDashboardController.renderIndexDashboard);
 
 // PRODUCTS
 dashboardRouter.get(
   "/products",
-  productDashboardController.renderDashboardProducts,
+  productDashboardController.renderProductsDashboard,
 );
-dashboardRouter.get(
-  "/products/new",
-  productDashboardController.renderNewProductForm,
-);
+dashboardRouter.get("/products/new", productDashboardController.renderNewForm);
 
 dashboardRouter.get(
   "/products/:id/edit",
-  productDashboardController.renderEditProductForm,
+  productDashboardController.renderEditForm,
 );
 
 dashboardRouter.post(
   "/products",
   productValidation,
-  productDashboardController.postNewProduct,
+  productDashboardController.postProduct,
 );
 
 dashboardRouter.delete(
@@ -51,23 +48,23 @@ dashboardRouter.put(
 
 dashboardRouter.get(
   "/categories",
-  categoryDashboardController.renderDashboardCategories,
+  categoryDashboardController.renderCategoriesDashboard,
 );
 
 dashboardRouter.get(
   "/categories/new",
-  categoryDashboardController.renderNewCategoryForm,
+  categoryDashboardController.renderNewForm,
 );
 
 dashboardRouter.get(
   "/categories/:id/edit",
-  categoryDashboardController.renderEditCategoryForm,
+  categoryDashboardController.renderEditForm,
 );
 
 dashboardRouter.post(
   "/categories",
   categoryValidation,
-  categoryDashboardController.postNewCategory,
+  categoryDashboardController.postCategory,
 );
 
 dashboardRouter.delete(
@@ -82,17 +79,17 @@ dashboardRouter.put(
 );
 
 // BRANDS
-dashboardRouter.get("/brands", brandDashboardController.renderDashboardBrands);
-dashboardRouter.get("/brands/new", brandDashboardController.renderNewBrandForm);
+dashboardRouter.get("/brands", brandDashboardController.renderBrandsDashboard);
+dashboardRouter.get("/brands/new", brandDashboardController.renderNewForm);
 dashboardRouter.get(
   "/brands/:id/edit",
-  brandDashboardController.renderEditBrandForm,
+  brandDashboardController.renderEditForm,
 );
 
 dashboardRouter.post(
   "/brands",
   brandValidation,
-  brandDashboardController.postNewBrand,
+  brandDashboardController.postBrand,
 );
 
 dashboardRouter.put(
