@@ -13,9 +13,9 @@ export const CONSTANTS = {
     NO_BRAND_ID: "no-brand",
   },
   DASHBOARD_MENU: [
-    { label: "Index", link: "/dashboard", icon: "house" },
-    { label: "Products", link: "/dashboard/products", icon: "box" },
-    { label: "Categories", link: "/dashboard/categories", icon: "boxes" },
-    { label: "Brands", link: "/dashboard/brands", icon: "crown" },
+    { label: "Index", link: "/dashboard" },
+    { label: "Products", link: "/dashboard/products" },
+    { label: "Categories", link: "/dashboard/categories" },
+    { label: "Brands", link: "/dashboard/brands" },
   ],
 };

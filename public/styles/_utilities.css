@@ -1,3 +1,14 @@
 .hidden {
   display: none;
 }
+
+.container {
+  padding-inline: var(--spacing-base);
+  width: 100%;
+}
+
+@media (min-width: 48rem) {
+  .container {
+    padding-inline: var(--spacing-lg);
+  }
+}
