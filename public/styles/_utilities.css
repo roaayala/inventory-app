@@ -7,8 +7,8 @@
   width: 100%;
 }
 
-@media (min-width: 48rem) {
+/* @media (min-width: 48rem) {
   .container {
     padding-inline: var(--spacing-lg);
   }
-}
+} */

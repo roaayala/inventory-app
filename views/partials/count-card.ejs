@@ -1,13 +1,8 @@
-<div class="count-card">
-  <span class="count-card__text">
-    <span class="count-card__text-main"><%= count %></span>
-    <span class="count-card__text-suffix"><%= countSuffix %></span>
-  </span>
+<a href="<%= link %>" class="count-card">
+  <h3 class="count-card__label">
+    <span class="count-card__label-main"><%= count %></span>
+    <span class="count-card__label-suffix"><%= countSuffix %></span>
+  </h3>
 
-  <div class="count-card__actions">
-    <a href="<%= link %>" class="button button--primary">
-      <span class="button-label"><%= linkLabel %></span>
-      <div class="button-icon icon-move-right"></div>
-    </a>
-  </div>
-</div>
+  <div class="icon-arrow-right count-card__icon"></div>
+</a>

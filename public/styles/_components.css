@@ -1,0 +1,25 @@
+.count-card {
+  text-decoration: none;
+  color: var(--color-on-surface-high);
+
+  background-color: var(--color-surface);
+
+  border: solid 1px var(--color-outline);
+
+  border-radius: var(--rounded-base);
+
+  padding: var(--spacing-base);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.count-card__label {
+  font-size: var(--text-base);
+  font-weight: 400;
+}
+
+.count-card__icon {
+  font-size: var(--text-xl);
+}

@@ -2,14 +2,14 @@
   <div class="container">
     <!-- nav -->
     <div class="dashboard-nav__wrapper">
+      <!-- page title -->
+      <a href="/dashboard" class="dashboard-nav__title">Dashboard</a>
+
       <!-- button for mobile nav -->
       <button type="button" class="mobile-toggle-button" id="mobileMenuToggle">
         <div class="icon-x toggle-icon hidden" id="menuIcon"></div>
         <div class="icon-menu toggle-icon" id="closeIcon"></div>
       </button>
-
-      <!-- page title -->
-      <a href="/dashboard" class="dashboard-nav__title">Dashboard</a>
 
       <!-- desktop nav -->
       <div class="desktop-nav__links">
@@ -36,12 +36,12 @@
       <% if (activeMenu.label === menu.label) { %>
       <a href="<%= menu.link %>" class="mobile-nav__link active">
         <span class="mobile-nav__link-label"><%= menu.label %></span>
-        <div class="icon-move-right mobile-nav__link-icon"></div>
+        <div class="icon-arrow-right mobile-nav__link-icon"></div>
       </a>
       <% } else { %>
       <a href="<%= menu.link %>" class="mobile-nav__link">
         <span class="mobile-nav__link-label"><%= menu.label %></span>
-        <div class="icon-move-right mobile-nav__link-icon"></div>
+        <div class="icon-arrow-right mobile-nav__link-icon"></div>
       </a>
       <% } %>
 

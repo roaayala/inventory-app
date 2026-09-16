@@ -3,33 +3,31 @@
   <%- include('../partials/header', { title }) %>
 
   <body>
-    <div id="app">
+    <div class="dashboard-layout">
       <%- include('../partials/dashboard-nav', { dashboardMenu, activeMenu }) %>
 
-      <main class="dashboard-main">
-        <div class="main-header">
+      <main class="container dashboard-main-index">
+        <header class="index-header">
           <h1>Welcome to dashboard, Admin!</h1>
           <p>Place to manage your products, categories and brands.</p>
-        </div>
+        </header>
 
-        <div class="main-content">
+        <main class="index-main">
+          <h2>Quick Preview</h2>
           <%- include('../partials/count-card', { count: productsCount,
-          countSuffix: 'products', link: '/dashboard/products', linkLabel:
-          'Manage products' }) %>
+          countSuffix: 'products', link: '/dashboard/products' }) %>
           <!--  -->
-          <%- include('../partials/count-card', { 
-            count: categoriesCount, 
-            countSuffix: 'categories', 
-            link: '/dashboard/categories', 
-            linkLabel: 'Manage categories' 
-          }) %>
+          <%-
+          include('../partials/count-card', { count: categoriesCount,
+          countSuffix: 'categories', link: '/dashboard/categories' }) %>
           <!--  -->
-          <%- include('../partials/count-card', { count: brandsCount, countSuffix:
-          'brands', link: '/dashboard/brands', linkLabel: 'Manage brands' }) %>
-        </div>
+          <%-
+          include('../partials/count-card', { count: brandsCount, countSuffix:
+          'brands', link: '/dashboard/brands' }) %>
+        </main>
       </main>
-    </div>
 
-    <%- include('../partials/footer') %>
+      <%- include('../partials/footer') %>
+    </div>
   </body>
 </html>
