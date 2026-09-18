@@ -3,11 +3,12 @@
   <%- include('../partials/header.ejs', title) %>
   <body>
     <div class="dashboard-layout">
-      <%- include('../partials/dashboard-nav', { dashboardMenu }) %>
-      <main class="dashboard-main">
-        <header class="categories-page main-header">
-          <h1 class="main-header__title">Manage Categories</h1>
-          <div class="main-header-actions">
+      <%- include('../partials/dashboard-nav', { dashboardMenu, activeMenu }) %>
+
+      <main class="container categories-page main-area">
+        <section class="categories-page header">
+          <h1>Manage Categories</h1>
+          <div>
             <a
               href="/dashboard/categories/new"
               class="button button--full button--primary"
@@ -16,9 +17,9 @@
               <span class="button-label">New Category</span>
             </a>
           </div>
-        </header>
+        </section>
 
-        <main class="categories-page main-content">
+        <section class="categories-page main-content">
           <% if (categories && categories.length > 0) { %> <%
           categories.forEach(category => { %>
           <%- include('../partials/simple-item-card', { name: category.name, 
@@ -31,7 +32,7 @@
             <span class="empty-message__text">No categories added yet!</span>
           </div>
           <% } %>
-        </main>
+        </section>
       </main>
     </div>
 

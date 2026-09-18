@@ -3,23 +3,23 @@
   <%- include('../partials/header.ejs', { title }) %>
   <body>
     <div class="dashboard-layout">
-      <%- include('../partials/dashboard-nav', { dashboardMenu }) %>
+      <%- include('../partials/dashboard-nav', { dashboardMenu, activeMenu }) %>
 
-      <main class="dashboard-main">
-        <div class="products-page main-header">
-          <h1 class="main-header__title">Manage Products</h1>
-          <div class="main-header-actions">
+      <main class="container products-page main-area">
+        <section class="products-page header">
+          <h1>Manage Products</h1>
+          <div class="products-page header-action">
             <a
               href="/dashboard/products/new"
-              class="button button--full button--primary"
+              class="button button--primary button--outline"
             >
               <div class="button-icon icon-plus"></div>
               <span class="button-label">New Product</span>
             </a>
           </div>
-        </div>
+        </section>
 
-        <div class="products-page main-content">
+        <div class="products-page main">
           <%- include('../partials/filter-card', { categories }) %>
 
           <section class="products-list">
