@@ -1,4 +1,4 @@
-.dashboard-main-index {
+.index-page.dashboard-main {
   padding-block: var(--spacing-xl);
 
   flex: 1;
@@ -8,20 +8,30 @@
   gap: var(--spacing-lg);
 }
 
-.index-header {
+.index-page.header {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-sm);
-  text-align: center;
 }
 
-.index-main {
+.index-page.main {
   display: grid;
   gap: var(--spacing-base);
 }
 
-@media (min-width: 48rem) {
-  .index-main {
+.index-page.content {
+  display: grid;
+  gap: var(--spacing-base);
+}
+
+@media (min-width: 32rem) {
+  .index-page.content {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 48rem) {
+  .index-page.content {
+    grid-template-columns: repeat(3, 1fr);
   }
 }

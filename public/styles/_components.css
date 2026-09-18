@@ -8,11 +8,15 @@
 
   border-radius: var(--rounded-base);
 
-  padding: var(--spacing-base);
+  padding: var(--spacing-base) var(--spacing-base);
 
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.count-card:hover {
+  border-color: var(--color-outline-high);
 }
 
 .count-card__label {

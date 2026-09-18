@@ -6,24 +6,22 @@
     <div class="dashboard-layout">
       <%- include('../partials/dashboard-nav', { dashboardMenu, activeMenu }) %>
 
-      <main class="container dashboard-main-index">
-        <header class="index-header">
+      <main class="container index-page dashboard-main">
+        <header class="index-page header">
           <h1>Welcome to dashboard, Admin!</h1>
           <p>Place to manage your products, categories and brands.</p>
         </header>
 
-        <main class="index-main">
+        <main class="index-page main">
           <h2>Quick Preview</h2>
-          <%- include('../partials/count-card', { count: productsCount,
-          countSuffix: 'products', link: '/dashboard/products' }) %>
-          <!--  -->
-          <%-
-          include('../partials/count-card', { count: categoriesCount,
-          countSuffix: 'categories', link: '/dashboard/categories' }) %>
-          <!--  -->
-          <%-
-          include('../partials/count-card', { count: brandsCount, countSuffix:
-          'brands', link: '/dashboard/brands' }) %>
+          <div class="index-page content">
+            <%- include('../partials/count-card', { count: productsCount,
+            countSuffix: 'products', link: '/dashboard/products' }) %>
+            <!--  -->
+            <%- include('../partials/count-card', { count: categoriesCount, countSuffix: 'categories', link: '/dashboard/categories' }) %>
+            <!--  -->
+            <%- include('../partials/count-card', { count: brandsCount, countSuffix: 'brands', link: '/dashboard/brands' }) %>
+          </div>
         </main>
       </main>
 
