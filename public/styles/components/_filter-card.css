@@ -1,0 +1,31 @@
+.filter-card {
+  align-self: flex-start;
+
+  background-color: var(--color-surface-container);
+
+  padding: var(--spacing-lg);
+
+  border-radius: var(--rounded-lg);
+}
+
+.filter-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filter-card__title {
+  font-size: var(--text-xl);
+}
+
+.filter-card__action {
+}
+
+@media (min-width: 32rem) {
+  /* .filter-card {
+    padding: var(--spacing-lg);
+  } */
+}
+
+@media (min-width: 48rem) {
+}

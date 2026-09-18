@@ -6,6 +6,9 @@
 
   padding: var(--spacing-sm) var(--spacing-base);
 
+  min-height: 2.5rem;
+  min-width: 2.5rem;
+
   background-color: transparent;
 
   border: 1px solid transparent;
@@ -24,10 +27,17 @@
 
 .button > .button-icon {
   font-size: var(--text-base);
+  line-height: 1.25;
 }
 
 .button > .button-label {
   font-size: var(--text-sm);
+  line-height: 1.25;
+}
+
+.button:has(.button-icon):not(:has(.button-label)) {
+  aspect-ratio: 1;
+  padding: 0;
 }
 
 .button.button--primary {
@@ -54,5 +64,13 @@
   border-color: color-mix(in srgb, var(--color-primary) 95%, black);
 }
 
-.button.button--full {
+.button.button--neutral {
+}
+
+.button--neutral.button--outline {
+  border-color: var(--color-outline);
+}
+
+.button--neutral.button--outline:hover {
+  background-color: var(--color-surface-container-low);
 }

@@ -49,10 +49,19 @@
   width: 100%;
 }
 
+.products-page.main {
+  display: grid;
+  gap: var(--spacing-lg);
+}
+
 @media (min-width: 48rem) {
   .products-page.header {
     flex-direction: row;
     align-items: flex-end;
+  }
+
+  .products-page.main {
+    grid-template-columns: 20rem 1fr;
   }
 }
 /* categories pages */
