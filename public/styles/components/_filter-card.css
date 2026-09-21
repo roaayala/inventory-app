@@ -1,9 +1,12 @@
 .filter-card {
   align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-base);
 
   background-color: var(--color-surface-container);
 
-  padding: var(--spacing-lg);
+  padding: var(--spacing-base);
 
   border-radius: var(--rounded-lg);
 }
@@ -16,16 +19,54 @@
 
 .filter-card__title {
   font-size: var(--text-xl);
+  font-weight: 700;
 }
 
-.filter-card__action {
+.filter-card__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-base);
+}
+
+.filter-card__form-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.form-section__title {
+  font-size: var(--text-lg);
+}
+
+.form-section__lists {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+
+  > .field-group {
+    padding-left: var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+
+    > .label {
+      font-size: var(--text-sm);
+    }
+  }
+}
+
+.filter-card__form-action {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-base);
+
+  > .button {
+    width: 100%;
+  }
 }
 
 @media (min-width: 32rem) {
-  /* .filter-card {
+  .filter-card {
     padding: var(--spacing-lg);
-  } */
-}
-
-@media (min-width: 48rem) {
+  }
 }

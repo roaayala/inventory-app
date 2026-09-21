@@ -15,9 +15,9 @@ const dashboardFilterForm = document.getElementById("dashboardFilterForm");
 
 toggleFilter.addEventListener("click", () => {
   toggleFilterIcon.className =
-    toggleFilterIcon.className === "icon-button icon-eye"
-      ? "icon-button icon-eye-off"
-      : "icon-button icon-eye";
+    toggleFilterIcon.className === "button-icon icon-eye"
+      ? "button-icon icon-eye-off"
+      : "button-icon icon-eye";
 
-  dashboardFilterForm.classList.toggle("none");
+  dashboardFilterForm.classList.toggle("hidden");
 });

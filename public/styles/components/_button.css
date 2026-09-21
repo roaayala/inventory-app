@@ -65,12 +65,21 @@
 }
 
 .button.button--neutral {
+  background-color: var(--color-surface-container);
+  border-color: var(--color-surface-container);
+  color: var(--color-on-surface-high);
+}
+
+.button.button--neutral:hover {
+  background-color: var(--color-surface-container-high);
+  border-color: var(--color-surface-container-high);
 }
 
 .button--neutral.button--outline {
-  border-color: var(--color-outline);
+  background-color: transparent;
+  border-color: var(--color-surface-container-high);
 }
 
 .button--neutral.button--outline:hover {
-  background-color: var(--color-surface-container-low);
+  background-color: var(--color-surface-container-high);
 }
