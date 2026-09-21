@@ -65,8 +65,8 @@
   }
 }
 
-@media (min-width: 32rem) {
+/* @media (min-width: 32rem) {
   .filter-card {
     padding: var(--spacing-lg);
   }
-}
+} */

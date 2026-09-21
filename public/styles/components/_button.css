@@ -83,3 +83,24 @@
 .button--neutral.button--outline:hover {
   background-color: var(--color-surface-container-high);
 }
+
+.button--neutral.button--ghost {
+  padding: 0;
+  background-color: transparent;
+  border-color: transparent;
+  min-width: 1.5rem;
+  width: 1.5rem;
+
+  min-height: 1.5rem;
+  height: 1.5rem;
+
+  color: var(--color-on-surface);
+
+  :hover {
+    color: var(--color-on-surface-high);
+  }
+
+  > .button-icon {
+    font-size: var(--text-lg);
+  }
+}

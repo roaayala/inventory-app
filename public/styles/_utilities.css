@@ -5,10 +5,14 @@
 .container {
   padding-inline: var(--spacing-base);
   width: 100%;
-}
 
-@media (min-width: 48rem) {
-  .container {
+  @media (min-width: 48rem) {
     padding-inline: var(--spacing-lg);
   }
+}
+
+.truncated {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

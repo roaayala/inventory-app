@@ -8,27 +8,27 @@
 </div>
 <% } else { %>
 <div class="product-card">
-  <header class="product-card__header">
-    <h3 class="product-card__title"><%= product.name %></h3>
-    <div class="product-card__actions">
+  <header class="header">
+    <h3 class="title"><%= product.name %></h3>
+    <div class="action">
       <a
         href="/dashboard/products/<%= product.id %>/edit"
-        class="button button--icon button--outline"
+        class="button button--neutral button--ghost"
       >
-        <div class="icon-button icon-square-pen"></div>
+        <div class="button-icon icon-square-pen"></div>
       </a>
       <form
         action="/dashboard/products/<%= product.id %>?_method=DELETE"
         method="POST"
       >
-        <button type="submit" class="button button--icon button--outline">
-          <div class="icon-button icon-trash-2"></div>
+        <button type="submit" class="button button--neutral button--ghost">
+          <div class="button-icon icon-trash-2"></div>
         </button>
       </form>
     </div>
   </header>
 
-  <ul class="product-card__details">
+  <ul class="detail">
     <li class="product-card__item">
       <span class="detail-label">SKU:</span>
       <span><%= product.sku %></span>
