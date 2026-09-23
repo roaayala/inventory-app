@@ -4,7 +4,7 @@
   flex-direction: column;
   gap: var(--spacing-sm);
 
-  background-color: var(--color-surface-container);
+  background-color: var(--color-surface-container-low);
 
   padding: var(--spacing-base);
 

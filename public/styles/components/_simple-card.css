@@ -44,6 +44,7 @@
 
 .simple-card__action {
   display: flex;
+  gap: var(--spacing-xs);
   align-items: center;
   flex-shrink: 0;
 }

@@ -1,21 +1,15 @@
 .product-card {
   min-width: 0;
 
-  background-color: var(--color-surface);
-
-  border: solid 1px var(--color-outline);
+  background-color: var(--color-surface-container);
 
   border-radius: var(--rounded-base);
 
-  padding: var(--spacing-base);
+  padding: var(--spacing-lg);
 
   display: flex;
   gap: var(--spacing-sm);
   flex-direction: column;
-
-  &:hover {
-    border-color: var(--color-outline-high);
-  }
 }
 
 .product-card__header {

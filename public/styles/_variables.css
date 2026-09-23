@@ -52,8 +52,6 @@ xl 80rem
 
   --color-primary: var(--blue-600);
   --color-on-primary: var(--white);
-  --color-primary-container: var(--blue-100);
-  --color-on-primary-container: var(--blue-900);
 
   --color-surface: var(--white);
   --color-on-surface-low: var(--neutral-500);
