@@ -1,17 +1,15 @@
 .simple-card {
+  min-width: 0;
   color: var(--color-on-surface-high);
-
   background-color: var(--color-surface);
-
   border: solid 1px var(--color-outline);
-
   border-radius: var(--rounded-base);
-
   padding: var(--spacing-base) var(--spacing-base);
 
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: var(--spacing-sm);
 
   &:hover {
     border-color: var(--color-outline-high);
@@ -22,12 +20,17 @@
   display: flex;
   align-items: flex-end;
   gap: var(--spacing-sm);
+  min-width: 0;
 }
 
 .simple-card__title {
   font-size: var(--text-xl);
   color: var(--color-on-surface-high);
   min-width: 0;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .simple-card__count {
@@ -35,11 +38,12 @@
   align-items: flex-end;
   gap: 0.125rem;
   font-size: var(--text-xs);
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .simple-card__action {
   display: flex;
-
   align-items: center;
   flex-shrink: 0;
 }

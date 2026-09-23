@@ -12,6 +12,10 @@
   display: flex;
   gap: var(--spacing-sm);
   flex-direction: column;
+
+  &:hover {
+    border-color: var(--color-outline-high);
+  }
 }
 
 .product-card__header {
