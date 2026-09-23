@@ -1,5 +1,6 @@
 .index-page.main-area,
-.products-page.main-area {
+.products-page.main-area,
+.categories-page.main-area {
   padding-block: var(--spacing-lg);
 
   flex: 1;
@@ -101,3 +102,21 @@
 }
 
 /* categories pages */
+.categories-page.main-area {
+  .categories-page__header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-base);
+
+    @media (min-width: 48rem) {
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+  }
+  .categories-page__header-action {
+    > .button {
+      width: 100%;
+    }
+  }
+}

@@ -8,7 +8,7 @@
 
   padding: var(--spacing-base);
 
-  border-radius: var(--rounded-lg);
+  border-radius: var(--rounded-base);
 }
 
 .filter-card__header {

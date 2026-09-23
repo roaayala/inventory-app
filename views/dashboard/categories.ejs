@@ -6,9 +6,9 @@
       <%- include('../partials/dashboard-nav', { dashboardMenu, activeMenu }) %>
 
       <main class="container categories-page main-area">
-        <section class="categories-page header">
+        <section class="categories-page__header">
           <h1>Manage Categories</h1>
-          <div>
+          <div class="categories-page__header-action">
             <a
               href="/dashboard/categories/new"
               class="button button--full button--primary"
@@ -22,7 +22,7 @@
         <section class="categories-page main-content">
           <% if (categories && categories.length > 0) { %> <%
           categories.forEach(category => { %>
-          <%- include('../partials/simple-item-card', { name: category.name, 
+          <%- include('../partials/simple-card', { name: category.name, 
             total: category.productTotal, 
             editLink: `/dashboard/categories/${category.id}/edit`,
             deleteLink: `/dashboard/categories/${category.id}`}) %>
