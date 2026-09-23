@@ -5,24 +5,21 @@
     <div class="dashboard-layout">
       <%- include('../partials/dashboard-nav', { dashboardMenu }) %>
 
-      <main class="dashboard-main">
-        <header class="categories-page main-header">
-          <h1 class="main-header__title">Manage Brands</h1>
-          <div class="main-header-actions">
-            <a
-              href="/dashboard/brands/new"
-              class="button button--full button--primary"
-            >
+      <main class="container brands-page main-area">
+        <section class="brands-page__header">
+          <h1>Manage Brands</h1>
+          <div class="brands-page__header-action">
+            <a href="/dashboard/brands/new" class="button button--primary">
               <div class="button-icon icon-plus"></div>
               <span class="button-label">New Brand</span>
             </a>
           </div>
-        </header>
+        </section>
 
-        <main class="categories-page main-content">
+        <section class="brands-page__main">
           <% if (brands && brands.length > 0) { %> <% brands.forEach(brand => {
           %>
-          <%- include('../partials/simple-item-card', { name: brand.name, 
+          <%- include('../partials/simple-card', { name: brand.name, 
             total: brand.productTotal, 
             editLink: `/dashboard/brands/${brand.id}/edit`,
             deleteLink: `/dashboard/brands/${brand.id}` }) %>
@@ -32,7 +29,7 @@
             <span class="empty-message__text">No brand added yet!</span>
           </div>
           <% } %>
-        </main>
+        </section>
       </main>
     </div>
 

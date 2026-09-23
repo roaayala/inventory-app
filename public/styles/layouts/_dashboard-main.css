@@ -1,6 +1,7 @@
 .index-page.main-area,
 .products-page.main-area,
-.categories-page.main-area {
+.categories-page.main-area,
+.brands-page.main-area {
   padding-block: var(--spacing-lg);
 
   flex: 1;
@@ -102,8 +103,10 @@
 }
 
 /* categories pages */
-.categories-page.main-area {
-  .categories-page__header {
+.categories-page.main-area,
+.brands-page.main-area {
+  .categories-page__header,
+  .brands-page__header {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-base);
@@ -115,13 +118,15 @@
     }
   }
 
-  .categories-page__header-action {
+  .categories-page__header-action,
+  .brands-page__header-action {
     > .button {
       width: 100%;
     }
   }
 
-  .categories-page__main {
+  .categories-page__main,
+  .brands-page__main {
     min-width: 0;
     width: 100%;
 
