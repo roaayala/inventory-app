@@ -10,9 +10,3 @@
     padding-inline: var(--spacing-lg);
   }
 }
-
-.truncated {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}

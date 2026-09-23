@@ -143,3 +143,66 @@
     }
   }
 }
+
+.form-page {
+  flex: 1;
+
+  width: 100%;
+  max-width: 45rem;
+  margin: 0 auto;
+  padding-block: var(--spacing-lg);
+  padding-inline: var(--spacing-base);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (min-width: 48rem) {
+    padding-inline: 0;
+  }
+
+  .form-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-base);
+    width: 100%;
+  }
+
+  .form-item__main {
+    display: grid;
+    gap: var(--spacing-sm);
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xs);
+
+      .label {
+        font-size: var(--text-xs);
+        color: var(--color-on-surface-low);
+      }
+
+      .input,
+      .select {
+        padding: var(--spacing-sm) var(--spacing-base);
+        border: solid 1px var(--color-outline);
+        border-radius: var(--rounded-base);
+      }
+    }
+  }
+
+  .form-item__footer {
+    margin-top: var(--spacing-base);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-base);
+
+    @media (min-width: 32rem) {
+      flex-direction: row;
+    }
+
+    > .button {
+      width: 100%;
+    }
+  }
+}

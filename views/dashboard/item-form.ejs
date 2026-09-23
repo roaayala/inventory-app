@@ -8,20 +8,19 @@
 
       <main class="form-page">
         <form action="<%= formUrlEndpoint %>" method="POST" class="form-item">
-          <header class="form-item-header">
-            <h1 class="form-item-header__title"><%= title %></h1>
+          <header class="form-item__header">
+            <h1 class="form-item__title"><%= title %></h1>
           </header>
 
-          <main class="form-item-main">
+          <main class="form-item__main">
             <% if (isEditForm) { %>
             <input type="hidden" name="id" value="<%= oldData.id %>" />
             <% } %>
 
             <section class="field-group">
-              <label for="name" class="label"
-                ><%= fieldNamePrefix %>
-                Name</label
-              >
+              <label for="name" class="label">
+                <%= fieldNamePrefix %> Name
+              </label>
               <input
                 value="<%= oldData.name || '' %>"
                 type="text"
@@ -50,10 +49,9 @@
             </section>
 
             <section class="field-group">
-              <label for="price" class="label"
-                ><%= fieldNamePrefix %>
-                Price</label
-              >
+              <label for="price" class="label">
+                <%= fieldNamePrefix %> Price
+              </label>
               <input
                 value="<%= oldData.price || '' %>"
                 type="number"
@@ -67,10 +65,9 @@
             </section>
 
             <section class="field-group">
-              <label for="weight" class="label"
-                ><%= fieldNamePrefix %>
-                Weight</label
-              >
+              <label for="weight" class="label">
+                <%= fieldNamePrefix %> Weight
+              </label>
               <input
                 value="<%= oldData.weight || '' %>"
                 type="Number"
@@ -85,8 +82,8 @@
 
             <section class="field-group">
               <label for="categoryId" class="label">
-                <%= fieldNamePrefix %> Category</label
-              >
+                <%= fieldNamePrefix %> Category
+              </label>
               <select name="categoryId" id="categoryId" class="select">
                 <% categories.forEach(category => { %>
                 <% const isSelected = (oldData?.categoryId === category.id) || (!oldData?.categoryId && category.name === 'Uncategorized')  %>
@@ -128,16 +125,23 @@
             <% } %>
           </main>
 
-          <footer class="form-item-footer">
-            <a href="<%= prevPage %> " class="button button--outline">Cancel</a>
-            <button type="submit" class="button button--primary">Save</button>
+          <footer class="form-item__footer">
+            <a
+              href="<%= prevPage %> "
+              class="button button--neutral button--outline"
+            >
+              <span class="button-label">Cancel</span>
+            </a>
+            <button type="submit" class="button button--primary">
+              <span class="button-label">Save</span>
+            </button>
           </footer>
 
           <%- include('../partials/error-box', { errors }) %>
         </form>
       </main>
-    </div>
 
-    <%- include('../partials/footer') %>
+      <%- include('../partials/footer') %>
+    </div>
   </body>
 </html>
