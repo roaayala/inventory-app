@@ -32,9 +32,9 @@ const categoryDashboardController = {
     });
   },
   renderEditForm: async (req, res) => {
-    // error handling for restricted id
+    const categoryId = req.params.id;
 
-    const category = await categoryService.getCategory(req.params.id);
+    const category = await categoryService.getCategory(categoryId);
 
     res.render("dashboard/item-form", {
       title: "Edit Category",

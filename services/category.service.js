@@ -16,6 +16,7 @@ export const getCategories = async () => {
 };
 
 export const getCategory = async (id) => {
+  console.log(id);
   const brand = await categoryRepo.findOne(id);
 
   const formatedBrand = CategoryResponseDTO(brand, null);
