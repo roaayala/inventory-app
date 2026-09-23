@@ -1,5 +1,7 @@
 import { CategoryEntity, CategoryResponseDTO } from "../models/Category.js";
 import * as categoryRepo from "../repositories/category.repository.js";
+import { CONSTANTS } from "../utils/helpers.js";
+import serviceResult from "../utils/serviceResult.js";
 
 export const getCategories = async () => {
   const categories = await categoryRepo.findAll();
@@ -16,8 +18,14 @@ export const getCategories = async () => {
 };
 
 export const getCategory = async (id) => {
-  console.log(id);
   const brand = await categoryRepo.findOne(id);
+  console.log(brand);
+
+  if (CONSTANTS.SYSTEM_DEFAULTS.UNCATEGORIZED_ID === brand.id) {
+    return serviceResult.forbidden({
+      message: `"${brand.name}" forbidden to edit!`,
+    });
+  }
 
   const formatedBrand = CategoryResponseDTO(brand, null);
 

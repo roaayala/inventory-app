@@ -35,6 +35,11 @@ const categoryDashboardController = {
     const categoryId = req.params.id;
 
     const category = await categoryService.getCategory(categoryId);
+    console.log(category);
+
+    if (!category.success) {
+      return res.redirect("/dashboard/categories");
+    }
 
     res.render("dashboard/item-form", {
       title: "Edit Category",
