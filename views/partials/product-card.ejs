@@ -8,9 +8,9 @@
 </div>
 <% } else { %>
 <div class="product-card">
-  <header class="header">
-    <h3 class="title"><%= product.name %></h3>
-    <div class="action">
+  <header class="product-card__header">
+    <h3 class="product-card__title"><%= product.name %></h3>
+    <div class="product-card__action">
       <a
         href="/dashboard/products/<%= product.id %>/edit"
         class="button button--neutral button--ghost"
@@ -28,32 +28,39 @@
     </div>
   </header>
 
-  <ul class="detail">
-    <li class="product-card__item">
-      <span class="detail-label">SKU:</span>
-      <span><%= product.sku %></span>
+  <ul class="product-card__details">
+    <li class="product-card__detail-item">
+      <span class="product-card__detail-label">SKU:</span>
+      <span class="product-card__detail-value"><%= product.sku %></span>
     </li>
+
     <li class="product-card__item">
-      <span class="detail-label">Price:</span>
-      <span>Rp<%= stringifyPrice(product.price) %></span>
-    </li>
-    <li class="product-card__item">
-      <span class="detail-label">Weight:</span>
-      <span>
-        <%= product.weight %>
-        Kg
+      <span class="product-card__detail-label">Price:</span>
+      <span class="product-card__detail-value">
+        Rp<%= stringifyPrice(product.price) %>
       </span>
     </li>
+
     <li class="product-card__item">
-      <span class="detail-label">Brand:</span>
-      <span><%= product.brand?.name || '-' %></span>
+      <span class="product-card__detail-label">Weight:</span>
+      <span class="product-card__detail-value"> <%= product.weight %> Kg </span>
     </li>
+
     <li class="product-card__item">
-      <span class="detail-label">Categories:</span>
-      <% if (product.category ) { %>
-      <span class="badge"><%= product.category.name %></span>
+      <span class="product-card__detail-label">Brand:</span>
+      <span class="product-card__detail-value">
+        <%= product.brand?.name || '-' %>
+      </span>
+    </li>
+
+    <li class="product-card__item">
+      <span class="product-card__detail-label">Categories:</span>
+      <% if (product.category) { %>
+      <span class="product-card__detail-value">
+        <%= product.category.name %>
+      </span>
       <% } else { %>
-      <span class="text-muted">-</span>
+      <span class="product-card__detail-value">-</span>
       <% } %>
     </li>
   </ul>
