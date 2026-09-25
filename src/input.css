@@ -89,6 +89,10 @@
   @apply flex flex-col min-h-screen;
 }
 
+@utility dashboard-main {
+  @apply py-8 flex-1 flex flex-col gap-8;
+}
+
 @utility container {
   @apply px-4 sm:px-8 w-full max-w-none;
 }

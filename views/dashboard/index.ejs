@@ -6,15 +6,17 @@
     <div id="app" class="dashboard-layout">
       <%- include('../partials/dashboard-nav', { dashboardMenu, activeMenu }) %>
 
-      <main class="container index-page main-area">
-        <section class="index-page header">
+      <main class="container index-page dashboard-main">
+        <header
+          class="flex flex-col gap-2 p-8 bg-surface text-center border border-outline rounded-2xl"
+        >
           <h1>Welcome to dashboard, Admin!</h1>
           <p>Place to manage your products, categories and brands.</p>
-        </section>
+        </header>
 
-        <section class="index-page main">
-          <h2>Quick Preview</h2>
-          <div class="index-page content">
+        <div>
+          <h2 class="mb-4">Quick Preview</h2>
+          <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
             <%- include('../partials/count-card', { count: productsCount,
             countSuffix: 'products', link: '/dashboard/products' }) %>
             <!--  -->
@@ -22,7 +24,7 @@
             <!--  -->
             <%- include('../partials/count-card', { count: brandsCount, countSuffix: 'brands', link: '/dashboard/brands' }) %>
           </div>
-        </section>
+        </div>
       </main>
 
       <%- include('../partials/footer') %>
