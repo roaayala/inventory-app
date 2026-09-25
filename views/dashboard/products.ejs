@@ -5,21 +5,26 @@
     <div class="dashboard-layout">
       <%- include('../partials/dashboard-nav', { dashboardMenu, activeMenu }) %>
 
-      <main id="app" class="container products-page main-area">
-        <section class="header">
+      <main id="app" class="container dashboard-main">
+        <header
+          class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
+        >
           <h1>Manage Products</h1>
-          <div class="header-action">
-            <a href="/dashboard/products/new" class="button button--primary">
-              <div class="button-icon icon-plus"></div>
-              <span class="button-label">New Product</span>
+          <div>
+            <a href="/dashboard/products/new" class="btn btn--outline w-full">
+              <span class="btn-icon">
+                <div class="icon-plus"></div>
+              </span>
+
+              <span class="btn-label">New Product</span>
             </a>
           </div>
-        </section>
+        </header>
 
-        <section class="main">
+        <section class="grid gap-6 md:grid-cols-[20rem_1fr]">
           <%- include('../partials/filter-card', { categories }) %>
 
-          <section class="content">
+          <section class="bg-primary-container p-8">
             <h2 class="content__title">Products List</h2>
 
             <main class="products">
