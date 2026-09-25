@@ -1,26 +1,46 @@
-<nav class="dashboard-nav">
+<nav class="sticky top-0 z-50 py-4 shadow-md bg-surface">
   <div class="container">
     <!-- nav -->
-    <div class="dashboard-nav__wrapper">
+    <div class="flex items-center justify-between">
       <!-- page title -->
-      <a href="/dashboard" class="dashboard-nav__title">Dashboard</a>
+      <a
+        href="/dashboard"
+        class="no-underline font-bold text-xl text-on-surface"
+      >
+        Dashboard
+      </a>
 
       <!-- button for mobile nav -->
-      <button type="button" class="mobile-toggle-button" id="mobileMenuToggle">
-        <div class="icon-x toggle-icon hidden" id="menuIcon"></div>
-        <div class="icon-menu toggle-icon" id="closeIcon"></div>
+      <button
+        type="button"
+        class="btn btn--outline md:hidden"
+        id="mobileMenuToggle"
+      >
+        <span class="btn-icon" id="showMenuIcon">
+          <div class="icon-menu"></div>
+        </span>
+
+        <span class="btn-icon hidden" id="closeMenuIcon">
+          <div class="icon-x"></div>
+        </span>
       </button>
 
       <!-- desktop nav -->
-      <div class="desktop-nav__links">
+      <div class="hidden md:flex gap-4">
         <% dashboardMenu.forEach(menu => { %>
 
         <% if (activeMenu.label === menu.label) { %>
-        <a href="<%= menu.link %>" class="desktop-nav__link active">
+        <a
+          href="<%= menu.link %>"
+          class="text-primary py-1 border-b border-b-primary/50"
+        >
           <%= menu.label %>
         </a>
         <% } else { %>
-        <a href="<%= menu.link %>" class="desktop-nav__link">
+        <a
+          href="<%= menu.link %>"
+          class="text-on-surface/60 hover:text-primary py-1 border-b border-b-transparent hover:border-b-primary/50"
+        >
           <%= menu.label %>
         </a>
         <% } %>
@@ -30,21 +50,30 @@
     </div>
 
     <!-- mobile nav -->
-    <div class="mobile-nav__links hidden" id="mobileNav">
+    <div class="py-4 hidden md:hidden" id="mobileNav">
       <% dashboardMenu.forEach(menu => { %>
 
       <% if (activeMenu.label === menu.label) { %>
-      <a href="<%= menu.link %>" class="mobile-nav__link active">
-        <span class="mobile-nav__link-label"><%= menu.label %></span>
-        <div class="icon-arrow-right mobile-nav__link-icon"></div>
+      <a
+        href="<%= menu.link %>"
+        class="py-2 px-4 flex items-center justify-between no-underline text-primary border-b border-b-primary/50"
+      >
+        <span class="text-base"><%= menu.label %></span>
+        <span class="text-xl">
+          <div class="icon-arrow-right"></div>
+        </span>
       </a>
       <% } else { %>
-      <a href="<%= menu.link %>" class="mobile-nav__link">
-        <span class="mobile-nav__link-label"><%= menu.label %></span>
-        <div class="icon-arrow-right mobile-nav__link-icon"></div>
+      <a
+        href="<%= menu.link %>"
+        class="py-2 px-4 flex items-center justify-between no-underline text-on-surface/60 hover:text-primary border-b border-b-outline/50 hover:border-b-primary/50"
+      >
+        <span class="text-base"><%= menu.label %></span>
+        <span class="text-xl">
+          <div class="icon-arrow-right"></div>
+        </span>
       </a>
       <% } %>
-
       <% }) %>
     </div>
   </div>

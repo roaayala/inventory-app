@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Noto Sans", sans-serif;
+
+  --color-primary: var(--color-blue-600);
+  --color-on-primary: var(--color-white);
+  --color-primary-container: var(--color-blue-100);
+  --color-on-primary-container: var(--color-blue-800);
+
+  --color-surface: var(--color-white);
+  --color-surface-container: var(--color-slate-100);
+  --color-on-surface: var(--color-slate-900);
+
+  --color-outline: var(--color-slate-200);
+
+  --breakpoint-sm: 32rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+}
+
+@layer base {
+  body {
+    @apply font-sans text-base leading-normal bg-surface text-on-surface/80;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--color-on-surface);
+  }
+
+  h1 {
+    @apply font-bold text-4xl leading-[1.1];
+  }
+
+  h2 {
+    @apply font-semibold text-3xl leading-[1.15];
+  }
+
+  h3 {
+    @apply font-semibold text-2xl leading-[1.3];
+  }
+
+  h4 {
+    @apply font-semibold text-xl leading-[1.3];
+  }
+
+  h5 {
+    @apply font-medium text-lg leading-[1.3];
+  }
+
+  h6 {
+    @apply font-medium text-base leading-normal;
+  }
+
+  p {
+    @apply font-normal text-base leading-normal;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply cursor-pointer no-underline font-medium text-on-surface bg-transparent border border-solid border-transparent py-2 px-4 inline-flex items-center justify-center gap-2 rounded-lg;
+
+    > .btn-label {
+      @apply text-sm leading-normal;
+    }
+
+    > .btn-icon {
+      @apply text-lg leading-none flex items-center justify-center shrink-0;
+    }
+
+    &:has(> .btn-icon):not(:has(> .btn-label)) {
+      @apply p-2;
+    }
+  }
+
+  .btn.btn--outline {
+    @apply border-outline hover:bg-surface-container/50;
+  }
+}
+
+@utility dashboard-layout {
+  @apply flex flex-col min-h-screen;
+}
+
+@utility container {
+  @apply px-4 sm:px-8 w-full max-w-none;
+}
+
+@import "./styles/_variables.css";
+@import "./styles/_components.css";
+@import "./styles/_layouts.css";
