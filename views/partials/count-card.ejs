@@ -1,8 +1,13 @@
-<a href="<%= link %>" class="count-card">
-  <h3 class="count-card__label">
-    <span class="count-card__label-main"><%= count %></span>
-    <span class="count-card__label-suffix"><%= countSuffix %></span>
+<a
+  href="<%= link %>"
+  class="py-4 px-6 flex items-center justify-between bg-surface-container hover:bg-surface-container/80 rounded-2xl"
+>
+  <h3 class="font-normal text-lg">
+    <span><%= count %></span>
+    <span><%= countSuffix %></span>
   </h3>
 
-  <div class="icon-arrow-right count-card__icon"></div>
+  <span class="text-xl text-on-surface">
+    <div class="icon-arrow-right"></div>
+  </span>
 </a>
