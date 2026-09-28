@@ -4,7 +4,7 @@ const serviceResult = ({
   message = null,
   data = [],
 }) => {
-  (success, statusCode, message, data);
+  return { success, statusCode, message, data };
 };
 
 export default serviceResult;

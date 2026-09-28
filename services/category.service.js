@@ -18,18 +18,23 @@ export const getCategories = async () => {
 };
 
 export const getCategory = async (id) => {
-  const brand = await categoryRepo.findOne(id);
-  console.log(brand);
+  const category = await categoryRepo.findOne(id);
 
-  if (CONSTANTS.SYSTEM_DEFAULTS.UNCATEGORIZED_ID === brand.id) {
-    return serviceResult.forbidden({
-      message: `"${brand.name}" forbidden to edit!`,
+  if (CONSTANTS.SYSTEM_DEFAULTS.UNCATEGORIZED_ID === category.id) {
+    return serviceResult({
+      success: false,
+      statusCode: 403,
+      message: `"${category.name}" forbidden to edit!`,
     });
   }
 
-  const formatedBrand = CategoryResponseDTO(brand, null);
+  const formattedCategory = CategoryResponseDTO(category, null);
 
-  return formatedBrand;
+  return serviceResult({
+    success: true,
+    statusCode: 200,
+    data: formattedCategory,
+  });
 };
 
 export const getCategoriesCount = async () =>

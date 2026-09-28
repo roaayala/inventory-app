@@ -34,13 +34,13 @@ const categoryDashboardController = {
   renderEditForm: async (req, res) => {
     const categoryId = req.params.id;
 
-    const category = await categoryService.getCategory(categoryId);
-    console.log(category);
-
-    if (!category.success) {
+    const result = await categoryService.getCategory(categoryId);
+    console.log(result);
+    if (!result.success) {
       return res.redirect("/dashboard/categories");
     }
 
+    console.log(result.data);
     res.render("dashboard/item-form", {
       title: "Edit Category",
       dashboardMenu,
@@ -51,7 +51,7 @@ const categoryDashboardController = {
       isEditForm: true,
       fieldNamePrefix: "Category",
       errors: [],
-      oldData: category,
+      oldData: result.data,
     });
   },
   postCategory: async (req, res) => {
