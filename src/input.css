@@ -80,8 +80,20 @@
     }
   }
 
-  .btn.btn--outline {
-    @apply border-outline hover:bg-surface-container/50;
+  .btn.btn--neutral {
+    @apply border-surface-container hover:border-surface-container/80
+    bg-surface-container hover:bg-surface-container/80
+    text-on-surface/90 hover:text-on-surface;
+  }
+
+  .btn--neutral.btn--outline {
+    @apply border-outline bg-transparent;
+  }
+
+  .btn.btn--primary {
+    @apply border-primary hover:border-primary/90
+    text-on-primary 
+    bg-primary hover:bg-primary/90;
   }
 }
 
@@ -97,6 +109,5 @@
   @apply px-4 sm:px-8 w-full max-w-none;
 }
 
-@import "./styles/_variables.css";
 @import "./styles/_components.css";
 @import "./styles/_layouts.css";

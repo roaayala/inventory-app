@@ -1,10 +1,12 @@
-<section class="filter-card">
-  <header class="filter-card__header">
-    <h2 class="filter-card__title">Filter Products</h2>
+<section
+  class="min-w-0 self-start flex flex-col p-4 rounded-2xl bg-surface-container/50"
+>
+  <header class="flex items-center justify-between">
+    <h2 class="text-xl font-bold">Filter Products</h2>
 
-    <div class="filter-card__action">
-      <button class="button button--neutral button--outline" id="toggleFilter">
-        <div class="button-icon icon-eye-off" id="toggleFilterIcon"></div>
+    <div>
+      <button class="btn btn--neutral btn--outline" id="toggleFilter">
+        <div class="btn-icon icon-eye-off" id="toggleFilterIcon"></div>
       </button>
     </div>
   </header>
@@ -12,21 +14,20 @@
   <form
     action="/dashboard/products"
     method="get"
-    class="filter-card__form"
+    class="flex flex-col"
     id="dashboardFilterForm"
   >
-    <section class="filter-card__form-section">
-      <h3 class="form-section__title">Filter by Categories</h3>
-      <div class="form-section__lists">
+    <section class="flex flex-col py-4 border-b border-b-outline gap-2">
+      <h3 class="text-base text-on-surface/80">Filter by Categories</h3>
+      <div class="flex flex-col gap-2">
         <% if (categories && categories.length > 0) {
         categories.forEach(category => { %>
 
-        <div class="field-group">
+        <div class="pl-1 flex items-center gap-2">
           <% const isChecked =
           activeFilters.categories.includes(String(category.id)); if (isChecked)
           { %>
           <input
-            class="checkbox-input"
             type="checkbox"
             name="categories"
             id="<%= category.id %>"
@@ -35,7 +36,6 @@
           />
           <% } else { %>
           <input
-            class="checkbox-input"
             type="checkbox"
             name="categories"
             id="<%= category.id %>"
@@ -43,7 +43,7 @@
           />
           <% } %>
 
-          <label class="label" for="<%= category.id %>">
+          <label class="text-sm text-on-surface/60" for="<%= category.id %>">
             <%= category.name %>
           </label>
         </div>
@@ -55,16 +55,15 @@
       </div>
     </section>
 
-    <section class="filter-card__form-section">
-      <h3 class="form-section__title">Filter by Brands</h3>
-      <div class="form-section__lists">
+    <section class="flex flex-col py-4 border-b border-b-outline gap-2">
+      <h3 class="text-base text-on-surface/80">Filter by Brands</h3>
+      <div class="flex flex-col gap-2">
         <% if (brands && brands.length > 0) { %> <% brands.forEach(brand => { %>
-        <div class="field-group">
+        <div class="pl-1 flex items-center gap-2">
           <% const isBrandChecked =
           activeFilters.brands.includes(String(brand.id)); %> <% if
           (isBrandChecked) { %>
           <input
-            class="checkbox-input"
             type="checkbox"
             name="brands"
             id="<%= brand.id %>"
@@ -73,7 +72,6 @@
           />
           <% } else { %>
           <input
-            class="checkbox-input"
             type="checkbox"
             name="brands"
             id="<%= brand.id %>"
@@ -81,7 +79,9 @@
           />
           <% } %>
 
-          <label class="label" for="<%= brand.id %>"> <%= brand.name %></label>
+          <label class="text-sm text-on-surface/60" for="<%= brand.id %>">
+            <%= brand.name %></label
+          >
         </div>
         <% }) %>
         <% } else { %>
@@ -90,16 +90,13 @@
       </div>
     </section>
 
-    <section class="filter-card__form-action">
-      <a
-        href="/dashboard/products"
-        class="button button--neutral button--outline"
-      >
-        <span class="button-label">Clear Filter</span>
+    <section class="flex flex-col mt-4 gap-4">
+      <a href="/dashboard/products" class="btn btn--neutral btn--outline">
+        <span class="btn-label">Clear Filter</span>
       </a>
 
-      <button type="submit" class="button button--primary">
-        <span class="button-label">Apply Filter</span>
+      <button type="submit" class="btn btn--primary">
+        <span class="btn-label">Apply Filter</span>
       </button>
     </section>
   </form>

@@ -8,9 +8,9 @@ export const toggleFilter = () => {
 
   toggleFilter.addEventListener("click", () => {
     toggleFilterIcon.className =
-      toggleFilterIcon.className === "button-icon icon-eye"
-        ? "button-icon icon-eye-off"
-        : "button-icon icon-eye";
+      toggleFilterIcon.className === "btn-icon icon-eye"
+        ? "btn-icon icon-eye-off"
+        : "btn-icon icon-eye";
 
     dashboardFilterForm.classList.toggle("hidden");
   });

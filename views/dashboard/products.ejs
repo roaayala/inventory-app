@@ -11,7 +11,10 @@
         >
           <h1>Manage Products</h1>
           <div>
-            <a href="/dashboard/products/new" class="btn btn--outline w-full">
+            <a
+              href="/dashboard/products/new"
+              class="btn btn--neutral btn--outline w-full"
+            >
               <span class="btn-icon">
                 <div class="icon-plus"></div>
               </span>
@@ -21,7 +24,7 @@
           </div>
         </header>
 
-        <section class="grid gap-6 md:grid-cols-[20rem_1fr]">
+        <section class="grid gap-6 grid-cols-1 md:grid-cols-[20rem_1fr]">
           <%- include('../partials/filter-card', { categories }) %>
 
           <section class="bg-primary-container p-8">
