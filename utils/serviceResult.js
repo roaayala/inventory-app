@@ -1,11 +1,10 @@
-const serviceResult = {
-  forbidden: ({ message }) => {
-    return {
-      success: false,
-      statusCode: 403,
-      message,
-    };
-  },
+const serviceResult = ({
+  success = 404,
+  statusCode = 404,
+  message = null,
+  data = [],
+}) => {
+  (success, statusCode, message, data);
 };
 
 export default serviceResult;
