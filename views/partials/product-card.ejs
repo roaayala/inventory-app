@@ -1,66 +1,67 @@
 <% if (!product) { %>
-<div class="product-card">
-  <div class="product-card product-card--empty">
-    <div class="product-card__header">
-      <h3 class="product-card__title">No products found!</h3>
+<div>
+  <div>
+    <div>
+      <h3>No products found!</h3>
     </div>
   </div>
 </div>
 <% } else { %>
-<div class="product-card">
-  <header class="product-card__header">
-    <h3 class="product-card__title"><%= product.name %></h3>
-    <div class="product-card__action">
+<div class="min-w-0 p-4 bg-surface rounded-2xl flex flex-col gap-1">
+  <header class="flex items-center justify-between gap-2">
+    <h3 class="text-base truncate"><%= product.name %></h3>
+    <div class="flex items-center gap-2 shrink">
       <a
         href="/dashboard/products/<%= product.id %>/edit"
-        class="button button--neutral button--ghost"
+        class="btn btn--neutral btn--ghost p-0"
       >
-        <div class="button-icon icon-square-pen"></div>
+        <div class="btn-icon icon-square-pen"></div>
       </a>
       <form
         action="/dashboard/products/<%= product.id %>?_method=DELETE"
         method="POST"
+        class="flex items-center"
       >
-        <button type="submit" class="button button--neutral button--ghost">
-          <div class="button-icon icon-trash-2"></div>
+        <button type="submit" class="btn btn--neutral btn--ghost p-0">
+          <div class="btn-icon icon-trash-2"></div>
         </button>
       </form>
     </div>
   </header>
 
-  <ul class="product-card__details">
-    <li class="product-card__detail-item">
-      <span class="product-card__detail-label">SKU:</span>
-      <span class="product-card__detail-value"><%= product.sku %></span>
+  <ul class="flex flex-col p-0 list-none">
+    <li>
+      <span class="text-on-surface/60 text-sm">SKU:</span>
+      <span class="text-on-surface/80 text-sm"><%= product.sku %></span>
     </li>
 
-    <li class="product-card__item">
-      <span class="product-card__detail-label">Price:</span>
-      <span class="product-card__detail-value">
+    <li>
+      <span class="text-on-surface/60 text-sm">Price:</span>
+      <span class="text-on-surface/80 text-sm">
         Rp<%= stringifyPrice(product.price) %>
       </span>
     </li>
 
-    <li class="product-card__item">
-      <span class="product-card__detail-label">Weight:</span>
-      <span class="product-card__detail-value"> <%= product.weight %> Kg </span>
+    <li>
+      <span class="text-on-surface/60 text-sm">Weight:</span>
+      <span class="text-on-surface/80 text-sm"> <%= product.weight %> Kg </span>
     </li>
 
-    <li class="product-card__item">
-      <span class="product-card__detail-label">Brand:</span>
-      <span class="product-card__detail-value">
+    <li>
+      <span class="text-on-surface/60 text-sm">Brand:</span>
+      <span class="text-on-surface/80 text-sm">
         <%= product.brand?.name || '-' %>
       </span>
     </li>
 
-    <li class="product-card__item">
-      <span class="product-card__detail-label">Categories:</span>
+    <li>
+      <span class="text-on-surface/60 text-sm">Categories:</span>
       <% if (product.category) { %>
-      <span class="product-card__detail-value">
+      <span class="text-on-surface/80 text-sm">
         <%= product.category.name %>
       </span>
       <% } else { %>
-      <span class="product-card__detail-value">-</span>
+      <span class="text-on-surface/80 text-sm">-</span>
       <% } %>
     </li>
   </ul>

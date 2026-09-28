@@ -90,6 +90,10 @@
     @apply border-outline bg-transparent;
   }
 
+  .btn--neutral.btn--ghost {
+    @apply p-0 border-transparent bg-transparent;
+  }
+
   .btn.btn--primary {
     @apply border-primary hover:border-primary/90
     text-on-primary 
