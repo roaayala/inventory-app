@@ -112,6 +112,3 @@
 @utility container {
   @apply px-4 sm:px-8 w-full max-w-none;
 }
-
-@import "./styles/_components.css";
-@import "./styles/_layouts.css";

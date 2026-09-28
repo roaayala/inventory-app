@@ -11,7 +11,9 @@
         href="/dashboard/products/<%= product.id %>/edit"
         class="btn btn--neutral btn--ghost p-0"
       >
-        <div class="btn-icon icon-square-pen"></div>
+        <span class="btn-icon text-base">
+          <div class="icon-square-pen"></div>
+        </span>
       </a>
       <form
         action="/dashboard/products/<%= product.id %>?_method=DELETE"
@@ -19,7 +21,9 @@
         class="flex items-center"
       >
         <button type="submit" class="btn btn--neutral btn--ghost p-0">
-          <div class="btn-icon icon-trash-2"></div>
+          <span class="btn-icon text-base">
+            <div class="icon-trash-2"></div>
+          </span>
         </button>
       </form>
     </div>

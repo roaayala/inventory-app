@@ -1,21 +1,33 @@
-<div class="simple-card">
-  <div class="simple-card__header">
-    <h2 class="simple-card__title"><%= name %></h2>
-    <span class="simple-card__count">
-      <span class="simple-card__count-value"><%= total %></span>
-      <span class="simple-card__count-suffix">
+<div
+  class="min-w-0 py-4 px-6 flex items-center justify-between bg-surface-container hover:bg-surface-container/80 rounded-2xl"
+>
+  <h2
+    class="flex items-center gap-2 font-normal text-lg truncate leading-normal"
+  >
+    <span class="truncate text-on-surface"><%= name %></span
+    ><span class="text-on-surface/80 text-xs pt-1">
+      <span><%= total %></span>
+      <span>
         <%= total === 1 ? 'item' : 'items' %>
       </span>
     </span>
-  </div>
+  </h2>
 
-  <div class="simple-card__action">
-    <a href="<%= editLink %>" class="button button--neutral button--ghost">
-      <div class="button-icon icon-square-pen"></div>
+  <div class="flex items-center gap-2 shrink">
+    <a href="<%= editLink %>" class="btn btn--neutral btn--ghost p-0">
+      <span class="btn-icon text-base">
+        <div class="icon-square-pen"></div>
+      </span>
     </a>
-    <form action="<%= deleteLink %>?_method=DELETE" method="POST">
-      <button type="submit" class="button button--neutral button--ghost">
-        <div class="button-icon icon-trash-2"></div>
+    <form
+      action="<%= deleteLink %>?_method=DELETE"
+      method="POST"
+      class="flex items-center"
+    >
+      <button type="submit" class="btn btn--neutral btn--ghost p-0">
+        <span class="btn-icon text-base">
+          <div class="icon-trash-2"></div>
+        </span>
       </button>
     </form>
   </div>
