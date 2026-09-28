@@ -1,15 +1,11 @@
 <% if (!product) { %>
 <div>
-  <div>
-    <div>
-      <h3>No products found!</h3>
-    </div>
-  </div>
+  <h3>No products found!</h3>
 </div>
 <% } else { %>
 <div class="min-w-0 p-4 bg-surface rounded-2xl flex flex-col gap-1">
   <header class="flex items-center justify-between gap-2">
-    <h3 class="text-base truncate"><%= product.name %></h3>
+    <h3 class="text-lg truncate"><%= product.name %></h3>
     <div class="flex items-center gap-2 shrink">
       <a
         href="/dashboard/products/<%= product.id %>/edit"
@@ -29,40 +25,21 @@
     </div>
   </header>
 
-  <ul class="flex flex-col p-0 list-none">
-    <li>
-      <span class="text-on-surface/60 text-sm">SKU:</span>
-      <span class="text-on-surface/80 text-sm"><%= product.sku %></span>
+  <ul class="pl-4 list-disc flex flex-col gap-1">
+    <li class="text-on-surface/80 text-sm">SKU: <%= product.sku %></li>
+
+    <li class="text-on-surface/80 text-sm">
+      Price: Rp<%= stringifyPrice(product.price) %>
     </li>
 
-    <li>
-      <span class="text-on-surface/60 text-sm">Price:</span>
-      <span class="text-on-surface/80 text-sm">
-        Rp<%= stringifyPrice(product.price) %>
-      </span>
+    <li class="text-on-surface/80 text-sm">Weight: <%= product.weight %> Kg</li>
+
+    <li class="text-on-surface/80 text-sm">
+      Brand: <%= product.brand?.name || '-' %>
     </li>
 
-    <li>
-      <span class="text-on-surface/60 text-sm">Weight:</span>
-      <span class="text-on-surface/80 text-sm"> <%= product.weight %> Kg </span>
-    </li>
-
-    <li>
-      <span class="text-on-surface/60 text-sm">Brand:</span>
-      <span class="text-on-surface/80 text-sm">
-        <%= product.brand?.name || '-' %>
-      </span>
-    </li>
-
-    <li>
-      <span class="text-on-surface/60 text-sm">Categories:</span>
-      <% if (product.category) { %>
-      <span class="text-on-surface/80 text-sm">
-        <%= product.category.name %>
-      </span>
-      <% } else { %>
-      <span class="text-on-surface/80 text-sm">-</span>
-      <% } %>
+    <li class="text-on-surface/80 text-sm">
+      Categories: <%= product.category ? product.category.name : '-' %>
     </li>
   </ul>
 </div>

@@ -1,5 +1,5 @@
 <section
-  class="min-w-0 self-start flex flex-col p-4 rounded-2xl bg-surface-container/50"
+  class="min-w-0 self-start flex flex-col gap-2 p-4 rounded-2xl bg-surface-container/50"
 >
   <header class="flex items-center justify-between">
     <h2 class="text-xl font-bold">Filter Products</h2>
@@ -14,10 +14,10 @@
   <form
     action="/dashboard/products"
     method="get"
-    class="flex flex-col"
+    class="flex flex-col gap-4"
     id="dashboardFilterForm"
   >
-    <section class="flex flex-col py-4 border-b border-b-outline gap-2">
+    <section class="flex flex-col gap-2">
       <h3 class="text-base text-on-surface/80">Filter by Categories</h3>
       <div class="flex flex-col gap-2">
         <% if (categories && categories.length > 0) {
@@ -55,7 +55,7 @@
       </div>
     </section>
 
-    <section class="flex flex-col py-4 border-b border-b-outline gap-2">
+    <section class="flex flex-col gap-2">
       <h3 class="text-base text-on-surface/80">Filter by Brands</h3>
       <div class="flex flex-col gap-2">
         <% if (brands && brands.length > 0) { %> <% brands.forEach(brand => { %>
@@ -90,7 +90,7 @@
       </div>
     </section>
 
-    <section class="flex flex-col mt-4 gap-4">
+    <section class="flex flex-col gap-4">
       <a href="/dashboard/products" class="btn btn--neutral btn--outline">
         <span class="btn-label">Clear Filter</span>
       </a>
