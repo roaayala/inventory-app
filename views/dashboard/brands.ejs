@@ -5,18 +5,26 @@
     <div id="app" class="dashboard-layout">
       <%- include('../partials/dashboard-nav', { dashboardMenu }) %>
 
-      <main class="container brands-page main-area">
-        <section class="brands-page__header">
-          <h1>Manage Brands</h1>
-          <div class="brands-page__header-action">
-            <a href="/dashboard/brands/new" class="button button--primary">
-              <div class="button-icon icon-plus"></div>
-              <span class="button-label">New Brand</span>
+      <main class="container dashboard-main">
+        <header
+          class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
+        >
+          <h1 class="text-center sm:text-left">Manage Brands</h1>
+          <div>
+            <a
+              href="/dashboard/brands/new"
+              class="btn btn--neutral btn--outline w-full"
+            >
+              <span class="btn-icon">
+                <div class="icon-plus"></div>
+              </span>
+
+              <span class="btn-label">New Product</span>
             </a>
           </div>
-        </section>
+        </header>
 
-        <section class="brands-page__main">
+        <section class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
           <% if (brands && brands.length > 0) { %> <% brands.forEach(brand => {
           %>
           <%- include('../partials/simple-card', { name: brand.name, 
@@ -25,8 +33,8 @@
             deleteLink: `/dashboard/brands/${brand.id}` }) %>
           <% }) %>
           <% } else { %>
-          <div class="empty-message">
-            <span class="empty-message__text">No brand added yet!</span>
+          <div>
+            <span>No brand added yet!</span>
           </div>
           <% } %>
         </section>

@@ -2,10 +2,10 @@
 <html lang="en">
   <%- include('../partials/header.ejs', { title }) %>
   <body>
-    <div class="dashboard-layout">
+    <div id="app" class="dashboard-layout">
       <%- include('../partials/dashboard-nav', { dashboardMenu, activeMenu }) %>
 
-      <main id="app" class="container dashboard-main">
+      <main class="container dashboard-main">
         <header
           class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
         >
