@@ -19,3 +19,7 @@ export const CONSTANTS = {
     { label: "Brands", link: "/dashboard/brands" },
   ],
 };
+
+export const setNotification = ({ res, key, value, lifeSpan = 10000 }) => {
+  return res.cookie(key, JSON.stringify(value), { maxAge: lifeSpan });
+};

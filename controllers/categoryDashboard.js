@@ -1,6 +1,6 @@
 import * as categoryService from "../services/category.service.js";
 
-import { CONSTANTS } from "../utils/helpers.js";
+import { CONSTANTS, setNotification } from "../utils/helpers.js";
 import { validationResult } from "express-validator";
 import { CategoryRequestDTO } from "../models/Category.js";
 
@@ -16,7 +16,7 @@ export const renderCategoriesDashboard = async (req, res) => {
   });
 };
 
-export const renderNewForm = async (req, res) => {
+export const renderNewForm = async (_req, res) => {
   res.render("dashboard/item-form", {
     title: "Add New Category",
     dashboardMenu,
@@ -37,7 +37,12 @@ export const renderEditForm = async (req, res) => {
   const result = await categoryService.getCategory(categoryId);
 
   if (!result.success) {
-    console.log(result);
+    setNotification({
+      res,
+      key: "flash_notification",
+      value: { success: result.success, message: result.message },
+    });
+
     return res.redirect("/dashboard/categories");
   }
 
@@ -93,7 +98,7 @@ export const updateCategory = async (req, res) => {
     return res.status(400).render("dashboard/item-form", {
       title: "Edit Category",
       dashboardMenu,
-      activeMenu: dashboardMenu[3],
+      activeMenu: dashboardMenu[2],
       prevPage: "/dashboard/categories",
       formUrlEndpoint: `/dashboard/categories/${req.params.id}?_method=PUT`,
       isProductForm: false,

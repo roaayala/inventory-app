@@ -20,6 +20,29 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
+app.use((req, res, next) => {
+  const cookieHeader = req.headers.cookie;
+
+  if (cookieHeader) {
+    const match = cookieHeader.match(/flash_notification=([^;]+)/);
+
+    if (match) {
+      try {
+        res.locals.notification = JSON.parse(decodeURIComponent(match[1]));
+
+        res.clearCookie("flash_notification");
+      } catch (error) {
+        res.locals.notification = null;
+      }
+    } else {
+      res.locals.notification = null;
+    }
+  } else {
+    res.locals.notification = null;
+  }
+  next();
+});
+
 app.use("/", indexRoute);
 app.use("/dashboard", dashboardRouter);
 

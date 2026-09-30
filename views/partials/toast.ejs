@@ -1,0 +1,41 @@
+<% if(locals.notification) { 
+  const isError = !notification.success;
+  const iconName = isError ? 'circle-x' : 'check';
+  const textColor = isError ? 'text-on-danger-container' : 'text-on-success-container';
+  const containerColor = isError ? 'bg-danger-container' : 'bg-success-container';
+%>
+
+<div
+  id="notification-toaster"
+  class="absolute top-4 right-4 sm:right-8 z-50 p-4 rounded-2xl <%= containerColor %> flex items-center gap-2 transition-all duration-300 ease-in-out"
+>
+  <div class="<%= textColor %> text-2xl">
+    <div class="icon-<%= iconName %>"></div>
+  </div>
+
+  <div class="<%= textColor %> text-sm"><%= notification.message %></div>
+
+  <button
+    onclick="dismissToast()"
+    class="<%= textColor %> text-lg cursor-pointer"
+  >
+    <div class="icon-x"></div>
+  </button>
+</div>
+
+<script>
+  function dismissToast() {
+    const toast = document.getElementById("notification-toaster");
+
+    if (toast) {
+      toast.classList.add("opacity-0", "-translate-y-2");
+
+      setTimeout(() => {
+        toast.remove();
+      }, 300);
+    }
+  }
+  setTimeout(() => dismissToast(), 5000);
+</script>
+
+<% } %>

@@ -5,7 +5,8 @@
     <div id="app" class="dashboard-layout">
       <%- include('../partials/dashboard-nav', { dashboardMenu, activeMenu }) %>
 
-      <main class="container dashboard-main">
+      <main id="main" class="container relative dashboard-main">
+        <%- include('../partials/toast') %>
         <header
           class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
         >
@@ -19,7 +20,7 @@
                 <div class="icon-plus"></div>
               </span>
 
-              <span class="btn-label">New Product</span>
+              <span class="btn-label">New Category</span>
             </a>
           </div>
         </header>
