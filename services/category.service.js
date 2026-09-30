@@ -20,6 +20,14 @@ export const getCategories = async () => {
 export const getCategory = async (id) => {
   const category = await categoryRepo.findOne(id);
 
+  if (!category) {
+    return serviceResult({
+      success: false,
+      statusCode: 404,
+      message: "Category not found!",
+    });
+  }
+
   if (CONSTANTS.SYSTEM_DEFAULTS.UNCATEGORIZED_ID === category.id) {
     return serviceResult({
       success: false,
@@ -33,6 +41,7 @@ export const getCategory = async (id) => {
   return serviceResult({
     success: true,
     statusCode: 200,
+    message: "Success",
     data: formattedCategory,
   });
 };

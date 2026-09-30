@@ -1,8 +1,8 @@
 const serviceResult = ({
-  success = 404,
-  statusCode = 404,
+  success = true,
+  statusCode = 200,
   message = null,
-  data = [],
+  data = null,
 }) => {
   return { success, statusCode, message, data };
 };

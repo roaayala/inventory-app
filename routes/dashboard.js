@@ -7,7 +7,7 @@ import {
 
 import indexDashboardController from "../controllers/indexDashboard.js";
 import productDashboardController from "../controllers/productDashboard.js";
-import categoryDashboardController from "../controllers/categoryDashboard.js";
+import * as categoryDashboardController from "../controllers/categoryDashboard.js";
 import brandDashboardController from "../controllers/brandDashboard.js";
 
 const dashboardRouter = Router();
