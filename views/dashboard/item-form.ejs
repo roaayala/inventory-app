@@ -3,22 +3,31 @@
   <%- include('../partials/header', { title }) %>
 
   <body>
-    <div class="dashboard-layout">
+    <div id="app" class="dashboard-layout">
       <%- include('../partials/dashboard-nav', { dashboardMenu }) %>
 
-      <main id="app" class="form-page">
-        <form action="<%= formUrlEndpoint %>" method="POST" class="form-item">
-          <header class="form-item__header">
-            <h1 class="form-item__title"><%= title %></h1>
+      <main class="py-8 max-w-form-wide flex-1">
+        <form
+          action="<%= formUrlEndpoint %>"
+          method="POST"
+          class="flex flex-col gap-6"
+        >
+          <header>
+            <h1><%= title %></h1>
           </header>
 
-          <main class="form-item__main">
+          <main class="flex flex-col gap-4">
             <% if (isEditForm) { %>
             <input type="hidden" name="id" value="<%= oldData.id %>" />
             <% } %>
 
-            <section class="field-group">
-              <label for="name" class="label">
+            <% 
+            const fieldGroup = 'flex flex-col gap-1'; 
+            const label = 'text-sm text-on-surface/60';
+            %>
+
+            <section class="<%= fieldGroup %>">
+              <label for="name" class="<%= label %>">
                 <%= fieldNamePrefix %> Name
               </label>
               <input

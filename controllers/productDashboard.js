@@ -40,7 +40,7 @@ const productDashboardController = {
     });
   },
   renderNewForm: async (req, res) => {
-    const categories = await categoryService.getCategories();
+    const categoriesResult = await categoryService.getCategories();
     const brands = await brandService.getBrands();
 
     res.render("dashboard/item-form", {
@@ -52,7 +52,7 @@ const productDashboardController = {
       isProductForm: true,
       isEditForm: false,
       fieldNamePrefix: "Product",
-      categories,
+      categories: categoriesResult.data,
       brands,
       errors: [],
       oldData: {},

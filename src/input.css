@@ -24,6 +24,8 @@
   --breakpoint-md: 48rem;
   --breakpoint-lg: 64rem;
   --breakpoint-xl: 80rem;
+
+  --form-container-wide: 45rem;
 }
 
 @layer base {
@@ -117,4 +119,9 @@
 
 @utility container {
   @apply px-4 sm:px-8 w-full max-w-none;
+}
+
+@utility max-w-form-wide {
+  max-width: var(--form-container-wide);
+  @apply px-4 sm:px-8 w-full mx-auto;
 }
