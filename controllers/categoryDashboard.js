@@ -5,12 +5,13 @@ import { validationResult } from "express-validator";
 import { CategoryRequestDTO } from "../models/Category.js";
 
 const dashboardMenu = CONSTANTS.DASHBOARD_MENU;
-export const renderCategoriesDashboard = async (req, res) => {
-  const categories = await categoryService.getCategories();
 
-  res.render("dashboard/categories", {
+export const renderCategoriesDashboard = async (_req, res) => {
+  const result = await categoryService.getCategories();
+
+  res.status(result.statusCode).render("dashboard/categories", {
     title: "Categories Dashboard",
-    categories,
+    categories: result.data,
     dashboardMenu,
     activeMenu: dashboardMenu[2],
   });
@@ -80,13 +81,35 @@ export const postCategory = async (req, res) => {
 
   const newCategory = CategoryRequestDTO(req.body);
 
-  await categoryService.createCategory(newCategory);
+  const createResult = await categoryService.createCategory(newCategory);
+
+  setNotification({
+    res,
+    key: "flash_notification",
+    value: { success: createResult.success, message: createResult.message },
+  });
 
   res.redirect("/dashboard/categories");
 };
 
 export const deleteCategory = async (req, res) => {
-  await categoryService.deleteCategory(req.params.id);
+  const categoryId = req.params.id;
+  const result = await categoryService.deleteCategory(categoryId);
+
+  if (!result.success) {
+    setNotification({
+      res,
+      key: "flash_notification",
+      value: { success: result.success, message: result.message },
+    });
+    return res.redirect("/dashboard/categories");
+  }
+
+  setNotification({
+    res,
+    key: "flash_notification",
+    value: { success: result.success, message: result.message },
+  });
 
   res.redirect("/dashboard/categories");
 };
@@ -109,7 +132,13 @@ export const updateCategory = async (req, res) => {
     });
   }
 
-  await categoryService.updateCategory(req.body);
+  const updateResult = await categoryService.updateCategory(req.body);
+
+  setNotification({
+    res,
+    key: "flash_notification",
+    value: { success: updateResult.success, message: updateResult.message },
+  });
 
   res.redirect("/dashboard/categories");
 };

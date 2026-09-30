@@ -86,7 +86,7 @@ export const deleteCategory = async (id) => {
     const { rows } = await client.query(deleteCategoryQuery, [id]);
 
     if (rows.length === 0) {
-      throw new Error(`Category with ID ${id} not found.`);
+      throw new Error(`Category not found.`);
     }
 
     await client.query("COMMIT");

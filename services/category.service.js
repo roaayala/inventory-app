@@ -14,7 +14,12 @@ export const getCategories = async () => {
     }),
   );
 
-  return formatedCategories;
+  return serviceResult({
+    success: true,
+    statusCode: 200,
+    message: "Success",
+    data: formatedCategories,
+  });
 };
 
 export const getCategory = async (id) => {
@@ -52,13 +57,40 @@ export const getCategoriesCount = async () =>
 export const createCategory = async (newItem) => {
   const newCategory = new CategoryEntity(newItem);
 
-  await categoryRepo.insertCategory(newCategory);
+  const createCategory = await categoryRepo.insertCategory(newCategory);
+  return serviceResult({
+    success: true,
+    statusCode: 200,
+    message: `Category "${createCategory.name}" created successfully.`,
+  });
 };
 
-export const deleteCategory = async (id) =>
-  await categoryRepo.deleteCategory(id);
+export const deleteCategory = async (id) => {
+  try {
+    const deletedCategory = await categoryRepo.deleteCategory(id);
+
+    return serviceResult({
+      success: true,
+      statusCode: 200,
+      message: `Category "${deletedCategory.name}" deleted successfully`,
+    });
+  } catch (error) {
+    return serviceResult({
+      success: false,
+      statusCode: 400,
+      message: error.message,
+    });
+  }
+};
 
 export const updateCategory = async (reqBody) => {
   const updateCategory = new CategoryEntity(reqBody);
-  await categoryRepo.updateCategory(updateCategory);
+
+  const updatedCategory = await categoryRepo.updateCategory(updateCategory);
+
+  return serviceResult({
+    success: true,
+    statusCode: 200,
+    message: `Category "${updatedCategory.name}" updated successfully.`,
+  });
 };
